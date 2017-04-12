@@ -27,6 +27,12 @@
       url: '/inputActConformity2',
       templateUrl:'partials/inputActConformity2.html'
     });
+
+    $stateProvider.state('building',{
+      url: '/building',
+      templateUrl:'partials/building.html'
+    });
+
     $urlRouterProvider.otherwise('/home');
   });
 
