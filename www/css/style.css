@@ -1,0 +1,15 @@
+.fundamenta{
+	font: Times;
+}
+
+.my-header{
+	height: 65px;
+	background: #045; important!
+}
+
+.center {
+    margin: auto;
+    width: 50%; important!
+    border: 3px solid green;
+    padding: 10px;
+}
