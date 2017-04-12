@@ -18,6 +18,15 @@
       templateUrl:'partials/acts.html'
     });
 
+    $stateProvider.state('inputActConformity',{
+      url: '/inputActConformity',
+      templateUrl:'partials/inputActConformity.html'
+    });
+
+    $stateProvider.state('inputActConformity2',{
+      url: '/inputActConformity2',
+      templateUrl:'partials/inputActConformity2.html'
+    });
     $urlRouterProvider.otherwise('/home');
   });
 
