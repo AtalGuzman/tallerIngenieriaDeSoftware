@@ -1,4 +1,4 @@
-angular.module('starter').controller('logInCtrl', function($scope, $ionicPopup) {
+angular.module('starter').controller('logInCtrl', function($state, $scope, $ionicPopup, Auth) {
 
     $scope.data = {
       username: '',
@@ -9,12 +9,14 @@ angular.module('starter').controller('logInCtrl', function($scope, $ionicPopup) 
 
     $scope.login = function() {
       debugLogin();
+      $state.go("home")
     }
 
     function debugLogin(){
 
       if ($scope.data.username == "root" && $scope.data.password == "password"){
-        console.log("Login Success");
+        Auth.setUser($scope.data.username);
+        console.log(Auth.isLoggedIn());
       }
 
       else{
@@ -31,4 +33,4 @@ angular.module('starter').controller('logInCtrl', function($scope, $ionicPopup) 
       }
     }
 
-});
+})
