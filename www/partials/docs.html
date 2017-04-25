@@ -1,29 +1,27 @@
-<ion-view>
-  <ion-content class="has-header" style ="height: 100%; position: absolute; margin-top: 40px">  
-    <div>
-      <a class = "button button-balanced button-block" href="/#/acts">
-          <h4>
-              Acta de conformidad
-          </h4>
-      </a>
-      <a class = "button button-balanced button-block" href="/#/acts">
-          <h4>
-              Acta de rechazo
-          </h4>
-      </a>
-      <a class = "button button-balanced button-block" href="/#/acts">
-          <h4>
-              Orden de trabajo
-          </h4>
-      </a>
-      <a class = "button button-balanced button-block" href="/#/acts">
-          <h4>
-              Orden de inspección
-          </h4>
-      </a>
-    </div>     
-    <div class ="bar bar-footer padding" style="position: relative;">
-        <a class="icon ion-home button button-calm pull-right" href="/#/home" style="width:  40%"></a>
-    </div>     
+<ion-view ng-controller="docsCtrl">
+
+  <ng-include src="'partials/navbar.html'"></ng-include>
+
+  <ion-content class="has-header">
+
+      <div style="padding: 0% 10%">
+
+  			<button class="button button-block button-stable" ng-click="changeState('newWorkOrder');">Orden de trabajo</button>
+
+  			<button class="button button-block button-stable" ng-click="changeState('');">Orden de inspección</button>
+
+        <div class="row">
+          <div class="col">
+            <button class="button button-block button-calm pull-left" ng-click="changeState('home');">
+              <span class="icon ion-arrow-left-a"></span>
+              Volver
+            </button>
+          </div>
+          <div class="col"><!-- Nada --></div>
+        </div>
+
+
+  		</div>
+
   </ion-content>
-</ion-view>  
+</ion-view>

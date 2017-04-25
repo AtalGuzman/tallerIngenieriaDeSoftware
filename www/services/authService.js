@@ -13,12 +13,14 @@ angular.module('starter').factory('Auth', function () {
      return {
         setUser: setUser,
         isLoggedIn: function () {
-           return _user ? true : false;
+          console.log("isLoggedIn");
+          return _user ? true : false;
         },
         getUser: function () {
            return _user;
         },
         logout: function () {
+           console.log("logout");
            window.localStorage.removeItem("session");
            window.localStorage.removeItem("list_dependents");
            _user = null;

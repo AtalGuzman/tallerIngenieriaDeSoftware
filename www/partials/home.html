@@ -1,30 +1,19 @@
-<ion-view>
-	<ion-content class="has-header" style ="height: 100%; position: absolute; margin-top: 40px">
-	    <div>
-	      	<div>
-		      	<a class = "button button-calm button-block" href="/#/docs">
-		      		<h4>
-		      			Completar documento nuevo
-		      		</h4>
-		      	</a>
-	            <button class="button button-calm button-block">
-	             	<h4>Editar documento guardado</h4>
-	            </button>
-	            <button class="button button-calm button-block">
-	             	<h4>Enviar documentos finalizados</h4>
-	            </button>
+<ion-view ng-controller="homeCtrl">
 
-							<button class="button button-calm button-block" ng-controller="sessionCtrl" ng-click="clearSession()">
-								<h4>Salir de la aplicación</h4>
-							</button>
+	<ng-include src="'partials/navbar.html'"></ng-include>
 
-	         </div>
+	<ion-content class="has-header">
 
-	         <div>
-	            <button class="button button-calm button-block" style="position: absolute; bottom: -80%; width=100%">
-	            	<h4>Eliminar documentos finalizados</h4>
-	            </button>
-	    	</div>
+		<div style="padding: 0% 10%">
+
+			<button class="button button-block button-stable" ng-click="changeState('docs');">Nuevo documento</button>
+
+			<button class="button button-block button-stable" ng-click="changeState('');">Editar documento</button>
+
+			<button class="button button-block button-stable" ng-click="changeState('');">Enviar documentos</button>
+
+			<button class="button button-block button-assertive" ng-click="changeState('');">Eliminar documentos</button>
+
 		</div>
 	</ion-content>
 </ion-view>

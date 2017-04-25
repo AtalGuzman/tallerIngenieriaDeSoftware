@@ -1,10 +1,9 @@
-angular.module('starter').controller('navbarCtrl', function($scope, $state, $ionicPopover, Auth) {
-
-    $scope.isLoggedIn = Auth.isLoggedIn();
+angular.module('starter').controller('navbarCtrl', function($scope, $rootScope, $state, $ionicPopover, $ionicPopup, Auth) {
 
     $scope.btnSalir = function(){
-      Auth.logout();
-      $state.go("log_in");
+
+      showLogoutConfirmationPopUp();
+
     };
 
     $ionicPopover.fromTemplateUrl('partials/navbar_popover.html', {
@@ -31,5 +30,30 @@ angular.module('starter').controller('navbarCtrl', function($scope, $state, $ion
     $scope.$on('popover.removed', function() {
       // Execute action
     });
+
+    // Show confirmation pop up
+    function showLogoutConfirmationPopUp(){
+
+      var confirmPopup = $ionicPopup.confirm({
+         title: 'Confirmación',
+         template: '¿Estas seguro que quieres salir de la aplicación?'
+      });
+
+      confirmPopup.then(function(res) {
+         if(res) {
+           LogOut();
+           $scope.popover.remove();
+         }
+      });
+
+    };
+
+    function LogOut(){
+
+      Auth.logout();
+
+      $state.go("log_in");
+
+    }
 
 })

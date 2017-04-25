@@ -13,3 +13,18 @@
     border: 3px solid green;
     padding: 10px;
 }
+
+.to-bottom{
+	bottom: 10%;
+}
+
+input[readonly].readonly_custom{
+	background-color: white;
+	cursor: default;
+	user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}

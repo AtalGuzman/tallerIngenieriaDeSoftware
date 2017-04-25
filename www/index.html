@@ -29,8 +29,6 @@
 
     <script src="lib/ionic.cloud.min.js"></script>
 
-
-
     <!-- Controllers -->
     <script src="controllers/logInCtrl.js"></script>
 
@@ -38,31 +36,23 @@
 
     <script src="controllers/navbarCtrl.js"></script>
 
+    <script src="controllers/homeCtrl.js"></script>
+
+    <script src="controllers/docsCtrl.js"></script>
+
+    <script src="controllers/newWorkOrderCtrl.js"></script>
 
     <!-- Services -->
     <script src="services/authService.js"></script>
 
     <!-- Others -->
-
+    <script src="factories/workOrderSet.js"></script>
 
   </head>
 
   <body ng-app="starter">
 
     <ion-pane style="background: #057">
-
-      <div ng-controller="navbarCtrl" ng-show="isLoggedIn" class="bar bar-header">
-        <div class="h1 title"></div>
-        <button ng-click="openPopover($event)"  class="button button-icon icon ion-navicon"></button>
-      </div>
-
-      <!--
-      <ion-header-bar class="bar-header bar-dark my-header" style="background: #045">
-
-				    <img ng-src="img/fundamenta_logo.png" class="image-list-thumb"/>
-
-      </ion-header-bar>
-    -->
 
       <ion-nav-view></ion-nav-view>
 
