@@ -28,7 +28,16 @@ angular.module('starter').factory('workOrderSet', function() {
       hora_ejecucion: '',
     },
     ctdad_requirimientos: 0,
+    requerimientos: []
   };
+
+  var _reqdata = {
+    recinto: '',
+    lugar: '',
+    item: '',
+    problema: '',
+    instruccion: ''
+  }
 
 
   var checkEmptyString = function(str){
@@ -39,18 +48,15 @@ angular.module('starter').factory('workOrderSet', function() {
     return (str.length > 0 && str.trim());
   };
 
-  var workOrderSet = function(){
-    this._data.tipo_documento = "ORDEN DE TRABAJO";
-  }
-
-
   return {
     initData: function(){
-      _data.tipo_documento = "ORDEN DE TRABAJO";
-      return angular.copy(_data);
+      dataRef = angular.copy(_data);
+      dataRef.tipo_documento = "ORDEN DE TRABAJO";
+      return dataRef;
     },
 
     initDataFromFolio: function( folio ){
+
       _data.tipo_documento = "ORDEN DE TRABAJO";
       _data.folio = folio;
       return anguar.copy(_data);
@@ -85,6 +91,10 @@ angular.module('starter').factory('workOrderSet', function() {
       return angular.copy(_data);
     },
 
+    getReqData: function(){
+      return angular.copy(_reqdata);
+    },
+
     checkEmptyData: function(data){
       console.log(data.datos_generales);
       for (var d in data.datos_generales){
@@ -109,37 +119,9 @@ angular.module('starter').factory('workOrderSet', function() {
         return false;
       }
 
-
       return true;
     }
 
   };
-
-
-    var clearData = function(){
-      _data.tipo_documento = '';
-      _data.folio = '';
-      _data.datos_generales.proyecto =  '';
-      _data.datos_generales.etapa = '';
-      _data.datos_generales.propiedad = '';
-      _data.datos_generales.manzana_lote = '';
-      _data.datos_generales.tipo_de_propiedad = '';
-      _data.datos_generales.fecha_rm = '';
-      _data.datos_generales.fecha_entrega = '';
-      _data.datos_generales.propietario = '';
-      _data.datos_generales.email = '';
-      _data.datos_generales.telefonos = '';
-      _data.datos_solicitud.fecha_solicitud = '';
-      _data.datos_solicitud.medio_solicitud = '';
-      _data.datos_solicitud.visita_efectuada_por = '';
-      _data.datos_solicitud.nombre_quien_recibe = '';
-      _data.datos_trabajo.duracion_estimada =  '';
-      _data.datos_trabajo.responsabl =  '';
-      _data.datos_trabajo.fecha_ejecucion =  '';
-      _data.datos_trabajo.hora_ejecucion =  '';
-      _data.ctdad_requirimientos = 0;
-    };
-
-
 
 });

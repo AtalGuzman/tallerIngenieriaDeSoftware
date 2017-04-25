@@ -1,4 +1,4 @@
-<ion-view ng-controller="newWorkOrderCtrl">
+<ion-view ng-controller="newWorkOrderCtrl" ng-init="initController()">
 
   <!-- NavBar -->
   <div ng-controller="navbarCtrl" class="bar bar-header bar-dark">
@@ -14,139 +14,20 @@
 
 	<ion-content class="has-subheader">
 
-		<div style="padding: 0% 10%; margin-top: 25px;">
-
-      <div class="list">
-         <label class="item item-input item-stacked-label">
-         <span class="input-label">Tipo de documento</span>
-         <input type="text" readonly="true" class="readonly_custom" ng-value="data.tipo_documento">
-         </label>
-
-         <label class="item item-input item-stacked-label">
-         <span class="input-label">Folio</span>
-         <input type="text" readonly="true" class="readonly_custom" ng-value="data.folio" placeholder="N° de Folio">
-         </label>
-      </div>
-
-      <br>
-
-      <br>
-
-      <h3 style="text-align: center;">DATOS GENERALES</h3>
-
-      <div class="list">
-
-         <label class="item item-input item-stacked-label">
-         <span class="input-label">Proyecto</span>
-         <input type="text" ng-model="data.datos_generales.proyecto" placeholder="Ej: ECO URBE">
-         </label>
-
-         <label class="item item-input item-stacked-label">
-         <span class="input-label">Etapa</span>
-         <input type="text" ng-model="data.datos_generales.etapa" placeholder="Ej: ECO URBE II">
-         </label>
-
-         <label class="item item-input item-stacked-label">
-         <span class="input-label">Propiedad</span>
-         <input type="text" ng-model="data.datos_generales.propiedad" placeholder="Ej: URBII - DEPTO. 2007">
-         </label>
-
-         <label class="item item-input item-stacked-label">
-         <span class="input-label">Manzana/Lote</span>
-         <input type="text" ng-model="data.datos_generales.manzana_lote" placeholder="Ej: SERRANO 627, SANTIAGO">
-         </label>
-
-         <label class="item item-input item-stacked-label">
-         <span class="input-label">Tipo de propiedad</span>
-         <input type="text" ng-model="data.datos_generales.tipo_de_propiedad" placeholder="Ej: URBII - 2D+2B">
-         </label>
-
-         <label class="item item-input item-stacked-label">
-         <span class="input-label">Fecha R.M.</span>
-         <input type="text" ng-model="data.datos_generales.fecha_rm" placeholder="Ej: 20/03/2017">
-         </label>
-
-         <label class="item item-input item-stacked-label">
-         <span class="input-label">Fecha Entrega</span>
-         <input type="text" ng-model="data.datos_generales.fecha_entrega" placeholder="Ej: 20/03/2017">
-         </label>
-
-          <label class="item item-input item-stacked-label">
-          <span class="input-label">Propietario</span>
-          <input type="text" ng-model="data.datos_generales.propietario" placeholder="Ej: Sebastian Morales">
-          </label>
-
-          <label class="item item-input item-stacked-label">
-          <span class="input-label">E-mail</span>
-          <input type="text" ng-model="data.datos_generales.email" placeholder="Ej: sebastian.morales@gmail.com">
-          </label>
-
-          <label class="item item-input item-stacked-label">
-          <span class="input-label">Telefonos</span>
-          <input type="text" ng-model="data.datos_generales.telefonos" placeholder="Ej: 12345678">
-          </label>
+		<form class="padding">
 
 
-          <br>
+      <ng-include src="'partials/orderDocs/docsPartials/inputs/docsInfo.html'"></ng-include>
 
-          <br>
+      <ng-include src="'partials/orderDocs/docsPartials/inputs/docsGeneral.html'"></ng-include>
 
-          <h3 style="text-align: center;">DATOS SOLICITUD</h3>
+      <ng-include src="'partials/orderDocs/docsPartials/inputs/docsSolicitud.html'"></ng-include>
 
-          <label class="item item-input item-stacked-label">
-          <span class="input-label">Fecha</span>
-          <input type="text" ng-value="data.datos_generales.fecha_solicitud" placeholder="Ej: 21/03/2017">
-          </label>
+      <ng-include src="'partials/orderDocs/docsPartials/inputs/docsTrabajo.html'"></ng-include>
 
-           <label class="item item-input item-stacked-label">
-           <span class="input-label">Medio Solicitud</span>
-           <input type="text" ng-value="data.datos_generales.medio_solicitud" placeholder="Ej: PRE-ENTREGA RECHAZOS">
-           </label>
+      <ng-include src="'partials/orderDocs/docsPartials/inputs/docsRequerimiento.html'"></ng-include>
 
-           <label class="item item-input item-stacked-label">
-           <span class="input-label">Vista efectuada por:</span>
-           <input type="text" ng-value="data.datos_generales.visita_efectuada_por">
-           </label>
-
-           <label class="item item-input item-stacked-label">
-           <span class="input-label">Nombre de quien recibe</span>
-           <input type="text" ng-value="data.datos_generales.nombre_quien_recibe">
-           </label>
-
-           <br>
-
-           <br>
-
-           <h3 style="text-align: center;">DATOS TRABAJO</h3>
-
-           <label class="item item-input item-stacked-label">
-           <span class="input-label">Duración estimada</span>
-           <input type="text" ng-value="data.datos_generales.duracion_estimada" placeholder="Ej: 1 día">
-           </label>
-
-            <label class="item item-input item-stacked-label">
-            <span class="input-label">Responsable</span>
-            <input type="text" ng-value="data.datos_generales.responsable" placeholder="Ej: PRE-ENTREGA RECHAZOS">
-            </label>
-
-            <label class="item item-input item-stacked-label">
-            <span class="input-label">Fecha de ejecución</span>
-            <input type="text" ng-value="data.datos_generales.fecha_ejecucion">
-            </label>
-
-            <label class="item item-input item-stacked-label">
-            <span class="input-label">Hora de ejecución</span>
-            <input type="text" ng-value="data.datos_generales.hora_ejecucion">
-            </label>
-
-            <br>
-
-            <br>
-
-            <h3 style="text-align: center;">REQUERIMIENTOS</h3>
-      </div>
-
-
+      </form>
 
       <div class="row">
         <div class="col">
@@ -155,7 +36,11 @@
             Volver
           </button>
         </div>
-        <div class="col"><!-- Nada --></div>
+        <div class="col">
+          <button class="button button-block button-balanced pull-right" ng-click="createDocument();">
+            Crear
+          </button>
+        </div>
       </div>
 
 		</div>
