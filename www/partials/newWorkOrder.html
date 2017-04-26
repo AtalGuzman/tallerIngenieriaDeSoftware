@@ -12,9 +12,9 @@
      <h2 class="title">Nuevo documento</h2>
   </div>
 
-	<ion-content class="has-subheader" style="overflow: hidden;">
+	<ion-pane class="has-subheader" has-subheader="true" style="top: 88px;">
 
-      <ion-slides options="options" slider="data.slider" >
+      <ion-slides options="options" slider="data.slider">
         <ion-slide-page>
           <ion-content class="margin-bottom">
             <ng-include src="'partials/orderDocs/docsPartials/inputs/docsInfo.html'"></ng-include>
@@ -40,57 +40,12 @@
             <ng-include src="'partials/orderDocs/docsPartials/inputs/docsRequerimiento.html'"></ng-include>
           </ion-content>
         </ion-slide-page>
+        <ion-slide-page>
+          <ion-content class="margin-bottom">
+            <button class="button button-block button-calm " ng-click="createDocument()">Confirmar</button>
+          </ion-content>
+        </ion-slide-page>
       </ion-slides>
-    <!--
-    <ion-content scroll="false">
-      <ion-slide class="padding">
-        <ng-include src="'partials/orderDocs/docsPartials/inputs/docsInfo.html'"></ng-include>
-      </ion-slide>
-      <ion-slide class="padding">
-        <ng-include src="'partials/orderDocs/docsPartials/inputs/docsGeneral.html'"></ng-include>
-      </ion-slide>
-      <ion-slide class="padding">
-        <ng-include src="'partials/orderDocs/docsPartials/inputs/docsSolicitud.html'"></ng-include>
-      </ion-slide>
-      <ion-slide class="padding">
-        <ng-include src="'partials/orderDocs/docsPartials/inputs/docsTrabajo.html'"></ng-include>
-      </ion-slide>
-      <ion-slide class="padding" style="margin-bottom: 50px;">
-        <ng-include src="'partials/orderDocs/docsPartials/inputs/docsRequerimiento.html'"></ng-include>
-      </ion-slide>
-    </ion-content>
-  -->
-    <!--
-		<form class="padding">
 
-
-      <ng-include src="'partials/orderDocs/docsPartials/inputs/docsInfo.html'"></ng-include>
-
-      <ng-include src="'partials/orderDocs/docsPartials/inputs/docsGeneral.html'"></ng-include>
-
-      <ng-include src="'partials/orderDocs/docsPartials/inputs/docsSolicitud.html'"></ng-include>
-
-      <ng-include src="'partials/orderDocs/docsPartials/inputs/docsTrabajo.html'"></ng-include>
-
-      <ng-include src="'partials/orderDocs/docsPartials/inputs/docsRequerimiento.html'"></ng-include>
-
-      </form>
-
-      <div class="row">
-        <div class="col">
-          <button class="button button-block button-calm pull-left" ng-click="changeState('docs');">
-            <span class="icon ion-arrow-left-a"></span>
-            Volver
-          </button>
-        </div>
-        <div class="col">
-          <button class="button button-block button-balanced pull-right" ng-click="createDocument();">
-            Crear
-          </button>
-        </div>
-      </div>
-
-		</div>
-  -->
-	</ion-content>
+	</ion-pane>
 </ion-view>
