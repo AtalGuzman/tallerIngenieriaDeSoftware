@@ -1,0 +1,58 @@
+<ion-view ng-controller="newWorkOrderCtrl" ng-init="initController()">
+
+  <!-- NavBar -->
+  <div ng-controller="navbarCtrl" class="bar bar-header bar-dark">
+    <button ng-click="cancelNewDocument()" class="button button-icon icon ion-close-circled"></button>
+    <div class="h1 title"></div>
+    <button ng-click="openPopover($event)"  class="button button-icon icon ion-navicon"></button>
+  </div>
+
+
+  <div class="bar bar-subheader bar-stable">
+     <h2 class="title">Nuevo documento</h2>
+  </div>
+
+  <ion-list style="margin-top: 100px">
+    <ion-item>
+      <ion-label color="primary" stacked>Stacked Label</ion-label>
+      <ion-input type="text" placeholder="Password Input"></ion-input>
+    </ion-item>
+  </ion-list>
+
+	<ion-pane class="has-subheader" has-subheader="true" style="top: 88px;">
+
+      <ion-slides options="options" slider="data.slider">
+        <ion-slide-page >
+          <ion-content class="margin-bottom">
+            <ng-include src="'partials/orderDocs/docsPartials/inputs/docsInfo.html'"></ng-include>
+          </ion-content>
+        </ion-slide-page>
+        <ion-slide-page>
+          <ion-content class="margin-bottom">
+            <ng-include src="'partials/orderDocs/docsPartials/inputs/docsGeneral.html'"></ng-include>
+          </ion-content>
+        </ion-slide-page>
+        <ion-slide-page>
+          <ion-content class="margin-bottom">
+            <ng-include src="'partials/orderDocs/docsPartials/inputs/docsSolicitud.html'"></ng-include>
+          </ion-content>
+        </ion-slide-page>
+        <ion-slide-page>
+          <ion-content class="margin-bottom">
+            <ng-include src="'partials/orderDocs/docsPartials/inputs/docsTrabajo.html'"></ng-include>
+          </ion-content>
+        </ion-slide-page>
+        <ion-slide-page>
+          <ion-content class="margin-bottom">
+            <ng-include src="'partials/orderDocs/docsPartials/inputs/docsRequerimiento.html'"></ng-include>
+          </ion-content>
+        </ion-slide-page>
+        <ion-slide-page>
+          <ion-content class="margin-bottom">
+            <button class="button button-block button-calm " ng-click="createDocument()">Confirmar</button>
+          </ion-content>
+        </ion-slide-page>
+      </ion-slides>
+
+	</ion-pane>
+</ion-view>
