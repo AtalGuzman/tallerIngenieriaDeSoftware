@@ -28,3 +28,7 @@ input[readonly].readonly_custom{
 	-webkit-user-select: none;
 	-ms-user-select: none;
 }
+
+.margin-bottom{
+	margin-bottom: 25px;
+}

@@ -12,8 +12,55 @@
      <h2 class="title">Nuevo documento</h2>
   </div>
 
-	<ion-content class="has-subheader">
+	<ion-content class="has-subheader" style="overflow: hidden;">
 
+      <ion-slides options="options" slider="data.slider" >
+        <ion-slide-page>
+          <ion-content class="margin-bottom">
+            <ng-include src="'partials/orderDocs/docsPartials/inputs/docsInfo.html'"></ng-include>
+          </ion-content>
+        </ion-slide-page>
+        <ion-slide-page>
+          <ion-content class="margin-bottom">
+            <ng-include src="'partials/orderDocs/docsPartials/inputs/docsGeneral.html'"></ng-include>
+          </ion-content>
+        </ion-slide-page>
+        <ion-slide-page>
+          <ion-content class="margin-bottom">
+            <ng-include src="'partials/orderDocs/docsPartials/inputs/docsSolicitud.html'"></ng-include>
+          </ion-content>
+        </ion-slide-page>
+        <ion-slide-page>
+          <ion-content class="margin-bottom">
+            <ng-include src="'partials/orderDocs/docsPartials/inputs/docsTrabajo.html'"></ng-include>
+          </ion-content>
+        </ion-slide-page>
+        <ion-slide-page>
+          <ion-content class="margin-bottom">
+            <ng-include src="'partials/orderDocs/docsPartials/inputs/docsRequerimiento.html'"></ng-include>
+          </ion-content>
+        </ion-slide-page>
+      </ion-slides>
+    <!--
+    <ion-content scroll="false">
+      <ion-slide class="padding">
+        <ng-include src="'partials/orderDocs/docsPartials/inputs/docsInfo.html'"></ng-include>
+      </ion-slide>
+      <ion-slide class="padding">
+        <ng-include src="'partials/orderDocs/docsPartials/inputs/docsGeneral.html'"></ng-include>
+      </ion-slide>
+      <ion-slide class="padding">
+        <ng-include src="'partials/orderDocs/docsPartials/inputs/docsSolicitud.html'"></ng-include>
+      </ion-slide>
+      <ion-slide class="padding">
+        <ng-include src="'partials/orderDocs/docsPartials/inputs/docsTrabajo.html'"></ng-include>
+      </ion-slide>
+      <ion-slide class="padding" style="margin-bottom: 50px;">
+        <ng-include src="'partials/orderDocs/docsPartials/inputs/docsRequerimiento.html'"></ng-include>
+      </ion-slide>
+    </ion-content>
+  -->
+    <!--
 		<form class="padding">
 
 
@@ -44,5 +91,6 @@
       </div>
 
 		</div>
+  -->
 	</ion-content>
 </ion-view>
