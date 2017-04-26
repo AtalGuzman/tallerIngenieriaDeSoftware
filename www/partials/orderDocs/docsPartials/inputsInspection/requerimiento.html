@@ -1,0 +1,21 @@
+<div class="list">
+  <p>Requerimiento n°: </p>
+  <!---
+  <p>data.requerimientos[$index].ID</p>
+  -->
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">C/CN/R/SV</span>
+    <input ng-model="data.requerimientos[$index].corresponde"type="text" placeholder="Ej: LIVING">
+  </label>
+
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Inicio estimado de trabajo</span>
+    <input ng-model="data.requerimientos[$index].inicio_estimado_de_trabajo"type="text" placeholder="Ej: LIVING">
+  </label>
+  
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Detalle específico</span>
+    <input ng-model="data.requerimientos[$index].detalle_especifico" type="text" placeholder="El pise flotante efectivamente está mal instalado">
+  </label>
+
+</div>

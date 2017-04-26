@@ -1,4 +1,4 @@
-<ion-view ng-controller="newWorkOrderCtrl" ng-init="initController()">
+<ion-view ng-controller="newInspectionOrderCtrl" ng-init="initController()">
 
   <!-- NavBar -->
   <div ng-controller="navbarCtrl" class="bar bar-header bar-dark">
@@ -24,27 +24,28 @@
       <ion-slides options="options" slider="data.slider">
         <ion-slide-page >
           <ion-content class="margin-bottom">
-            <ng-include src="'partials/orderDocs/docsPartials/inputsWork/docsInfo.html'"></ng-include>
+            <ng-include src="'partials/orderDocs/docsPartials/inputsInspection/docsInfo.html'"></ng-include>
+          </ion-content>
+        </ion-slide-page>
+        <ion-slide-page>
+          <ion-content>
+            <ng-include src="'partials/orderDocs/docsPartials/inputsInspection/docsGeneral.html'"></ng-include>
           </ion-content>
         </ion-slide-page>
         <ion-slide-page>
           <ion-content class="margin-bottom">
-            <ng-include src="'partials/orderDocs/docsPartials/inputsWork/docsGeneral.html'"></ng-include>
+            <ng-include src="'partials/orderDocs/docsPartials/inputsInspection/docsSolicitud.html'"></ng-include>
           </ion-content>
         </ion-slide-page>
         <ion-slide-page>
           <ion-content class="margin-bottom">
-            <ng-include src="'partials/orderDocs/docsPartials/inputsWork/docsSolicitud.html'"></ng-include>
+            <ng-include src="'partials/orderDocs/docsPartials/inputsInspection/docObservations.html'"></ng-include>
           </ion-content>
         </ion-slide-page>
+        
         <ion-slide-page>
           <ion-content class="margin-bottom">
-            <ng-include src="'partials/orderDocs/docsPartials/inputsWork/docsTrabajo.html'"></ng-include>
-          </ion-content>
-        </ion-slide-page>
-        <ion-slide-page>
-          <ion-content class="margin-bottom">
-            <ng-include src="'partials/orderDocs/docsPartials/inputsWork/docsRequerimiento.html'"></ng-include>
+            <ng-include src="'partials/orderDocs/docsPartials/inputsInspection/docsRequerimiento.html'"></ng-include>
           </ion-content>
         </ion-slide-page>
         <ion-slide-page>

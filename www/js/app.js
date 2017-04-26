@@ -44,6 +44,15 @@ var app = angular.module('starter', ['ionic']);
       }
     });
 
+    $stateProvider.state('newInspectionOrder',{
+      url: '/docs/inspectionOrder/new',
+      templateUrl: 'partials/newInspectionOrder.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
 
 
     $stateProvider.state('acts',{
