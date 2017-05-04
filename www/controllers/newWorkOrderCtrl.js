@@ -1,10 +1,6 @@
 angular.module('starter').controller('newWorkOrderCtrl',
-function($scope, $state, $ionicPopup, $ionicModal, workOrderSet, Model, workOrderPDFService) {
-
-
-  $scope.test = function(){
-    console.log($scope.testModel)
-  }
+function($scope, $state, $ionicPopup, $ionicModal,
+  workOrderSet, Model, workOrderPDFService, ionicDatePicker) {
 
   $scope.cancelNewDocument = function(){
 
@@ -18,10 +14,10 @@ function($scope, $state, $ionicPopup, $ionicModal, workOrderSet, Model, workOrde
 
   }
 
-
   $scope.changeState = function(newstate){
     $state.go(newstate);
   }
+
 
 
   var showExitConfirmationPopUp = function(){
@@ -93,10 +89,6 @@ function($scope, $state, $ionicPopup, $ionicModal, workOrderSet, Model, workOrde
     $scope.slider = data.slider;
   });
 
-  $scope.$on("$ionicSlides.slideChangeStart", function(event, data){
-    console.log('Slide change is beginning');
-  });
-
   $scope.$on("$ionicSlides.slideChangeEnd", function(event, data){
     // note: the indexes are 0-based
     $scope.activeIndex = data.slider.activeIndex;
@@ -104,7 +96,8 @@ function($scope, $state, $ionicPopup, $ionicModal, workOrderSet, Model, workOrde
   });
 
 
-  // PDF GENERATOR PART:
+  // ####################### MODAL DE PREVISUALIZACIÓN #########################
+
   var vm = this;
 
   // Initialize the modal view.
@@ -113,19 +106,25 @@ function($scope, $state, $ionicPopup, $ionicModal, workOrderSet, Model, workOrde
       animation: 'slide-in-up'
   }).then(function (modal) {
       vm.modal = modal;
+
   });
+
+  $scope.closeVmModal = function(){
+    console.log("Heya");
+    vm.modal.hide();
+  }
 
   vm.createInvoice = function () {
       var invoice = $scope.data
 
       workOrderPDFService.createPdf(invoice)
-                      .then(function(pdf) {
-                          var blob = new Blob([pdf], {type: 'application/pdf'});
-                          $scope.pdfUrl = URL.createObjectURL(blob);
+        .then(function(pdf) {
+            var blob = new Blob([pdf], {type: 'application/pdf'});
+            $scope.pdfUrl = URL.createObjectURL(blob);
 
-                          // Display the modal view
-                          vm.modal.show();
-                      });
+            // Display the modal view
+            vm.modal.show();
+        });
   };
 
   // Clean up the modal view.
@@ -141,121 +140,138 @@ function($scope, $state, $ionicPopup, $ionicModal, workOrderSet, Model, workOrde
     vm.createInvoice();
   };
 
-   /*
+  // ########################### DATEPICKER ####################################
+  var formatDate = function( val ) {
+    var date = new Date(val);
+    var dd = date.getDate();
+    var mm = date.getMonth()+1; //January is 0!
 
-    var dd = createDocumentDefinition();
-    var pdf = pdfMake.createPdf(dd);
-    pdf.getBase64(function (output) {
-        resolve(base64ToUint8Array(output));
-    });
-
-
-
-};
-
-function base64ToUint8Array(base64) {
-    var raw = atob(base64);
-    var uint8Array = new Uint8Array(raw.length);
-    for (var i = 0; i < raw.length; i++) {
-    uint8Array[i] = raw.charCodeAt(i);
+    var yyyy = date.getFullYear();
+    if(dd<10){
+        dd='0'+dd;
     }
-    return uint8Array;
-}
+    if(mm<10){
+        mm='0'+mm;
+    }
+    return dd+'/'+mm+'/'+yyyy
+  }
 
-  function createDocumentDefinition() {
 
-    var dd = {
-       content: [
-         {text:[$scope.data.tipo_documento,"\n\n",$scope.data.folio],style:'header'},
-         {
-           table: {
-             style:'tableExample',
-             widths: ['*'],
-             body:[
-               [{text: "\n\nDATOS GENERALES\n\n",style:'subheader'}],
-               [
-                 {
-                   alignment: 'justify',
-                   text: [
-                   "PROYECTO         :\t",$scope.data.datos_generales.proyecto,"\n",
-                   "PROPIEDAD        :\t",$scope.data.datos_generales.propiedad,"\n",
-                   "TIPO DE PROPIEDAD:\t",$scope.data.datos_generales.tipo_de_propiedad,"\n",
-                   "FECHA R.M.       :\t",$scope.data.datos_generales.fecha_rm,"\n",
-                   "PROPIETARIO      :\t", $scope.data.datos_generales.propietario,"\n",
-                   "E-MAIL           :\t",$scope.data.datos_generales.email,"\n",
-                   "TELEFONOS        :\t",$scope.data.datos_generales.telefonos,"\n",
-                   "ETAPA            :\t",$scope.data.datos_generales.etapa,"\n",
-                   "MANZANA          :\t",$scope.data.datos_generales.manzana_lote,"\n",
-                   "FECHA ENTREGA    :\t",$scope.data.datos_generales.fecha_entrega,"\n"
-                   ]
-                 }
-               ]
-             ]
-           }
-         },
-         {text:"\n\n"},
-         {
-           table: {
-             style:'tableExample',
-             widths: ['*'],
-             body:[
-               [{text: "\n\nDATOS SOLICITUD\n\n",style:'subheader'}],
-               [
-                 {
-                   alignment: 'justify',
-                   text: [
-                       "FECHA                :\t",$scope.data.datos_solicitud.fecha_solicitud,"\n",
-                       "VISITA EFECTUADA POR :\t",$scope.data.datos_solicitud.medio_solicitud,"\n",
-                       "MEDIO SOLICITUD      :\t",$scope.data.datos_solicitud.visita_efectuada_por,"\n",
-                       "NOMBRE QUIEN RECIBE  :\t",$scope.data.datos_solicitud.nombre_quien_recibe,"\n"
-                     ]
-                 }
-               ]
-             ]
-           }
-         },
-         {text:"\n\n"},
-         {
-           table: {
-             style:'tableExample',
-             widths: ['*'],
-             body:[
-               [{text: "\n\nDATOS TRABAJO A REALIZAR\n\n",style:'subheader'}],
-               [
-                 {
-                   alignment: 'justify',
-                   text: [
-                       "DURACION ESTIMADA      :\t",$scope.data.datos_trabajo.duracion_estimada,"\n",
-                       "RESPONSABLE            :\t",$scope.data.datos_trabajo.responsable,"\n",
-                       "FECHA EJECUCION TRABAJO:\t",$scope.data.datos_trabajo.fecha_ejecucion,"\n",
-                       "HORA APROXIMADA        :\t",$scope.data.datos_trabajo.hora_ejecucion,"\n"
-                     ]
-                 }
-               ]
-             ]
-           }
-         },
-       ],
-       styles: {
-         header: {
-           fontSize: 18,
-           bold: true,
-           alignment: 'center',
-         },
-         subheader: {
-           fontSize: 15,
-           bold: true,
-           alignment: 'center'
-         },
-         tableExample: {
-           margin: [0, 5, 0, 15]
-         }
-       }
-     };
+  var toDateLimitation = function ( ){
+    var date = new Date();
+    var limit = new Date(date.getFullYear(), date.getMonth()+3, 1);
+    return limit;
+  }
 
-    return dd;
-}
+  var fromDateLimitation = function ( ){
+    var date = new Date();
+    var limit = new Date(date.getFullYear(), date.getMonth()-3, 1);
+    return limit;
+  }
 
-*/
+
+  var fechaRmObj = {
+    callback: function (val) {  //Mandatory
+      $scope.data.datos_generales.fecha_rm = formatDate(val);
+    },
+
+    from: new Date(2012, 1, 1),
+    to: new Date(),
+    inputDate: new Date(),      //Optional
+    mondayFirst: true,          //Optional
+    closeOnSelect: true,       //Optional
+    templateType: 'popup',       //Optional
+    titleLabel: 'Selecciona una fecha',
+    todayLabel: 'Hoy',
+    closeLabel: 'Cerrar',
+    mondayFirst: false,
+    weeksList: ["L", "M", "W", "J", "V", "S", "D"],
+    monthsList: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+    showTodayButton: true,
+  };
+
+
+  $scope.openFechaRMPicker = function(){
+    ionicDatePicker.openDatePicker(fechaRmObj);
+  };
+
+
+  var fechaEntrega = {
+    callback: function (val) {  //Mandatory
+      $scope.data.datos_generales.fecha_entrega = formatDate(val);
+    },
+
+    from: new Date( ),
+    to: toDateLimitation(),
+    inputDate: new Date(),      //Optional
+    mondayFirst: true,          //Optional
+    closeOnSelect: true,       //Optional
+    templateType: 'popup',       //Optional
+    titleLabel: 'Selecciona una fecha',
+    todayLabel: 'Hoy',
+    closeLabel: 'Cerrar',
+    mondayFirst: false,
+    weeksList: ["L", "M", "W", "J", "V", "S", "D"],
+    monthsList: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+    showTodayButton: true,
+  };
+
+
+  $scope.openFechaEntregaPicker = function(){
+    ionicDatePicker.openDatePicker(fechaEntrega);
+  };
+
+
+  var fechaSolicitud = {
+    callback: function (val) {  //Mandatory
+      $scope.data.datos_solicitud.fecha_solicitud = formatDate(val);
+    },
+
+    from: fromDateLimitation(),
+    to: new Date(),
+    inputDate: new Date(),      //Optional
+    mondayFirst: true,          //Optional
+    closeOnSelect: true,       //Optional
+    templateType: 'popup',       //Optional
+    titleLabel: 'Selecciona una fecha',
+    todayLabel: 'Hoy',
+    closeLabel: 'Cerrar',
+    mondayFirst: false,
+    weeksList: ["L", "M", "W", "J", "V", "S", "D"],
+    monthsList: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+    showTodayButton: true,
+  };
+
+
+  $scope.openFechaSolicitudPicker = function(){
+    ionicDatePicker.openDatePicker(fechaSolicitud);
+  };
+
+
+  var fechaEjecucion = {
+    callback: function (val) {  //Mandatory
+      $scope.data.datos_trabajo.fecha_ejecucion = formatDate(val);
+    },
+
+    from: fromDateLimitation(),
+    to: toDateLimitation(),
+    inputDate: new Date(),      //Optional
+    mondayFirst: true,          //Optional
+    closeOnSelect: true,       //Optional
+    templateType: 'popup',       //Optional
+    titleLabel: 'Selecciona una fecha',
+    todayLabel: 'Hoy',
+    closeLabel: 'Cerrar',
+    mondayFirst: false,
+    weeksList: ["L", "M", "W", "J", "V", "S", "D"],
+    monthsList: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+    showTodayButton: true,
+  };
+
+
+  $scope.openFechaEjecucionPicker = function(){
+    ionicDatePicker.openDatePicker(fechaEjecucion);
+  }
+
 
 })

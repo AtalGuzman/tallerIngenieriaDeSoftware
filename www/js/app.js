@@ -66,4 +66,5 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
     });
 
 
+
   });
