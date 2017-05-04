@@ -49,10 +49,21 @@
         </ion-slide-page>
         <ion-slide-page>
           <ion-content class="margin-bottom">
-            <button class="button button-block button-calm " ng-click="createDocument()">Confirmar</button>
+            <button class="button button-block button-calm " ng-click="createDocument()">Previsualizar</button>
           </ion-content>
         </ion-slide-page>
       </ion-slides>
-
 	</ion-pane>
 </ion-view>
+
+<script id="pdf-viewer.html" type="text/ng-template">
+    <ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Invoice</h1>
+        <button ng-click="vm.modal.hide()" class="button button-icon icon ion-android-close"></button>
+    </ion-header-bar>
+    <ion-content>
+        <ng-pdf ng-if="pdfUrl" template-url="partials/orderDocs/docsPartials/viewer.html" canvasid="pdf" scale="page-fit"></ng-pdf>
+    </ion-content>
+    </ion-modal-view>
+</script>

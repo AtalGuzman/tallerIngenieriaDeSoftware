@@ -4,29 +4,37 @@
       Datos generales
   </div>
 
-   <label class="item item-input item-stacked-label">
-     <span class="input-label">Proyecto</span>
-     <input type="text" ng-model="data.datos_generales.proyecto" placeholder="Ej: ECO URBE">
-   </label>
+  <label class="item item-input item-stacked-label" modal-select="" on-select="changeProyectoSeleccionado()"; ng-model="data.datos_generales.proyecto" options="optionsProyecto" modal-title="Selecciona un proyecto" has-search="true">
+    <div class="input-label">Lugar</div>
+    <div ng-if="!data.datos_generales.proyecto">Seleccione un proyecto</div>
+    <div ng-if="data.datos_generales.proyecto">{{data.datos_generales.proyecto}}</div>
+    <div class="option"> {{option}} </div>
+  </label>
 
-   <label class="item item-input item-stacked-label">
-     <span class="input-label">Etapa</span>
-     <input type="text" ng-model="data.datos_generales.etapa" placeholder="Ej: ECO URBE II">
-   </label>
+  <label class="item item-input item-stacked-label" ng-show="data.datos_generales.proyecto" modal-select=""  ng-model="data.datos_generales.etapa" options="optionsEtapa" modal-title="Selecciona una etapa" has-search="true">
+    <div class="input-label">Etapa</div>
+    <div ng-if="!data.datos_generales.etapa">Seleccione una etapa</div>
+    <div ng-if="data.datos_generales.etapa">{{data.datos_generales.etapa}}</div>
+    <div class="option"> {{option}} </div>
+  </label>
 
-   <label class="item item-input item-stacked-label">
-     <span class="input-label">Propiedad</span>
-     <input type="text" ng-model="data.datos_generales.propiedad" placeholder="Ej: URBII - DEPTO. 2007">
-   </label>
+  <label class="item item-input item-stacked-label" modal-select=""  ng-model="data.datos_generales.propiedad" options="optionsPropiedad" modal-title="Seleccione una propiedad" has-search="true">
+    <div class="input-label">Propiedad</div>
+    <div ng-if="!data.datos_generales.propiedad">Seleccione una propiedad</div>
+    <div ng-if="data.datos_generales.propiedad">{{data.datos_generales.propiedad}}</div>
+    <div class="option"> {{option}} </div>
+  </label>
 
    <label class="item item-input item-stacked-label">
      <span class="input-label">Manzana/Lote</span>
      <input type="text" ng-model="data.datos_generales.manzana_lote" placeholder="Ej: SERRANO 627, SANTIAGO">
    </label>
 
-   <label class="item item-input item-stacked-label">
-     <span class="input-label">Tipo de propiedad</span>
-     <input type="text" ng-model="data.datos_generales.tipo_de_propiedad" placeholder="Ej: URBII - 2D+2B">
+   <label class="item item-input item-stacked-label" modal-select=""  ng-model="data.datos_generales.tipo_de_propiedad" options="optionsTipoPropiedad" modal-title="Seleccione un tipo de propiedad" has-search="true">
+     <div class="input-label">Tipo de propiedad</div>
+     <div ng-if="!data.datos_generales.tipo_de_propiedad">Seleccione un tipo de propiedad</div>
+     <div ng-if="data.datos_generales.tipo_de_propiedad">{{data.datos_generales.tipo_de_propiedad}}</div>
+     <div class="option"> {{option}} </div>
    </label>
 
    <label class="item item-input item-stacked-label">

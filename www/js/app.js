@@ -1,5 +1,5 @@
 
-var app = angular.module('starter', ['ionic']);
+var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datepicker', 'pdf']);
 
   app.config(function($stateProvider,$urlRouterProvider){
 
