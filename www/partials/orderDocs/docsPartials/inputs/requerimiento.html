@@ -1,0 +1,39 @@
+<div class="list">
+
+  <label class="item item-input item-stacked-label" modal-select="" ng-model="data.requerimientos[$index].recinto" options="optionsRecinto" modal-title="Selecciona un recinto" has-search="true">
+    <div class="input-label">Recinto</div>
+    <div ng-if="!data.requerimientos[$index].recinto">Seleccione un recinto</div>
+    <div ng-if="data.requerimientos[$index].recinto">{{data.requerimientos[$index].recinto}}</div>
+    <div class="option"> {{option}} </div>
+  </label>
+
+  <label class="item item-input item-stacked-label" modal-select="" on-select="changeLugarSeleccionado($index)"; ng-model="data.requerimientos[$index].lugar" options="optionsLugar" modal-title="Selecciona un lugar" has-search="true">
+    <div class="input-label">Lugar</div>
+    <div ng-if="!data.requerimientos[$index].lugar">Seleccione un lugar</div>
+    <div ng-if="data.requerimientos[$index].lugar">{{data.requerimientos[$index].lugar}}</div>
+    <div class="option"> {{option}} </div>
+  </label>
+
+  <label class="item item-input item-stacked-label" ng-show="data.requerimientos[$index].lugar" modal-select="" ng-model="data.requerimientos[$index].item" options="optionsItem" modal-title="Selecciona un item" has-search="true">
+      <div class="input-label">Item</div>
+      <div ng-if="!data.requerimientos[$index].item">Seleccione un item</div>
+      <div ng-if="data.requerimientos[$index].item">{{data.requerimientos[$index].item}}</div>
+      <div class="option"> {{option}} </div>
+  </label>
+
+  <label class="item item-input item-stacked-label" ng-show="data.requerimientos[$index].lugar" modal-select="" ng-model="data.requerimientos[$index].problema" options="optionsProblema" modal-title="Selecciona un problema" has-search="true">
+      <div class="input-label">Problema</div>
+      <div ng-if="!data.requerimientos[$index].problema">Seleccione un problema</div>
+      <div ng-if="data.requerimientos[$index].problema">{{data.requerimientos[$index].problema}}</div>
+      <div class="option"> {{option}} </div>
+  </label>
+
+  <label class="item item-input item-stacked-label" ng-show="data.requerimientos[$index].lugar" modal-select="" ng-model="data.requerimientos[$index].instruccion" options="optionsInstruccion" modal-title="Selecciona un problema" has-search="true">
+      <div class="input-label">Instrucción</div>
+      <div ng-if="!data.requerimientos[$index].instruccion">Seleccione una instrucción</div>
+      <div ng-if="data.requerimientos[$index].instruccion">{{data.requerimientos[$index].instruccion}}</div>
+      <div class="option"> {{option}} </div>
+  </label>
+  
+
+</div>

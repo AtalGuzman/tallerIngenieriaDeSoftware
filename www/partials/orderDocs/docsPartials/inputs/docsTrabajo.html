@@ -1,0 +1,27 @@
+<div class="list">
+
+  <div class="item item-divider">
+      Datos del trabajo a realizar
+  </div>
+
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Duración estimada</span>
+    <input type="text" ng-model="data.datos_trabajo.duracion_estimada" placeholder="Ej: 1 día">
+  </label>
+
+   <label class="item item-input item-stacked-label">
+     <span class="input-label">Responsable</span>
+     <input type="text" ng-model="data.datos_trabajo.responsable" placeholder="Ej: PRE-ENTREGA RECHAZOS">
+   </label>
+
+   <label class="item item-input item-stacked-label">
+     <span class="input-label">Fecha de ejecución</span>
+     <input type="text" readonly="true" class="readonly_custom" ng-click="openFechaEjecucionPicker()" ng-model="data.datos_trabajo.fecha_ejecucion">
+   </label>
+
+   <label class="item item-input item-stacked-label">
+     <span class="input-label">Hora de ejecución</span>
+     <input type="text" ng-model="data.datos_trabajo.hora_ejecucion">
+   </label>
+
+</div>

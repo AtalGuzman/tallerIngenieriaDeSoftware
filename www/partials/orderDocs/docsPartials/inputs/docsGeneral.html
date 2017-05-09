@@ -1,0 +1,65 @@
+<div class="list">
+
+  <div class="item item-divider">
+      Datos generales
+  </div>
+
+  <label class="item item-input item-stacked-label" modal-select="" on-select="changeProyectoSeleccionado()"; ng-model="data.datos_generales.proyecto" options="optionsProyecto" modal-title="Selecciona un proyecto" has-search="true">
+    <div class="input-label">Lugar</div>
+    <div ng-if="!data.datos_generales.proyecto">Seleccione un proyecto</div>
+    <div ng-if="data.datos_generales.proyecto">{{data.datos_generales.proyecto}}</div>
+    <div class="option"> {{option}} </div>
+  </label>
+
+  <label class="item item-input item-stacked-label" ng-show="data.datos_generales.proyecto" modal-select=""  ng-model="data.datos_generales.etapa" options="optionsEtapa" modal-title="Selecciona una etapa" has-search="true">
+    <div class="input-label">Etapa</div>
+    <div ng-if="!data.datos_generales.etapa">Seleccione una etapa</div>
+    <div ng-if="data.datos_generales.etapa">{{data.datos_generales.etapa}}</div>
+    <div class="option"> {{option}} </div>
+  </label>
+
+  <label class="item item-input item-stacked-label" modal-select=""  ng-model="data.datos_generales.propiedad" options="optionsPropiedad" modal-title="Seleccione una propiedad" has-search="true">
+    <div class="input-label">Propiedad</div>
+    <div ng-if="!data.datos_generales.propiedad">Seleccione una propiedad</div>
+    <div ng-if="data.datos_generales.propiedad">{{data.datos_generales.propiedad}}</div>
+    <div class="option"> {{option}} </div>
+  </label>
+
+   <label class="item item-input item-stacked-label">
+     <span class="input-label">Manzana/Lote</span>
+     <input type="text" ng-model="data.datos_generales.manzana_lote" placeholder="Ej: SERRANO 627, SANTIAGO">
+   </label>
+
+   <label class="item item-input item-stacked-label" modal-select=""  ng-model="data.datos_generales.tipo_de_propiedad" options="optionsTipoPropiedad" modal-title="Seleccione un tipo de propiedad" has-search="true">
+     <div class="input-label">Tipo de propiedad</div>
+     <div ng-if="!data.datos_generales.tipo_de_propiedad">Seleccione un tipo de propiedad</div>
+     <div ng-if="data.datos_generales.tipo_de_propiedad">{{data.datos_generales.tipo_de_propiedad}}</div>
+     <div class="option"> {{option}} </div>
+   </label>
+
+   <label class="item item-input item-stacked-label">
+     <span class="input-label">Fecha R.M.</span>
+     <input type="text" readonly="true" class="readonly_custom" ng-click="openFechaRMPicker()" ng-model="data.datos_generales.fecha_rm" placeholder="Ej: 20/03/2017">
+   </label>
+
+   <label class="item item-input item-stacked-label">
+     <span class="input-label">Fecha Entrega</span>
+     <input type="text" readonly="true" class="readonly_custom" ng-click="openFechaEntregaPicker()" ng-model="data.datos_generales.fecha_entrega" placeholder="Ej: 20/03/2017">
+   </label>
+
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Propietario</span>
+      <input type="text" ng-model="data.datos_generales.propietario" placeholder="Ej: Sebastian Morales">
+    </label>
+
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">E-mail</span>
+      <input type="text" ng-model="data.datos_generales.email" placeholder="Ej: sebastian.morales@gmail.com">
+    </label>
+
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Telefonos</span>
+      <input type="text" ng-model="data.datos_generales.telefonos" placeholder="Ej: 12345678">
+    </label>
+
+  </div>

@@ -1,5 +1,5 @@
 
-var app = angular.module('starter', ['ionic']);
+var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datepicker', 'pdf']);
 
   app.config(function($stateProvider,$urlRouterProvider){
 
@@ -34,6 +34,26 @@ var app = angular.module('starter', ['ionic']);
       }
     });
 
+    $stateProvider.state('docsEdit',{
+      url: '/docsEdit',
+      templateUrl:'partials/docsEdit.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+    $stateProvider.state('editOrdenDeTrabajo',{
+      url: '/editOrdenDeTrabajo',
+      templateUrl:'partials/editOrdenDeTrabajo.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
     $stateProvider.state('newWorkOrder',{
       url: '/docs/workOrder/new',
       templateUrl: 'partials/newWorkOrder.html',
@@ -44,15 +64,6 @@ var app = angular.module('starter', ['ionic']);
       }
     });
 
-    $stateProvider.state('newInspectionOrder',{
-      url: '/docs/inspectionOrder/new',
-      templateUrl: 'partials/newInspectionOrder.html',
-      onEnter: function($state, Auth){
-        if(!Auth.isLoggedIn()){
-           $state.go('log_in');
-        }
-      }
-    });
 
 
     $stateProvider.state('acts',{
@@ -73,6 +84,7 @@ var app = angular.module('starter', ['ionic']);
         StatusBar.styleDefault();
       }
     });
+
 
 
   });
