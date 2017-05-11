@@ -1,6 +1,14 @@
 angular.module('starter').controller('newWorkOrderCtrl',
-function($scope, $state, $ionicPopup, $ionicModal,
+function($rootScope,$scope, $state, $ionicPopup, $ionicModal,
   workOrderSet, Model, workOrderPDFService, ionicDatePicker) {
+
+
+  $scope.save = function(data){
+    $rootScope.ordenesDeTrabajo.push(data);
+    console.log($rootScope.ordenesDeTrabajo);
+    $state.go('home');
+  }
+
 
   $scope.cancelNewDocument = function(){
 
@@ -44,8 +52,8 @@ function($scope, $state, $ionicPopup, $ionicModal,
   };
 
   $scope.initController = function(){
-    //$scope.data = workOrderSet.initData();
     $scope.data = workOrderSet.initDebugData();
+    $scope.data.id = new Date().getTime().toString();
     $scope.addNuevoRequerimiento();
     $scope.optionsProyecto = Model.getProyectos();
     $scope.optionsPropiedad = Model.getPropiedad();
@@ -56,7 +64,7 @@ function($scope, $state, $ionicPopup, $ionicModal,
     $scope.optionsInstruccion = Model.getInstruccion();
     $scope.proyectoSeleccionado = ""
     $scope.lugarSeleccionado = "";
-
+    console.log($scope.data.id);
   };
 
     $scope.changeProyectoSeleccionado = function(){

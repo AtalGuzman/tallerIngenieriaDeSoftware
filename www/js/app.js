@@ -2,7 +2,6 @@
 var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datepicker', 'pdf']);
 
   app.config(function($stateProvider,$urlRouterProvider){
-
     $stateProvider.state('home',{
       url: '/home',
       templateUrl:'partials/home.html',
@@ -46,6 +45,7 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
 
     $stateProvider.state('editOrdenDeTrabajo',{
       url: '/editOrdenDeTrabajo',
+      controller: 'editCtrl',
       templateUrl:'partials/editOrdenDeTrabajo.html',
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
@@ -54,8 +54,21 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
       }
     });
 
+    $stateProvider.state('edit',{
+      url: '/edit/:id',
+      controller: 'editById',
+      templateUrl:'partials/newWorkOrder.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+
     $stateProvider.state('newWorkOrder',{
       url: '/docs/workOrder/new',
+      controller: 'newWorkOrderCtrl',
       templateUrl: 'partials/newWorkOrder.html',
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
@@ -75,6 +88,7 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
   });
 
   app.run(function($ionicPlatform,  $rootScope, $location) {
+    $rootScope.ordenesDeTrabajo = [];
     $ionicPlatform.ready(function() {
       if(window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
