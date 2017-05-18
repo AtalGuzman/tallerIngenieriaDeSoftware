@@ -43,10 +43,32 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
       }
     });
 
-    $stateProvider.state('editOrdenDeTrabajo',{
+    $stateProvider.state('listOrdenDeTrabajo',{
       url: '/editOrdenDeTrabajo',
-      controller: 'editCtrl',
-      templateUrl:'partials/editOrdenDeTrabajo.html',
+      controller: 'listCtrl',
+      templateUrl:'partials/listWorks.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+    $stateProvider.state('listOrdenDeTrabajo2',{
+      url: '/works',
+      controller: 'listCtrl',
+      templateUrl:'partials/listWorks2.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+    $stateProvider.state('listOrdenInspeccion',{
+      url: '/editOrdenDeInspeccion',
+      controller: 'listInspectionCtrl',
+      templateUrl:'partials/listInspection.html',
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
            $state.go('log_in');
@@ -55,8 +77,8 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
     });
 
     $stateProvider.state('edit',{
-      url: '/edit/:id',
-      controller: 'editById',
+      url: '/works/:id',
+      controller: 'editWork',
       templateUrl:'partials/newWorkOrder.html',
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
@@ -77,7 +99,27 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
       }
     });
 
+    $stateProvider.state('newInspectionOrder',{
+      url: '/works_inspection/:id',
+      controller: 'newInspectionOrderCtrl',
+      templateUrl: 'partials/newInspectionOrder.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
 
+    $stateProvider.state('editInspection',{
+      url: '/inspections/:id',
+      controller: 'editInspectionCtrl',
+      templateUrl: 'partials/newInspectionOrder.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
 
     $stateProvider.state('acts',{
       url: '/acts',
@@ -89,6 +131,7 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
 
   app.run(function($ionicPlatform,  $rootScope, $location) {
     $rootScope.ordenesDeTrabajo = [];
+    $rootScope.ordenesDeInspeccion = [];
     $ionicPlatform.ready(function() {
       if(window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);

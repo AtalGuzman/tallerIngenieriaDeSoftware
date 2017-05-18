@@ -1,10 +1,10 @@
-angular.module('starter').controller('editById', function($rootScope,$scope, $state, $ionicPopup, $ionicModal,
+angular.module('starter').controller('editInspectionCtrl', function($rootScope,$scope, $state, $ionicPopup, $ionicModal,
   workOrderSet, Model, workOrderPDFService, ionicDatePicker) {
-  console.log($rootScope.ordenesDeTrabajo);
+  console.log($scope.ordenesDeInspeccion);
   $scope.id = $state.params.id;
 
-  $rootScope.getDoc = function(id, $rootScope){
-      return $rootScope.ordenesDeTrabajo.filter(
+  $scope.getDoc = function(id, $rootScope){
+      return $rootScope.ordenesDeInspeccion.filter(
         function(doc){
           if(doc.id === id){
             console.log(doc);
@@ -14,12 +14,12 @@ angular.module('starter').controller('editById', function($rootScope,$scope, $st
       );
   }
 
-  $scope.data = angular.copy($rootScope.getDoc($scope.id,$rootScope)[0]);
+  $scope.data = angular.copy($scope.getDoc($scope.id,$rootScope)[0]);
 
   $scope.save = function(data){
-    for(var i = 0; i < $rootScope.ordenesDeTrabajo.length;i++){
-      if($rootScope.ordenesDeTrabajo[i].id === data.id){
-        $rootScope.ordenesDeTrabajo[i] = data;
+    for(var i = 0; i < $rootScope.ordenesDeInspeccion.length;i++){
+      if($rootScope.ordenesDeInspeccion[i].id === data.id){
+        $rootScope.ordenesDeInspeccion[i] = data;
       }
     }
     $state.go('home');
@@ -33,7 +33,7 @@ angular.module('starter').controller('editById', function($rootScope,$scope, $st
     });
     confirmPopup.then(function(res) {
        if(res) {
-         $scope.changeState("editOrdenDeTrabajo");
+         $scope.changeState("listOrdenInspeccion");
        }
     });
 
