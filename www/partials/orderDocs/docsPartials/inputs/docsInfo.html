@@ -1,19 +1,12 @@
 <div class="list">
 
-  <div class="item item-divider">
-      Información del documento
-  </div>
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Documento:</span>
+    <input class="readonly_custom custom-item-input-padding" type="text" readonly="true"  ng-model="data.tipo_documento">
+  </label>
 
-   <label class="item item-input item-stacked-label">
-     <span class="input-label">
-       Tipo de documento
-     </span>
-     <input type="text" readonly="true" class="readonly_custom" ng-model="data.tipo_documento">
-   </label>
-
-   <label class="item item-input item-stacked-label">
-     <span class="input-label">Folio</span>
-     <input type="text" readonly="true" class="readonly_custom" ng-model="data.folio" placeholder="N° de Folio">
-   </label>
-
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Folio:</span>
+    <input class="readonly_custom custom-item-input-padding" type="text" readonly="true" ng-model="data.folio" placeholder="N° de Folio">
+  </label>
 </div>

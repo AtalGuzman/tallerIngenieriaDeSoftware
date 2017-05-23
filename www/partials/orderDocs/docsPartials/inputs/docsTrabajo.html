@@ -1,27 +1,23 @@
 <div class="list">
 
-  <div class="item item-divider">
-      Datos del trabajo a realizar
-  </div>
-
-  <label class="item item-input item-stacked-label">
-    <span class="input-label">Duración estimada</span>
-    <input type="text" ng-model="data.datos_trabajo.duracion_estimada" placeholder="Ej: 1 día">
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Duración estimada:</span>
+    <input class="custom-item-input-padding" type="number" ng-model="data.datos_trabajo.duracion_estimada" placeholder="Ej: 1 día">
   </label>
 
-   <label class="item item-input item-stacked-label">
-     <span class="input-label">Responsable</span>
-     <input type="text" ng-model="data.datos_trabajo.responsable" placeholder="Ej: PRE-ENTREGA RECHAZOS">
-   </label>
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Responsable:</span>
+    <input class="custom-item-input-padding" type="text" ng-model="data.datos_trabajo.responsable" placeholder="Ej: PRE-ENTREGA RECHAZOS">
+  </label>
 
-   <label class="item item-input item-stacked-label">
-     <span class="input-label">Fecha de ejecución</span>
-     <input type="text" readonly="true" class="readonly_custom" ng-click="openFechaEjecucionPicker()" ng-model="data.datos_trabajo.fecha_ejecucion">
-   </label>
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Fecha ejecución:</span>
+    <input type="text" readonly="true" class="readonly_custom custom-item-input-padding" ng-click="openFechaEjecucionPicker()" ng-model="data.datos_trabajo.fecha_ejecucion">
+  </label>
 
-   <label class="item item-input item-stacked-label">
-     <span class="input-label">Hora de ejecución</span>
-     <input type="text" ng-model="data.datos_trabajo.hora_ejecucion">
-   </label>
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Hora ejecución:</span>
+    <input class="custom-item-input-padding" type="text" ng-model="data.datos_trabajo.hora_ejecucion">
+  </label>
 
 </div>

@@ -52,18 +52,31 @@ function($rootScope,$scope, $state, $ionicPopup, $ionicModal,
   };
 
   $scope.initController = function(){
+
     $scope.data = workOrderSet.initDebugData();
+
     $scope.data.id = new Date().getTime().toString();
+
     $scope.addNuevoRequerimiento();
+
     $scope.optionsProyecto = Model.getProyectos();
+
     $scope.optionsPropiedad = Model.getPropiedad();
+
     $scope.optionsTipoPropiedad = Model.getTipoPropiedad();
+
     $scope.optionsRecinto = Model.getRecinto();
+
     $scope.optionsLugar = Model.getLugar();
+
     $scope.optionsProblema = Model.getProblema();
+
     $scope.optionsInstruccion = Model.getInstruccion();
+
     $scope.proyectoSeleccionado = ""
+
     $scope.lugarSeleccionado = "";
+
     console.log($scope.data.id);
   };
 
