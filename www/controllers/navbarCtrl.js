@@ -1,5 +1,9 @@
 angular.module('starter').controller('navbarCtrl', function($scope, $rootScope, $state, $ionicPopover, $ionicPopup, Auth) {
 
+    $scope.changeState = function(newstate){
+      $state.go(newstate);
+    }
+
     $scope.btnSalir = function(){
 
       showLogoutConfirmationPopUp();

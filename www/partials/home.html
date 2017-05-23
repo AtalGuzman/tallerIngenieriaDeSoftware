@@ -1,19 +1,43 @@
 <ion-view ng-controller="homeCtrl">
 
-	<ng-include src="'partials/navbar.html'"></ng-include>
+	<!-- Navbar -->
+	<div ng-controller="navbarCtrl" class="bar bar-header bar-dark">
+	  <div class="h1 title">Inicio</div>
+	  <button ng-click="openPopover($event)"  class="button button-icon icon ion-navicon"></button>
+	</div>
 
-	<ion-content class="has-header">
+	<!-- Contenido -->
+	<!-- Observación: No es la mejor manera de codificar cada ion-item, pero funciona de todas maneras... -->
+	<ion-content class="has-header" >
 
-		<div style="padding: 0% 10%">
+    <ion-list >
 
-			<button class="button button-block button-stable" ng-click="changeState('docs');">Nuevo documento</button>
+      <ion-item ng-click="changeState('docs')" >
+				<div style="position: relative">
+					<img ng-src="img/Iconos/i_nuevo_documento_blank.png" alt="Nuevo documento" style="height: 24px; position: absolute; top: 0.5px;" />
+					<span style="padding-left: 30px;">Nuevo Documento</span>
+					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+				</div>
+      </ion-item>
 
-			<button class="button button-block button-stable" ng-click="changeState('');">Editar documento</button>
+			<ion-item ng-click="changeState('docsEdit')">
+				<div style="position: relative">
+					<img ng-src="img/Iconos/i_editar_documento_blank.png" alt="Editar documento" style="height: 24px; position: absolute; top: 0.5px;" />
+					<span style="padding-left: 30px;">Editar Documento</span>
+					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+				</div>
+			</ion-item>
 
-			<button class="button button-block button-stable" ng-click="changeState('');">Enviar documentos</button>
+			<ion-item ng-click="changeState('docsEdit')">
+				<div style="position: relative">
+					<img ng-src="img/Iconos/i_ver_documento_blank.png" alt="Ver documento" style="height: 24px; position: absolute; top: 0.5px;" />
+					<span style="padding-left: 30px;">Visualizar Documento</span>
+					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+				</div>
+			</ion-item>
 
-			<button class="button button-block button-assertive" ng-click="changeState('');">Eliminar documentos</button>
+    </ion-list>
 
-		</div>
-	</ion-content>
+  </ion-content>
+
 </ion-view>

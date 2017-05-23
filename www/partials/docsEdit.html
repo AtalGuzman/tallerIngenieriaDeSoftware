@@ -1,0 +1,29 @@
+<ion-view ng-controller="docsCtrl">
+
+  <ng-include src="'partials/navbar.html'"></ng-include>
+
+  <ion-content class="has-header">
+
+      <div style="padding: 0% 10%">
+
+  			<button class="button button-block button-stable" ng-click="changeState('listOrdenDeTrabajo');">Orden de trabajo</button>
+
+  			<button class="button button-block button-stable" ng-click="changeState('listOrdenInspeccion');">Orden de inspección</button>
+
+        <button class="button button-block button-stable" ng-click="changeState('listEditConformity');">Acta de Conformidad</button>
+
+        <div class="row">
+          <div class="col">
+            <button class="button button-block button-calm pull-left" ng-click="changeState('home');">
+              <span class="icon ion-arrow-left-a"></span>
+              Volver
+            </button>
+          </div>
+          <div class="col"><!-- Nada --></div>
+        </div>
+
+
+  		</div>
+
+  </ion-content>
+</ion-view>

@@ -39,7 +39,16 @@ angular.module('starter').factory('workOrderSet', function() {
     instruccion: ''
   }
 
-
+  var getDoc = function(id, $rootScope){
+      return $rootScope.ordenesDeTrabajo.filter(
+        function(doc){
+          if(doc.id == id){
+          //  console.log(doc);
+          }
+          return doc.id == id;
+        }
+      );
+  }
   var checkEmptyString = function(str){
     return (str.length === 0 || !str.trim());
   };

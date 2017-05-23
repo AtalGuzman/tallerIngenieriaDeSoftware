@@ -30,5 +30,27 @@ input[readonly].readonly_custom{
 }
 
 .margin-bottom{
-	margin-bottom: 25px;
+	margin-bottom: 40px;
+}
+
+.custom-item-input{
+	overflow: hidden;
+	position: relative;
+	height: 46px;
+}
+
+.custom-item-input-label{
+	background-color: #f8f8f8;
+	height: 100%;
+	width: 45%;
+	position: absolute;
+	left:0;
+	top: 0;
+	overflow: hidden;
+	padding-top: 25%;
+	padding-left: 2%;
+}
+
+.custom-item-input-padding{
+	padding-left: 46% !important;
 }

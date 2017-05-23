@@ -1,27 +1,39 @@
 <ion-view ng-controller="docsCtrl">
 
-  <ng-include src="'partials/navbar.html'"></ng-include>
+  <!-- Navbar -->
+	<div ng-controller="navbarCtrl" class="bar bar-header bar-dark">
+    <button ng-click="changeState('home')" class="button button-icon icon ion-ios-arrow-back"></button>
+	  <div class="h1 title">Nuevo Documento</div>
+	  <button ng-click="openPopover($event)"  class="button button-icon icon ion-navicon"></button>
+	</div>
 
   <ion-content class="has-header">
 
-      <div style="padding: 0% 10%">
+    <ion-list>
 
-  			<button class="button button-block button-stable" ng-click="changeState('newWorkOrder');">Orden de trabajo</button>
+      <ion-item ng-click="changeState('newWorkOrder')" >
+				<div style="position: relative">
+					<span>Orden de Trabajo</span>
+					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+				</div>
+      </ion-item>
 
-  			<button class="button button-block button-stable" ng-click="changeState('');">Orden de inspección</button>
+			<ion-item ng-click="changeState('listOrdenDeTrabajo2')">
+				<div style="position: relative">
+					<span>Orden de Inspección</span>
+					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+				</div>
+			</ion-item>
 
-        <div class="row">
-          <div class="col">
-            <button class="button button-block button-calm pull-left" ng-click="changeState('home');">
-              <span class="icon ion-arrow-left-a"></span>
-              Volver
-            </button>
-          </div>
-          <div class="col"><!-- Nada --></div>
-        </div>
+			<ion-item ng-click="changeState('listActaDeConformidad')">
+				<div style="position: relative">
+					<span>Acta de Conformidad</span>
+					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+				</div>
+			</ion-item>
 
-
-  		</div>
+    </ion-list>
 
   </ion-content>
+
 </ion-view>
