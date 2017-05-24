@@ -1,7 +1,7 @@
-angular.module('starter').controller('work_order_listing_edit_controller', function($scope, $state) {
+angular.module('starter').controller('work_order_listing_edit_controller', function($scope, $state, workOrder_factory) {
 
-  if (window.localStorage['docs_workOrder']){  $scope.workOrderList = JSON.parse(window.localStorage['docs_workOrder']); }
-  else{ $scope.workOrderList = []; }
+  $scope.workOrderList = workOrder_factory.getAllDocs();
+
 
   $scope.changeState = function(newstate){
     $state.go(newstate);

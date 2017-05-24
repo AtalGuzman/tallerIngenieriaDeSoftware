@@ -5,33 +5,14 @@ function(
   $state,
   $ionicPopup,
   $ionicModal,
-  workOrderSet,
+  $ionicHistory,
   Model,
+  workOrder_factory,
   workOrderPDFService,
   ionicDatePicker,
   StringifyJsonService) {
 
-  $scope.save = function(){
-    if (window.localStorage['docs_workOrder']){ var docsStorage = JSON.parse(window.localStorage['docs_workOrder']); }
-    else { var docsStorage = [];}
-    docsStorage.push($scope.data);
-    window.localStorage.setItem("docs_workOrder", StringifyJsonService.stringify(docsStorage));
-    $state.go('home');
-  }
-
-  $scope.cancelNewDocument = function(){
-    if (!workOrderSet.checkEmptyData($scope.data)){
-      showExitConfirmationPopUp();
-    }
-    else{
-      $state.go("docs");
-    }
-  }
-
-  $scope.changeState = function(newstate){
-    $state.go(newstate);
-  }
-
+  // Variables
   var showExitConfirmationPopUp = function(){
     var confirmPopup = $ionicPopup.confirm({
        title: 'Confirmación',
@@ -45,8 +26,27 @@ function(
 
   };
 
+  // Scope functions
+  $scope.save = function(){
+    workOrder_factory.saveDoc($scope.data);
+    $scope.changeState('home');
+  }
+
+  $scope.cancelNewDocument = function(){
+    if (!workOrder_factory.checkEmptyData($scope.data)){
+      showExitConfirmationPopUp();
+    }
+    else{
+      $scope.changeState("docs");
+    }
+  }
+
+  $scope.changeState = function(newstate){
+    $ionicHistory.clearCache().then(function(){ $state.go(newstate); });
+  }
+
   $scope.addNuevoRequerimiento = function() {
-    $scope.data.requerimientos.push(workOrderSet.getReqData());
+    $scope.data.requerimientos.push(workOrder_factory.initReqData());
   };
 
   $scope.removeRequerimiento = function(index) {
@@ -54,52 +54,36 @@ function(
     $scope.data.ctdad_requirimientos = $scope.data.requerimientos.length - 1;
   };
 
-  $scope.initController = function(){
+  function initFunction(){
 
-    $scope.data = workOrderSet.initDebugData();
+    $scope.data = workOrder_factory.initData();
 
     $scope.data.id = new Date().getTime().toString();
 
     $scope.addNuevoRequerimiento();
 
-    getOptionsData();
-
-    console.log($scope.data);
-
-    console.log(JSON.stringify($scope.data));
-
   };
 
-  function getOptionsData(){
-    $scope.optionsProyecto = Model.getProyectos();
-    $scope.optionsPropiedad = Model.getPropiedad();
-    $scope.optionsTipoPropiedad = Model.getTipoPropiedad();
-    $scope.optionsRecinto = Model.getRecinto();
-    $scope.optionsLugar = Model.getLugar();
-    $scope.optionsProblema = Model.getProblema();
-    $scope.optionsInstruccion = Model.getInstruccion();
-    $scope.proyectoSeleccionado = ""
-    $scope.lugarSeleccionado = "";
+  initFunction();
+
+  // OTROS:
+  $scope.changeProyectoSeleccionado = function(){
+    if ( $scope.data.dg_proyecto != $scope.proyectoSeleccionado){
+      $scope.proyectoSeleccionado = $scope.data.dg_proyecto;
+      $scope.optionsEtapa = Model.getEtapa($scope.proyectoSeleccionado);
+      $scope.data.dg_etapa = "";
+    }
   }
 
-    $scope.changeProyectoSeleccionado = function(){
-      if ( $scope.data.dg_proyecto != $scope.proyectoSeleccionado){
-        $scope.proyectoSeleccionado = $scope.data.dg_proyecto;
-        $scope.optionsEtapa = Model.getEtapa($scope.proyectoSeleccionado);
-        $scope.data.dg_etapa = "";
-      }
+
+  $scope.changeLugarSeleccionado = function( index ){
+    var value = $scope.data.requerimientos[index].lugar;
+    if ($scope.lugarSeleccionado != value){
+      $scope.lugarSeleccionado = value;
+      $scope.optionsItem = Model.getItem( value );
+      $scope.data.requerimientos[index].item = "";
     }
-
-
-    $scope.changeLugarSeleccionado = function( index ){
-      var value = $scope.data.requerimientos[index].lugar;
-      if ($scope.lugarSeleccionado != value){
-        $scope.lugarSeleccionado = value;
-        $scope.optionsItem = Model.getItem( value );
-        $scope.data.requerimientos[index].item = "";
-      }
-    }
-
+  }
 
 
   $scope.options = {

@@ -4,26 +4,14 @@ angular.module('starter').controller('work_order_edit_controller', function(
   $state,
   $ionicPopup,
   $ionicModal,
-  workOrderSet,
+  $ionicHistory,
+  workOrder_factory,
   Model,
   workOrderPDFService,
   ionicDatePicker,
   StringifyJsonService) {
 
-  if (window.localStorage['docs_workOrder']){  var workOrderList = JSON.parse(window.localStorage['docs_workOrder']); }
-  else{ var workOrderList = []; }
-
-  $scope.data = workOrderList.filter( function (doc){
-    return doc.id === $state.params.id;
-  })[0];
-
-  $scope.optionsProyecto = Model.getProyectos();
-  $scope.optionsPropiedad = Model.getPropiedad();
-  $scope.optionsTipoPropiedad = Model.getTipoPropiedad();
-  $scope.optionsRecinto = Model.getRecinto();
-  $scope.optionsLugar = Model.getLugar();
-  $scope.optionsProblema = Model.getProblema();
-  $scope.optionsInstruccion = Model.getInstruccion();
+  $scope.data = workOrder_factory.getDoc($state.params.id);
   $scope.optionsEtapa = Model.getEtapa($scope.data.dg_proyecto);
 
 
@@ -35,27 +23,22 @@ angular.module('starter').controller('work_order_edit_controller', function(
        template: '<p style="text-align: center;">¿Deseas guardar el documento antes de salir?</p>'
     });
 
-    confirmPopup.then(function(res) { if(res) { $scope.save(); } else{ $state.go('editWorkOrderListing');} });
+    confirmPopup.then(function(res) { if(res) { $scope.save(); } else{ $scope.changeState('editWorkOrderListing');} });
   }
 
   $scope.save = function(){
-    for(var i = 0; i < workOrderList.length; i++){
-      if(workOrderList[i].id === $scope.data.id){ workOrderList[i] = $scope.data; break; }
-    }
-
-    window.localStorage.setItem("docs_workOrder", StringifyJsonService.stringify(workOrderList));
-
-    $state.go('editWorkOrderListing');
+    workOrder_factory.updateDoc($scope.data);
+    $scope.changeState('editWorkOrderListing');
   }
 
   $scope.changeState = function(newstate){
-    $state.go(newstate);
+    $ionicHistory.clearCache().then(function(){ $state.go(newstate); });
   }
 
   // OTHERS:
 
   $scope.addNuevoRequerimiento = function() {
-    $scope.data.requerimientos.push(workOrderSet.getReqData());
+    $scope.data.requerimientos.push(workOrder_factory.initReqData());
   };
 
   $scope.removeRequerimiento = function(index) {
@@ -113,7 +96,7 @@ angular.module('starter').controller('work_order_edit_controller', function(
 
     var fechaRmObj = {
       callback: function (val) {  //Mandatory
-        $scope.data.datos_generales.fecha_rm = formatDate(val);
+        $scope.data.dg_fecha_rm = formatDate(val);
       },
 
       from: new Date(2012, 1, 1),
@@ -139,7 +122,7 @@ angular.module('starter').controller('work_order_edit_controller', function(
 
     var fechaEntrega = {
       callback: function (val) {  //Mandatory
-        $scope.data.datos_generales.fecha_entrega = formatDate(val);
+        $scope.data.dg_fecha_entrega = formatDate(val);
       },
 
       from: new Date( ),

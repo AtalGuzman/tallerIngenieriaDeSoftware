@@ -71,6 +71,8 @@ angular.module('starter').factory('inspectionOrder_factory', function(StringifyJ
           return false;
         }
       }
+
+      return true;
     },
 
     saveDoc: function(inspection_order_data){

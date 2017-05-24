@@ -57,6 +57,7 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
     $stateProvider.state('editWorkOrder',{
       url: '/docs_edit/orden_de_trabajo/:id',
       templateUrl:'partials/work_order_partials/edit.html',
+      cache: false,
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
            $state.go('log_in');
@@ -111,13 +112,11 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
       }
     });
 
-
-
-
     $stateProvider.state('newWorkOrder',{
       url: '/docs/orden_de_trabajo/new',
       controller: 'work_order_new_controller',
       templateUrl: 'partials/work_order_partials/new.html',
+      cache: false,
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
            $state.go('log_in');
