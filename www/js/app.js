@@ -34,7 +34,7 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
     });
 
     $stateProvider.state('docsEdit',{
-      url: '/docsEdit',
+      url: '/docs_edit',
       templateUrl:'partials/docsEdit.html',
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
@@ -44,10 +44,19 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
     });
 
     ///EDICION De ORDENES DE TRABAJO
-    $stateProvider.state('listOrdenDeTrabajo',{
-      url: '/editOrdenDeTrabajo',
-      controller: 'listCtrl',
-      templateUrl:'partials/listWorks.html',
+    $stateProvider.state('editWorkOrderListing',{
+      url: '/docs_edit/orden_de_trabajo',
+      templateUrl:'partials/work_order_partials/listing_edit.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+    $stateProvider.state('editWorkOrder',{
+      url: '/docs_edit/orden_de_trabajo/:id',
+      templateUrl:'partials/work_order_partials/edit.html',
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
            $state.go('log_in');
@@ -68,10 +77,10 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
     });
 
     //lISTA LAS ORDENES DE INSPECCIÓN PARA SU EDICIÓN
-    $stateProvider.state('listOrdenInspeccion',{
-      url: '/editOrdenDeInspeccion',
-      controller: 'listInspectionCtrl',
-      templateUrl:'partials/listInspection.html',
+    $stateProvider.state('editInspectionOrderListing',{
+      url: '/docs_edit/orden_de_inspeccion',
+      controller: 'work_order_listing_edit_controller',
+      templateUrl:'partials/inspection_order_partials/listing_edit.html',
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
            $state.go('log_in');
@@ -102,22 +111,13 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
       }
     });
 
-    $stateProvider.state('edit',{
-      url: '/works/:id',
-      controller: 'editWork',
-      templateUrl:'partials/newWorkOrder.html',
-      onEnter: function($state, Auth){
-        if(!Auth.isLoggedIn()){
-           $state.go('log_in');
-        }
-      }
-    });
+
 
 
     $stateProvider.state('newWorkOrder',{
-      url: '/docs/workOrder/new',
-      controller: 'newWorkOrderCtrl',
-      templateUrl: 'partials/newWorkOrder.html',
+      url: '/docs/orden_de_trabajo/new',
+      controller: 'work_order_new_controller',
+      templateUrl: 'partials/work_order_partials/new.html',
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
            $state.go('log_in');
@@ -126,9 +126,9 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
     });
 
     $stateProvider.state('newInspectionOrder',{
-      url: '/works_inspection/:id',
-      controller: 'newInspectionOrderCtrl',
-      templateUrl: 'partials/newInspectionOrder.html',
+      url: '/docs/orden_de_inspeccion/new',
+      controller: 'inspection_order_new_controller',
+      templateUrl: 'partials/inspection_order_partials/new.html',
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
            $state.go('log_in');
@@ -148,9 +148,9 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
     });
 
     $stateProvider.state('editInspection',{
-      url: '/inspections/:id',
-      controller: 'editInspectionCtrl',
-      templateUrl: 'partials/newInspectionOrder.html',
+      url: '/docs_edit/orden_de_inspeccion/new/:id',
+      controller: 'inspection_order_edit_controller',
+      templateUrl: 'partials/inspection_order_partials/edit.html',
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
            $state.go('log_in');
@@ -177,10 +177,24 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
     $urlRouterProvider.otherwise('/home');
   });
 
-  app.run(function($ionicPlatform,  $rootScope, $location) {
-    $rootScope.ordenesDeTrabajo = [];
-    $rootScope.ordenesDeInspeccion = [];
-    $rootScope.actasDeConformidad = [];
+  app.run(function($ionicPlatform,  $rootScope, $location, Model) {
+
+    $rootScope.optionsProyecto = Model.getProyectos();
+
+    $rootScope.optionsProyecto = Model.getProyectos();
+
+    $rootScope.optionsPropiedad = Model.getPropiedad();
+
+    $rootScope.optionsTipoPropiedad = Model.getTipoPropiedad();
+
+    $rootScope.optionsRecinto = Model.getRecinto();
+
+    $rootScope.optionsLugar = Model.getLugar();
+
+    $rootScope.optionsProblema = Model.getProblema();
+
+    $rootScope.optionsInstruccion = Model.getInstruccion();
+
     $ionicPlatform.ready(function() {
       if(window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);

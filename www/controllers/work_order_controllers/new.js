@@ -1,32 +1,36 @@
-angular.module('starter').controller('newWorkOrderCtrl',
-function($rootScope,$scope, $state, $ionicPopup, $ionicModal,
-  workOrderSet, Model, workOrderPDFService, ionicDatePicker) {
+angular.module('starter').controller('work_order_new_controller',
+function(
+  $rootScope,
+  $scope,
+  $state,
+  $ionicPopup,
+  $ionicModal,
+  workOrderSet,
+  Model,
+  workOrderPDFService,
+  ionicDatePicker,
+  StringifyJsonService) {
 
-
-  $scope.save = function(data){
-    $rootScope.ordenesDeTrabajo.push(data);
-    console.log($rootScope.ordenesDeTrabajo);
+  $scope.save = function(){
+    if (window.localStorage['docs_workOrder']){ var docsStorage = JSON.parse(window.localStorage['docs_workOrder']); }
+    else { var docsStorage = [];}
+    docsStorage.push($scope.data);
+    window.localStorage.setItem("docs_workOrder", StringifyJsonService.stringify(docsStorage));
     $state.go('home');
   }
 
-
   $scope.cancelNewDocument = function(){
-
     if (!workOrderSet.checkEmptyData($scope.data)){
       showExitConfirmationPopUp();
     }
-
     else{
       $state.go("docs");
     }
-
   }
 
   $scope.changeState = function(newstate){
     $state.go(newstate);
   }
-
-
 
   var showExitConfirmationPopUp = function(){
     var confirmPopup = $ionicPopup.confirm({
@@ -42,7 +46,6 @@ function($rootScope,$scope, $state, $ionicPopup, $ionicModal,
   };
 
   $scope.addNuevoRequerimiento = function() {
-    $scope.data.ctdad_requirimientos  = $scope.data.requerimientos.length + 1;
     $scope.data.requerimientos.push(workOrderSet.getReqData());
   };
 
@@ -59,32 +62,31 @@ function($rootScope,$scope, $state, $ionicPopup, $ionicModal,
 
     $scope.addNuevoRequerimiento();
 
-    $scope.optionsProyecto = Model.getProyectos();
+    getOptionsData();
 
-    $scope.optionsPropiedad = Model.getPropiedad();
+    console.log($scope.data);
 
-    $scope.optionsTipoPropiedad = Model.getTipoPropiedad();
+    console.log(JSON.stringify($scope.data));
 
-    $scope.optionsRecinto = Model.getRecinto();
-
-    $scope.optionsLugar = Model.getLugar();
-
-    $scope.optionsProblema = Model.getProblema();
-
-    $scope.optionsInstruccion = Model.getInstruccion();
-
-    $scope.proyectoSeleccionado = ""
-
-    $scope.lugarSeleccionado = "";
-
-    console.log($scope.data.id);
   };
 
+  function getOptionsData(){
+    $scope.optionsProyecto = Model.getProyectos();
+    $scope.optionsPropiedad = Model.getPropiedad();
+    $scope.optionsTipoPropiedad = Model.getTipoPropiedad();
+    $scope.optionsRecinto = Model.getRecinto();
+    $scope.optionsLugar = Model.getLugar();
+    $scope.optionsProblema = Model.getProblema();
+    $scope.optionsInstruccion = Model.getInstruccion();
+    $scope.proyectoSeleccionado = ""
+    $scope.lugarSeleccionado = "";
+  }
+
     $scope.changeProyectoSeleccionado = function(){
-      if ( $scope.data.datos_generales.proyecto != $scope.proyectoSeleccionado){
-        $scope.proyectoSeleccionado = $scope.data.datos_generales.proyecto;
+      if ( $scope.data.dg_proyecto != $scope.proyectoSeleccionado){
+        $scope.proyectoSeleccionado = $scope.data.dg_proyecto;
         $scope.optionsEtapa = Model.getEtapa($scope.proyectoSeleccionado);
-        $scope.data.datos_generales.etapa = "";
+        $scope.data.dg_etapa = "";
       }
     }
 
@@ -105,15 +107,15 @@ function($rootScope,$scope, $state, $ionicPopup, $ionicModal,
     speed: 250,
   };
 
-  $scope.$on("$ionicSlides.sliderInitialized", function(event, data){
+  $scope.$on("$ionicSlides.sliderInitialized", function(event, d){
     // data.slider is the instance of Swiper
-    $scope.slider = data.slider;
+    $scope.slider = d.slider;
   });
 
-  $scope.$on("$ionicSlides.slideChangeEnd", function(event, data){
+  $scope.$on("$ionicSlides.slideChangeEnd", function(event, d){
     // note: the indexes are 0-based
-    $scope.activeIndex = data.slider.activeIndex;
-    $scope.previousIndex = data.slider.previousIndex;
+    $scope.activeIndex = d.slider.activeIndex;
+    $scope.previousIndex = d.slider.previousIndex;
   });
 
 
@@ -193,7 +195,7 @@ function($rootScope,$scope, $state, $ionicPopup, $ionicModal,
 
   var fechaRmObj = {
     callback: function (val) {  //Mandatory
-      $scope.data.datos_generales.fecha_rm = formatDate(val);
+      $scope.data.dg_fecha_rm = formatDate(val);
     },
 
     from: new Date(2012, 1, 1),
@@ -219,7 +221,7 @@ function($rootScope,$scope, $state, $ionicPopup, $ionicModal,
 
   var fechaEntrega = {
     callback: function (val) {  //Mandatory
-      $scope.data.datos_generales.fecha_entrega = formatDate(val);
+      $scope.data.dg_fecha_entrega = formatDate(val);
     },
 
     from: new Date( ),
@@ -245,7 +247,7 @@ function($rootScope,$scope, $state, $ionicPopup, $ionicModal,
 
   var fechaSolicitud = {
     callback: function (val) {  //Mandatory
-      $scope.data.datos_solicitud.fecha_solicitud = formatDate(val);
+      $scope.data.ds_fecha_solicitud = formatDate(val);
     },
 
     from: fromDateLimitation(),
@@ -271,7 +273,7 @@ function($rootScope,$scope, $state, $ionicPopup, $ionicModal,
 
   var fechaEjecucion = {
     callback: function (val) {  //Mandatory
-      $scope.data.datos_trabajo.fecha_ejecucion = formatDate(val);
+      $scope.data.dt_fecha_ejecucion = formatDate(val);
     },
 
     from: fromDateLimitation(),
