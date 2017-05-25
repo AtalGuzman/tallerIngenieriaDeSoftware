@@ -102,11 +102,7 @@ angular.module('starter').factory('inspectionOrder_factory', function(StringifyJ
       }
 
       for(var i = 0; i < docsStorage.length; i++){
-        console.log("loop");
-        console.log(docsStorage[i].id );
-        console.log(inspection_order_data.id);
         if(docsStorage[i].id === inspection_order_data.id){
-          console.log("update found...")
           docsStorage[i] = inspection_order_data;
           break;
         }
@@ -119,8 +115,6 @@ angular.module('starter').factory('inspectionOrder_factory', function(StringifyJ
 
       if (window.localStorage['docs_inspectionOrder']){
         var docsStorage = JSON.parse(window.localStorage['docs_inspectionOrder']);
-        console.log("docs;");
-        console.log(docsStorage);
         var data = docsStorage.filter( function (doc){
           return doc.id === id;
         });
@@ -129,6 +123,47 @@ angular.module('starter').factory('inspectionOrder_factory', function(StringifyJ
 
       return null;
 
+    },
+
+    getEditableDocs: function(){
+      if (window.localStorage['docs_inspectionOrder']){
+        var docsStorage = JSON.parse(window.localStorage['docs_inspectionOrder']);
+        console.log(docsStorage);
+        var data = docsStorage.filter( function (doc){
+          return !doc.conformity_data && !doc.rejection_data ;
+        });
+        console.log(data);
+        return data;
+      }
+      else{
+        return null;
+      }
+    },
+
+    getConfirmedDocs: function(){
+      if (window.localStorage['docs_inspectionOrder']){
+        var docsStorage = JSON.parse(window.localStorage['docs_inspectionOrder']);
+        var data = docsStorage.filter( function (doc){
+          return doc.conformity_data && !doc.rejection_data;
+        });
+        return data;
+      }
+      else{
+        return null;
+      }
+    },
+
+    getRejectionDocs: function(){
+      if (window.localStorage['docs_inspectionOrder']){
+        var docsStorage = JSON.parse(window.localStorage['docs_inspectionOrder']);
+        var data = docsStorage.filter( function (doc){
+          return !doc.conformity_data && doc.rejection_data == true;
+        });
+        return data;
+      }
+      else{
+        return null;
+      }
     },
 
     getAllDocs: function(){

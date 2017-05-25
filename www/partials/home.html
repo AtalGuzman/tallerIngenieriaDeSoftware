@@ -36,7 +36,15 @@
 				</div>
 			</ion-item>
 
-			<ion-item ng-click="changeState('docsRechazo')">
+			<ion-item ng-click="changeState('docsConformityRecord')">
+				<div style="position: relative">
+					<img ng-src="img/Iconos/i_ver_documento_blank.png" alt="Ver documento" style="height: 24px; position: absolute; top: 0.5px;" />
+					<span style="padding-left: 30px;">Firmar Acta de Conformidad</span>
+					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+				</div>
+			</ion-item>
+
+			<ion-item ng-click="changeState('docsRejection')">
 				<div style="position: relative">
 					<img ng-src="img/Iconos/i_ver_documento_blank.png" alt="Ver documento" style="height: 24px; position: absolute; top: 0.5px;" />
 					<span style="padding-left: 30px;">Rechazar Trabajo</span>

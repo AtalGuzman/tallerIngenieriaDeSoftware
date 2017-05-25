@@ -5,6 +5,7 @@ function(
   $state,
   $ionicPopup,
   $ionicModal,
+  $ionicHistory,
   inspectionOrder_factory,
   ionicDatePicker,
   Model,
@@ -14,9 +15,7 @@ function(
     $scope.data = inspectionOrder_factory.getDoc($state.params.id);
   }
 
-  $scope.$on('$ionicView.beforeEnter', function() {
-    $scope.initFunction();
- });
+  $scope.initFunction();
 
   // Variables
   $scope.exitEditDocument = function(){
@@ -28,7 +27,7 @@ function(
 
     confirmPopup.then(function(res) {
       if(res) { $scope.save(); }
-      else{ $state.go('editWorkOrderListing');} });
+      else{ $scope.changeState('editWorkOrderListing');} });
   }
 
 
@@ -52,7 +51,7 @@ function(
   };
 
   $scope.changeState = function(newstate){
-    $state.go(newstate);
+    $ionicHistory.clearCache().then(function(){ $state.go(newstate); });
   }
 
   $scope.cancelNewDocument = function(){
@@ -60,7 +59,7 @@ function(
         showExitConfirmationPopUp();
       }
       else{
-        $state.go("docs");
+        $scope.changeState("docs");
       }
   };
 
@@ -75,7 +74,7 @@ function(
 
   $scope.save = function(){
     inspectionOrder_factory.updateDoc($scope.data);
-    $state.go('editInspectionOrderListing');
+    $scope.changeState('editInspectionOrderListing');
   }
 
 // OTROS:

@@ -1,0 +1,44 @@
+<div class="list">
+
+  <div class="item item-divider">
+    Requerimiento {{$index + 1}}
+  </div>
+
+  <!-- Primer Input -->
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Recinto:</span>
+    <input class="readonly_custom custom-item-input-padding" type="text" readonly="true" ng-model="data.requerimientos[$index].recinto">
+  </label>
+
+  <!-- Segundo Input -->
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Lugar:</span>
+    <input class="readonly_custom custom-item-input-padding" type="text" readonly="true" ng-model="data.requerimientos[$index].lugar">
+  </label>
+
+  <!-- Tercer Input -->
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Item:</span>
+    <input class="readonly_custom custom-item-input-padding" type="text" readonly="true" ng-model="data.requerimientos[$index].item">
+  </label>
+
+  <!-- Cuarto Input -->
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Problema:</span>
+    <input class="readonly_custom custom-item-input-padding" type="text" readonly="true" ng-model="data.requerimientos[$index].problema">
+  </label>
+
+  <!-- Quinto Input -->
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Instrucción:</span>
+    <input class="readonly_custom custom-item-input-padding" type="text" readonly="true" ng-model="data.requerimientos[$index].instruccion">
+  </label>
+
+
+  <label class="item item-input item-stacked-label">
+    <div class="input-label">Detalle Específico</div>
+    <textarea class="readonly_custom" ng-model="data.requerimientos[$index].detalle_especifico" eadonly="true" rows="8" cols="80"></textarea>
+  </label>
+
+
+</div>

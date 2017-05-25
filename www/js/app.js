@@ -43,6 +43,30 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
       }
     });
 
+    $stateProvider.state('docsRejection',{
+      url: '/docs_rejection',
+      controller: 'rejection_records_listing_controller',
+      templateUrl:'partials/rejection_record_partials/rejection_record_listing.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+    $stateProvider.state('rejectWork',{
+      url: '/docs_rejection/:id',
+      controller: 'rejection_record_reject_controller',
+      templateUrl:'partials/rejection_record_partials/reject_record.html',
+      cache: false,
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+
     ///EDICION De ORDENES DE TRABAJO
     $stateProvider.state('editWorkOrderListing',{
       url: '/docs_edit/orden_de_trabajo',
@@ -65,17 +89,7 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
       }
     });
 
-    //MOSTRAR LOS TRABAJOS SOLICITADOS
-    $stateProvider.state('listOrdenDeTrabajo2',{
-      url: '/works',
-      controller: 'listCtrl',
-      templateUrl:'partials/listWorks2.html',
-      onEnter: function($state, Auth){
-        if(!Auth.isLoggedIn()){
-           $state.go('log_in');
-        }
-      }
-    });
+
 
     //lISTA LAS ORDENES DE INSPECCIÓN PARA SU EDICIÓN
     $stateProvider.state('editInspectionOrderListing',{
@@ -89,28 +103,7 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
       }
     });
 
-    $stateProvider.state('listEditConformity',{
-      url: '/conformities',
-      controller: 'listConformityCtrl',
-      templateUrl:'partials/listWorks4.html',
-      onEnter: function($state, Auth){
-        if(!Auth.isLoggedIn()){
-           $state.go('log_in');
-        }
-      }
-    });
 
-    //LISTA LOS TRABAJOS PARA CREAR EL ACTA DE CONFORMIDAD ASOCIADA
-    $stateProvider.state('listActaDeConformidad',{
-      url: '/works2',
-      controller: 'listConformityCtrl',
-      templateUrl:'partials/listWorks3.html',
-      onEnter: function($state, Auth){
-        if(!Auth.isLoggedIn()){
-           $state.go('log_in');
-        }
-      }
-    });
 
     $stateProvider.state('newWorkOrder',{
       url: '/docs/orden_de_trabajo/new',
@@ -150,6 +143,7 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
       url: '/docs_edit/orden_de_inspeccion/new/:id',
       controller: 'inspection_order_edit_controller',
       templateUrl: 'partials/inspection_order_partials/edit.html',
+      cache: false,
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
            $state.go('log_in');

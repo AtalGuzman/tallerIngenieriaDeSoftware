@@ -2,7 +2,8 @@
 	bottom: 10%;
 }
 
-input[readonly].readonly_custom{
+input[readonly].readonly_custom,
+textarea[readonly].readonly_custom{
 	background-color: white;
 	cursor: default;
 	user-drag: none;

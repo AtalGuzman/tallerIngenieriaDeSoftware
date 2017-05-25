@@ -83,6 +83,7 @@ function(
   }
 
   $scope.save = function(){
+    console.log($scope.data);
     inspectionOrder_factory.saveDoc($scope.data);
     $state.go('home');
   }
