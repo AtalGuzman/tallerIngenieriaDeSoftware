@@ -2,7 +2,7 @@
 
 	<!-- Navbar -->
   <div ng-controller="navbarCtrl" class="bar bar-header bar-dark">
-    <button ng-click="changeState('docsEdit')" class="button button-icon icon ion-ios-arrow-back"></button>
+    <button ng-click="changeState('docsConformityRecord')" class="button button-icon icon ion-ios-arrow-back"></button>
 	  <div class="h1 title">Acta de Conformidad (OI)</div>
 	  <button ng-click="openPopover($event)" class="button button-icon icon ion-navicon"></button>
 	</div>
@@ -17,7 +17,7 @@
 
     <ion-list ng-if="orderList && orderList.length != 0">
 
-      <ion-item ng-repeat="order in orderList" ng-click="goToEdit(order.id)">
+      <ion-item ng-repeat="order in orderList" ng-click="goToConfirm(order.id)">
         <div style="position: relative">
           <span style="margin-right: 8px; overflow: hidden;">
             <b>{{order.folio}}</b><br>

@@ -2,7 +2,7 @@ angular.module('starter').controller('inspection_order_listing_edit_controller',
 function($scope, $state, inspectionOrder_factory) {
 
   $scope.initFunction = function(){
-    $scope.inspectionOrderList = inspectionOrder_factory.getAllDocs();
+    $scope.inspectionOrderList = inspectionOrder_factory.getEditableDocs();
   }
 
   $scope.$on('$ionicView.beforeEnter', function() {

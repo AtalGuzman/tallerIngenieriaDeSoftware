@@ -124,6 +124,8 @@ angular.module('starter').factory('inspectionOrder_factory', function(StringifyJ
 
     getDoc: function(id){
 
+      console.log("heyaa");
+      
       if (window.localStorage['docs_inspectionOrder']){
         var docsStorage = JSON.parse(window.localStorage['docs_inspectionOrder']);
         var data = docsStorage.filter( function (doc){

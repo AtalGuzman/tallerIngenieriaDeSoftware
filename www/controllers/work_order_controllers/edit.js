@@ -148,7 +148,7 @@ angular.module('starter').controller('work_order_edit_controller', function(
 
     var fechaSolicitud = {
       callback: function (val) {  //Mandatory
-        $scope.data.datos_solicitud.fecha_solicitud = formatDate(val);
+        $scope.data.ds_fecha_solicitud = formatDate(val);
       },
 
       from: fromDateLimitation(),
@@ -174,7 +174,7 @@ angular.module('starter').controller('work_order_edit_controller', function(
 
     var fechaEjecucion = {
       callback: function (val) {  //Mandatory
-        $scope.data.datos_trabajo.fecha_ejecucion = formatDate(val);
+        $scope.data.dt_fecha_ejecucion = formatDate(val);
       },
 
       from: fromDateLimitation(),

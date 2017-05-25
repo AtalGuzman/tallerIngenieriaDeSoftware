@@ -43,6 +43,65 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
         }
       }
     });
+    ////////////////////////////////////////////////////////////////////////////
+    // VER DOCUMENTOS
+    ////////////////////////////////////////////////////////////////////////////
+    $stateProvider.state('docsView',{
+      url: '/docs_view',
+      controler: 'docsView',
+      templateUrl:'partials/view_orders/home.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+    $stateProvider.state('docsView_WorkOrderListing',{
+      url: '/docs_view/orden_de_trabajo',
+      controler: 'docsView_work_order_listing',
+      templateUrl:'partials/view_orders/home_workorder_listing.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+
+    $stateProvider.state('docsView_WorkOrderViewing',{
+      url: '/docs_view/orden_de_trabajo/:id',
+      controler: 'docsView_work_order_viewing',
+      templateUrl:'partials/view_orders/workorder_viewing.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+    $stateProvider.state('docsView_InspectionOrderListing',{
+      url: '/docs_view/orden_de_inspeccion',
+      controler: 'docsView_inspection_order_listing',
+      templateUrl:'partials/view_orders/home_inspection_listing.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+
+    $stateProvider.state('docsView_InspectionOrderViewing',{
+      url: '/docs_view/orden_de_inspeccion/:id',
+      controler: 'docsView_inspection_order_viewing',
+      templateUrl:'partials/view_orders/inspectionorder_viewing.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
 
     ////////////////////////////////////////////////////////////////////////////
     // ACTA DE CONFORMIDAD
@@ -95,9 +154,9 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
 
 
     $stateProvider.state('conformityInspectionOrder',{
-      url: '/docs_conformity/orden_de_trabajo/:id',
+      url: '/docs_conformity/orden_de_inspeccion/:id',
       controller: 'inspection_order_conformity_record_controller',
-      templateUrl:'partials/conformity_record_partials/work_order_conformity_record.html',
+      templateUrl:'partials/conformity_record_partials/inspection_order_conformity_record.html',
       cache: false,
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
@@ -207,7 +266,7 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
     });
 
     $stateProvider.state('editInspection',{
-      url: '/docs_edit/orden_de_inspeccion/new/:id',
+      url: '/docs_edit/orden_de_inspeccion/:id',
       controller: 'inspection_order_edit_controller',
       templateUrl: 'partials/inspection_order_partials/edit.html',
       cache: false,

@@ -37,7 +37,11 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
     telefono: null,
     nivel_conformidad: null,
     fecha: null
-  }
+  };
+
+
+
+
 
   var getDoc = function(id, $rootScope){
       return $rootScope.ordenesDeTrabajo.filter(

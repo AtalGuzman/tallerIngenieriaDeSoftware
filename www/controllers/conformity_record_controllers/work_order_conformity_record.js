@@ -31,8 +31,8 @@ function($scope, $state, workOrder_factory, $ionicHistory) {
   $scope.confirmarActa = function(){
 
     for ( v in $scope.confList){
-      if (v.checked){
-        var nivel_conformidad = true;
+      if ( $scope.confList[v].checked){
+        var nivel_conformidad =  $scope.confList[v].text;
       }
     }
     $scope.conformity_data.nivel_conformidad = nivel_conformidad;
@@ -60,4 +60,4 @@ function($scope, $state, workOrder_factory, $ionicHistory) {
   }
 
 
-})
+});

@@ -1,9 +1,9 @@
-<ion-view ng-controller="work_order_listing_edit_controller">
+<ion-view ng-controller="docsView_work_order_listing">
 
 	<!-- Navbar -->
   <div ng-controller="navbarCtrl" class="bar bar-header bar-dark">
     <button ng-click="changeState('home')" class="button button-icon icon ion-ios-arrow-back"></button>
-	  <div class="h1 title">Rechazar Trabajo</div>
+	  <div class="h1 title">Ver Ordenes de Trabajo</div>
 	  <button ng-click="openPopover($event)" class="button button-icon icon ion-navicon"></button>
 	</div>
 
@@ -13,11 +13,11 @@
 	<!-- Observación: No es la mejor manera de codificar cada ion-item, pero funciona de todas maneras... -->
 	<ion-content class="has-header" >
 
-    <h1 ng-if="!orderList || orderList.length == 0">No hay documentos por rechazar</h1>
+    <h1 ng-if="!orderList || orderList.length == 0">No hay documentos para ver</h1>
 
     <ion-list ng-if="orderList && orderList.length != 0">
 
-      <ion-item ng-repeat="order in orderList" ng-click="goToReject(order.id)">
+      <ion-item ng-repeat="order in orderList" ng-click="goToView(order.id)">
         <div style="position: relative">
           <span style="margin-right: 8px; overflow: hidden;">
             <b>{{order.folio}}</b><br>{{order.dg_propietario}}
