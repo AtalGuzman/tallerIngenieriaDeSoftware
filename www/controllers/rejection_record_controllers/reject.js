@@ -15,7 +15,7 @@ function(
 
   $scope.rejection_data = {
       rechazo: false,
-      descripción: null
+      descripcion: null
   };
 
 

@@ -1,0 +1,32 @@
+<ion-view>
+
+  <!-- Navbar -->
+	<div ng-controller="navbarCtrl" class="bar bar-header bar-dark">
+    <button ng-click="changeState('home')" class="button button-icon icon ion-ios-arrow-back"></button>
+	  <div class="h1 title">Acta de conformidad</div>
+	  <button ng-click="openPopover($event)"  class="button button-icon icon ion-navicon"></button>
+	</div>
+
+  <ion-content class="has-header">
+
+    <ion-list>
+
+      <ion-item ng-click="changeState('conformityWorkOrderListing')" >
+				<div style="position: relative">
+					<span>Orden de Trabajo</span>
+					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+				</div>
+      </ion-item>
+
+			<ion-item ng-click="changeState('conformityInspectionOrderListing')">
+				<div style="position: relative">
+					<span>Orden de Inspección</span>
+					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+				</div>
+			</ion-item>
+
+    </ion-list>
+
+  </ion-content>
+
+</ion-view>

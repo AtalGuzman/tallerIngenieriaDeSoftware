@@ -35,6 +35,7 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
 
     $stateProvider.state('docsEdit',{
       url: '/docs_edit',
+      controler: 'docsCtrl',
       templateUrl:'partials/docsEdit.html',
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
@@ -42,6 +43,71 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
         }
       }
     });
+
+    ////////////////////////////////////////////////////////////////////////////
+    // ACTA DE CONFORMIDAD
+    ////////////////////////////////////////////////////////////////////////////
+
+    $stateProvider.state('docsConformityRecord',{
+      url: '/docs_conformity',
+      controller: 'conformity_record_home_controller',
+      templateUrl:'partials/conformity_record_partials/docs_for_conformity_listing.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+    $stateProvider.state('conformityWorkOrderListing',{
+      url: '/docs_conformity/orden_de_trabajo',
+      controller: 'conformity_work_order_listing_controller',
+      templateUrl:'partials/conformity_record_partials/work_order_for_conformity_listing.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+    $stateProvider.state('conformityWorkOrder',{
+      url: '/docs_conformity/orden_de_trabajo/:id',
+      controller: 'work_order_conformity_record_controller',
+      templateUrl:'partials/conformity_record_partials/work_order_conformity_record.html',
+      cache: false,
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+    $stateProvider.state('conformityInspectionOrderListing',{
+      url: '/docs_conformity/orden_de_inspeccion',
+      controller: 'conformity_inspection_order_listing_controller',
+      templateUrl:'partials/conformity_record_partials/inspection_order_for_conformity_listing.html',
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+
+    $stateProvider.state('conformityInspectionOrder',{
+      url: '/docs_conformity/orden_de_trabajo/:id',
+      controller: 'inspection_order_conformity_record_controller',
+      templateUrl:'partials/conformity_record_partials/work_order_conformity_record.html',
+      cache: false,
+      onEnter: function($state, Auth){
+        if(!Auth.isLoggedIn()){
+           $state.go('log_in');
+        }
+      }
+    });
+
+    ////////////////////////////////////////////////////////////////////////////
+
 
     $stateProvider.state('docsRejection',{
       url: '/docs_rejection',
@@ -70,6 +136,7 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
     ///EDICION De ORDENES DE TRABAJO
     $stateProvider.state('editWorkOrderListing',{
       url: '/docs_edit/orden_de_trabajo',
+      controller: 'work_order_listing_edit_controller',
       templateUrl:'partials/work_order_partials/listing_edit.html',
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){

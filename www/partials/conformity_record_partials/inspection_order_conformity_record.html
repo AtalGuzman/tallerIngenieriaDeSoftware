@@ -1,0 +1,98 @@
+<ion-view ng-controller="inspection_order_conformity_record_controller">
+
+  <!-- NavBar -->
+  <div ng-controller="navbarCtrl" class="bar bar-header bar-dark">
+    <button ng-click="volver()" class="button button-icon icon ion-ios-arrow-back"></button>
+    <div class="h1 title">Acta de Conformidad (OT)</div>
+    <button ng-click="openPopover($event)"  class="button button-icon icon ion-navicon"></button>
+  </div>
+
+  <ion-pane class="has-header" has-subheader="true" style="padding-top: 44px">
+
+    <ion-slides options="options" slider="data.slider">
+
+      <ion-slide-page>
+
+        <div class="bar bar-stable">
+           <h2 class="title">Información del documento</h2>
+        </div>
+
+        <ion-content class="margin-bottom" style="padding-top:44px;">
+          <ng-include src="'partials/inspection_order_partials/readonly_inputs/inputs_info_documento.html'"></ng-include>
+        </ion-content>
+
+      </ion-slide-page>
+
+      <ion-slide-page>
+
+        <div class="bar bar-stable">
+           <h2 class="title">Información general</h2>
+        </div>
+
+        <ion-content class="margin-bottom" style="padding-top:44px;">
+          <ng-include src="'partials/inspection_order_partials/readonly_inputs/inputs_info_general.html'"></ng-include>
+        </ion-content>
+      </ion-slide-page>
+
+      <ion-slide-page>
+
+        <div class="bar bar-stable">
+           <h2 class="title">Información de la solicitud</h2>
+        </div>
+
+        <ion-content class="margin-bottom" style="padding-top:44px;">
+          <ng-include src="'partials/inspection_order_partials/readonly_inputs/inputs_info_solicitud.html'"></ng-include>
+        </ion-content>
+      </ion-slide-page>
+
+      <ion-slide-page>
+
+        <div class="bar bar-stable">
+           <h2 class="title">Observaciones</h2>
+        </div>
+
+        <ion-content class="margin-bottom" style="padding-top:44px;">
+          <ng-include src="'partials/inspection_order_partials/readonly_inputs/inputs_info_observaciones.html'"></ng-include>
+        </ion-content>
+
+      </ion-slide-page>
+
+      <ion-slide-page>
+
+        <div class="bar bar-stable">
+           <h2 class="title">Requerimientos</h2>
+        </div>
+
+        <ion-content class="margin-bottom" style="padding-top:44px;">
+          <ng-include src="'partials/inspection_order_partials/readonly_inputs/inputs_info_requerimientos.html'"></ng-include>
+        </ion-content>
+      </ion-slide-page>
+
+
+      <ion-slide-page>
+
+        <ion-content class="margin-bottom" style="padding-top: 5px;">
+
+          <ng-include src="'partials/conformity_record_partials/inputs/conformity_inputs.html'"></ng-include>
+
+        </ion-content>
+
+    </ion-slides>
+
+
+	</ion-pane>
+
+</ion-view>
+
+
+<script id="pdf-viewer.html" type="text/ng-template">
+    <ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Documento</h1>
+        <button ng-click="closeVmModal()" class="button button-icon icon ion-android-close"></button>
+    </ion-header-bar>
+    <ion-content>
+        <ng-pdf ng-if="pdfUrl" template-url="partials/orderDocs/docsPartials/viewer.html" canvasid="pdf" scale="page-fit"></ng-pdf>
+    </ion-content>
+    </ion-modal-view>
+</script>

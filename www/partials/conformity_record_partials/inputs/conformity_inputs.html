@@ -1,0 +1,24 @@
+<fieldset xlass="padding">
+
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Recepcion por:</span>
+    <input class="custom-item-input-padding" type="text" ng-model="data.conformity_data.recepcionado_por">
+  </label>
+
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Telefono:</span>
+    <input class="custom-item-input-padding" type="text" ng-model="data.conformity_data.telefono">
+  </label>
+
+  <br>
+   <span style="text-align: center">Nivel de conformidad del cliente</span>
+   <ion-checkbox ng-repeat="item in confList"
+                 ng-model="item.checked"
+                 ng-change="updateSelection($index, confList, item.text);">
+     {{ item.text }}
+   </ion-checkbox>
+   <br>
+
+   <button class="button button-full button-calm" style="margin: 0px;" ng-click="confirmarActa()">Confirmar Acta</button>
+
+   </fieldset>

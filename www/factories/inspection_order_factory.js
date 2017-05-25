@@ -38,6 +38,13 @@ angular.module('starter').factory('inspectionOrder_factory', function(StringifyJ
     detalle_especifico: null
   };
 
+  var _confData = {
+    recepcionado_por: null,
+    telefono: null,
+    nivel_conformidad: null,
+    fecha: null
+  };
+
   var checkEmptyString = function(str){
     return (str.length === 0 || !str.trim());
   };
@@ -62,6 +69,10 @@ angular.module('starter').factory('inspectionOrder_factory', function(StringifyJ
 
     initReqData: function( ){
       return angular.copy(_reqdata);
+    },
+
+    initConformityData:function(){
+      return angular.copy(_confData);
     },
 
     checkEmptyData: function(data){
@@ -130,7 +141,7 @@ angular.module('starter').factory('inspectionOrder_factory', function(StringifyJ
         var docsStorage = JSON.parse(window.localStorage['docs_inspectionOrder']);
         console.log(docsStorage);
         var data = docsStorage.filter( function (doc){
-          return !doc.conformity_data && !doc.rejection_data ;
+          return (!doc.conformity_data) && (!doc.rejection_data) ;
         });
         console.log(data);
         return data;

@@ -30,6 +30,13 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
     item: null,
     problema: null,
     instruccion: null
+  };
+
+  var _confData = {
+    recepcionado_por: null,
+    telefono: null,
+    nivel_conformidad: null,
+    fecha: null
   }
 
   var getDoc = function(id, $rootScope){
@@ -41,7 +48,8 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
           return doc.id == id;
         }
       );
-  }
+  };
+
   var checkEmptyString = function(str){
     return (str.length === 0 || !str.trim());
   };
@@ -92,6 +100,10 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
 
     initReqData: function(){
       return angular.copy(_reqdata);
+    },
+
+    initConformityData:function(){
+      return angular.copy(_confData);
     },
 
     checkEmptyData: function(data){
@@ -156,6 +168,48 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
 
     },
 
+      getEditableDocs: function(){
+        console.log("Editable Docs");
+        if (window.localStorage['docs_workOrder']){
+          var docsStorage = JSON.parse(window.localStorage['docs_workOrder']);
+          console.log(docsStorage);
+          var data = docsStorage.filter( function (doc){
+            return (!doc.conformity_data) && (!doc.rejection_data) ;
+          });
+          console.log(data);
+          return data;
+        }
+        else{
+          return null;
+        }
+      },
+
+        getConfirmedDocs: function(){
+          if (window.localStorage['docs_workOrder']){
+            var docsStorage = JSON.parse(window.localStorage['docs_workOrder']);
+            var data = docsStorage.filter( function (doc){
+              return doc.conformity_data && !doc.rejection_data;
+            });
+            return data;
+          }
+          else{
+            return null;
+          }
+        },
+
+        getRejectionDocs: function(){
+          if (window.localStorage['docs_inspectionOrder']){
+            var docsStorage = JSON.parse(window.localStorage['docs_inspectionOrder']);
+            var data = docsStorage.filter( function (doc){
+              return !doc.conformity_data && doc.rejection_data == true;
+            });
+            return data;
+          }
+          else{
+            return null;
+          }
+        },
+
     getAllDocs: function(){
       if (window.localStorage['docs_workOrder']){
         return JSON.parse(window.localStorage['docs_workOrder']);
@@ -164,7 +218,6 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
         return null;
       }
     }
-
   };
 
 });
