@@ -1,5 +1,5 @@
 angular.module('starter').controller('work_order_conformity_record_controller',
-function($scope, $state, workOrder_factory, $ionicHistory) {
+function($scope, $state, workOrder_factory, $ionicHistory, $ionicModal) {
 
   // *** INICIALIZACIÓN
 
@@ -32,9 +32,12 @@ function($scope, $state, workOrder_factory, $ionicHistory) {
   }
 
   $scope.confirmarActa = function(){
+    $scope.openModal();
+    /**
     incluirConformidadAData();
     workOrder_factory.updateDoc($scope.data);
     $scope.changeState("home");
+    **/
   }
 
   function incluirConformidadAData(){
@@ -87,5 +90,57 @@ function($scope, $state, workOrder_factory, $ionicHistory) {
     return today;
   }
 
+
+  // Test
+  var canvas;
+  var signaturePad;
+  angular.element(document).ready(function () {
+
+  });
+
+  function resizeCanvas() {
+      // When zoomed out to less than 100%, for some very strange reason,
+      // some browsers report devicePixelRatio as less than 1
+      // and only part of the canvas is cleared then.
+      var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+      canvas.width = canvas.offsetWidth * ratio;
+      canvas.height = canvas.offsetHeight * ratio;
+      canvas.getContext("2d").scale(ratio, ratio);
+  }
+
+  $scope.clearSignature = function()
+  {
+      signaturePad.clear();
+  };
+
+ // modal Test
+ $ionicModal.fromTemplateUrl('my-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.openModal = function() {
+    $scope.modal.show();
+    canvas = document.getElementById("signatureCanvas");
+    signaturePad = new SignaturePad(canvas);
+    resizeCanvas();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  // Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
 
 });

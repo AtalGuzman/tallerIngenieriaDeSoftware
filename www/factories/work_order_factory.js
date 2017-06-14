@@ -135,7 +135,7 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
             break;
 
           default:
-            console.log(keys[index]);
+
             if(data[keys[index]] && data[keys[index]].length > 0){
               return true;
             }
@@ -187,8 +187,6 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
 
       if (window.localStorage['docs_workOrder']){
         var docsStorage = JSON.parse(window.localStorage['docs_workOrder']);
-        console.log("docs;");
-        console.log(docsStorage);
         var data = docsStorage.filter( function (doc){
           return doc.id === id;
         });
@@ -213,11 +211,6 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
               }
             }
             var editable = !conformidad_total ;
-            console.log("requerimientos");
-            console.log(doc.folio);
-
-            console.log(editable);
-              console.log("fin");
             return editable ;
           });
           return data;

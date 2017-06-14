@@ -36,7 +36,6 @@
           <b>Observaciones</b><br><span ng-if="!c.observaciones">Sin observacioness</span><span ng-if="c.observaciones">{{c.observaciones}}</span>
         </li>
 
-
         </div>
     </ul>
 
@@ -46,58 +45,3 @@
 
 
 </div>
-
-<!--
-<fieldset ng-repeat="c in data.data_conformidades" xlass="padding" style="margin: 10px 0px;">
-
-
-
-  <div class="item item-divider">
-    Acta de Conformidad {{$index + 1}}
-  </div>
-
-  <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Recepcionado por:</span>
-    <input class="readonly_custom custom-item-input-padding" readonly="true" type="text" readonly="true" ng-model="c.recepcionado_por">
-  </label>
-
-  <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Telefono:</span>
-    <input class="readonly_custom custom-item-input-padding" readonly="true" type="text" readonly="true" ng-model="c.telefono">
-  </label>
-
-  <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Conformidad:</span>
-    <input class="readonly_custom custom-item-input-padding" readonly="true" type="text" readonly="true" ng-model="c.nivel_conformidad">
-  </label>
-
-  <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Fecha:</span>
-    <input class="readonly_custom custom-item-input-padding" readonly="true" type="text" readonly="true" ng-model="c.fecha">
-  </label>
-
-  <div name="requerimientos-aceptados">
-
-    <div class="item item-divider">
-      Requerimientos aceptados
-    </div>
-
-    <ul class="list">
-      <li class="item" ng-repeat="req in data.requerimientos" ng-if="(req.conformidad == c.nivel_conformidad)">
-        {{req.item}} - {{req.problema}}
-      </li>
-    </ul>
-
-  </div>
-
-  <div name="observaciones">
-
-    Observaciones: <span ng-if="!c.observaciones">Ninguna.</span><span ng-if="c.observaciones">{{c.observaciones}}</span>
-
-  </div>
-
-
-
-
-</fieldset>
--->
