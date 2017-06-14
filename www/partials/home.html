@@ -10,45 +10,46 @@
 	<!-- Observación: No es la mejor manera de codificar cada ion-item, pero funciona de todas maneras... -->
 	<ion-content class="has-header" >
 
-    <ion-list >
+    <ion-list>
 
-      <ion-item ng-click="changeState('docs')" >
-				<div style="position: relative">
-					<img ng-src="img/Iconos/i_nuevo_documento_blank.png" alt="Nuevo documento" style="height: 24px; position: absolute; top: 0.5px;" />
-					<span style="padding-left: 30px;">Nuevo Documento</span>
-					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+      <ion-item ng-click="changeState('docs')">
+				<div class="item-listing">
+					<span class="ion-plus-circled item-icon"></span>
+					<span class="item-text">Nuevo Documento</span>
+					<span class="ion-chevron-right item-caret"></span>
 				</div>
       </ion-item>
 
 			<ion-item ng-click="changeState('docsEdit')">
-				<div style="position: relative">
-					<img ng-src="img/Iconos/i_editar_documento_blank.png" alt="Editar documento" style="height: 24px; position: absolute; top: 0.5px;" />
-					<span style="padding-left: 30px;">Editar Documento</span>
-					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+				<div class="item-listing">
+					<span class="ion-compose item-icon"></span>
+					<span class="item-text">Editar Documento</span>
+					<span class="ion-chevron-right item-caret"></span>
 				</div>
 			</ion-item>
 
 			<ion-item ng-click="changeState('docsView')">
-				<div style="position: relative">
-					<img ng-src="img/Iconos/i_ver_documento_blank.png" alt="Ver documento" style="height: 24px; position: absolute; top: 0.5px;" />
-					<span style="padding-left: 30px;">Visualizar Documento</span>
-					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+				<div class="item-listing">
+					<span class="ion-eye item-icon"></span>
+					<span class="item-text">Ver Documentos</span>
+					<span class="ion-chevron-right item-caret"></span>
 				</div>
 			</ion-item>
 
 			<ion-item ng-click="changeState('docsConformityRecord')">
-				<div style="position: relative">
-					<img ng-src="img/Iconos/i_ver_documento_blank.png" alt="Ver documento" style="height: 24px; position: absolute; top: 0.5px;" />
-					<span style="padding-left: 30px;">Firmar Acta de Conformidad</span>
-					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+				<div class="item-listing">
+					<span class="ion-checkmark-circled item-icon"></span>
+					<span class="item-text">Firmar Documento</span>
+					<span class="ion-chevron-right item-caret"></span>
 				</div>
 			</ion-item>
 
+
 			<ion-item ng-click="changeState('docsRejection')">
-				<div style="position: relative">
-					<img ng-src="img/Iconos/i_ver_documento_blank.png" alt="Ver documento" style="height: 24px; position: absolute; top: 0.5px;" />
-					<span style="padding-left: 30px;">Rechazar Trabajo</span>
-					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+				<div class="item-listing">
+					<span class="ion-close-circled item-icon"></span>
+					<span class="item-text">Rechazar Documento</span>
+					<span class="ion-chevron-right item-caret"></span>
 				</div>
 			</ion-item>
 

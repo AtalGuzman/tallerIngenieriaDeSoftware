@@ -12,8 +12,7 @@ function($scope, $state, inspectionOrder_factory, $ionicHistory) {
   $scope.data = inspectionOrder_factory.getDoc($state.params.id);
   $scope.conformity_data = inspectionOrder_factory.initConformityData();
 
-  console.log("????");
-  console.log($scope.data);
+
 
   $scope.confList = [
     { text: "Muy Conforme", checked: true },

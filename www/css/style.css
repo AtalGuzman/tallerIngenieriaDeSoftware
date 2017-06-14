@@ -39,3 +39,45 @@ textarea[readonly].readonly_custom{
 .custom-item-input-padding{
 	padding-left: 46%  !important;
 }
+
+.item-listing{
+	position: relative;
+}
+
+.item-listing span.item-icon{
+	font-size: 50px;
+}
+
+.item-listing span.item-text{
+	position: absolute;
+	top: 14px;
+	padding-left: 20px;
+}
+
+.item-listing span.item-caret{
+	font-size: 25px;
+	position: absolute;
+	right: 0px;
+	top: 12.5px;
+}
+
+.item-listing-no-icon{
+	position: relative;
+}
+
+.item-listing-no-icon span.item-index{
+	font-size: 50px;
+}
+
+.item-listing-no-icon span.item-text{
+	position: absolute;
+	top: 6px;
+	padding-left: 20px;
+}
+
+.item-listing-no-icon span.item-caret{
+	font-size: 25px;
+	position: absolute;
+	right: 0px;
+	top: 3px;
+}

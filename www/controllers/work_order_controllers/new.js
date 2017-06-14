@@ -16,7 +16,7 @@ function(
   var showExitConfirmationPopUp = function(){
     var confirmPopup = $ionicPopup.confirm({
        title: 'Confirmación',
-       template: '<p style="text-align: center;">¿Estas seguro que quieres salir sin haber guardado el documento?</p>'
+       template: '<p style="text-align: center;">¿Estas seguro que quieres salir sin haber completado ni guardado el documento?</p>'
     });
     confirmPopup.then(function(res) {
        if(res) {
@@ -33,7 +33,7 @@ function(
   }
 
   $scope.cancelNewDocument = function(){
-    if (!workOrder_factory.checkEmptyData($scope.data)){
+    if (workOrder_factory.checkNotEmptyData($scope.data)){
       showExitConfirmationPopUp();
     }
     else{

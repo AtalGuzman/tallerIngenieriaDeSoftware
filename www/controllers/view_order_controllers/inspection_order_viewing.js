@@ -4,7 +4,7 @@ function($scope, $state, inspectionOrder_factory, $ionicHistory) {
   $scope.data = inspectionOrder_factory.getDoc($state.params.id);
 
   $scope.volver = function(){
-    $scope.changeState("docsView_WorkOrderListing");
+    $scope.changeState("docsView_InspectionOrderListing");
   }
 
   $scope.changeState = function(newstate){

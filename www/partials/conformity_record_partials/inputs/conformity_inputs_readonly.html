@@ -1,23 +1,103 @@
-<fieldset xlass="padding">
+
+<div class="card" ng-repeat="c in data.data_conformidades" >
+  <div class="item item-divider">
+    Acta de conformidad {{$index + 1}}
+  </div>
+
+  <div class="item item-text-wrap" style="padding: 0px;">
+
+    <ul class="list">
+
+        <li class="item">
+          <b>Recepcionado por</b><br><span ng-if="!c.recepcionado_por">No asignado</span><span ng-if="c.recepcionado_por">{{c.recepcionado_por}}</span>
+        </li>
+
+        <li class="item">
+          <b>Telefono</b><br><span ng-if="!c.telefono">No asignado</span><span ng-if="c.telefono">{{c.telefono}}</span>
+        </li>
+
+        <li class="item">
+          <b>Nivel de conformidad</b><br><span ng-if="!c.nivel_conformidad">No asignado</span><span ng-if="c.nivel_conformidad">{{c.nivel_conformidad}}</span>
+        </li>
+
+        <li class="item">
+          <b>Fecha de conformidad</b><br><span ng-if="!c.fecha">No asignado</span><span ng-if="c.fecha">{{c.fecha}}</span>
+        </li>
+
+        <li class="item">
+          <b>Requerimientos aceptados</b><br>
+          <ul>
+            <li ng-repeat="req in data.requerimientos" ng-if="(req.conformidad == c.nivel_conformidad)"> * {{req.item}} - {{req.problema}}</li>
+          </ul>
+
+        </li>
+
+        <li class="item">
+          <b>Observaciones</b><br><span ng-if="!c.observaciones">Sin observacioness</span><span ng-if="c.observaciones">{{c.observaciones}}</span>
+        </li>
+
+
+        </div>
+    </ul>
+
+  </div>
+
+
+
+
+</div>
+
+<!--
+<fieldset ng-repeat="c in data.data_conformidades" xlass="padding" style="margin: 10px 0px;">
+
+
+
+  <div class="item item-divider">
+    Acta de Conformidad {{$index + 1}}
+  </div>
 
   <label class="item item-input custom-item-input">
     <span class="custom-item-input-label">Recepcionado por:</span>
-    <input class="readonly_custom custom-item-input-padding" readonly="true" type="text" readonly="true" ng-model="data.conformity_data.recepcionado_por">
+    <input class="readonly_custom custom-item-input-padding" readonly="true" type="text" readonly="true" ng-model="c.recepcionado_por">
   </label>
 
   <label class="item item-input custom-item-input">
     <span class="custom-item-input-label">Telefono:</span>
-    <input class="readonly_custom custom-item-input-padding" readonly="true" type="text" readonly="true" ng-model="data.conformity_data.telefono">
+    <input class="readonly_custom custom-item-input-padding" readonly="true" type="text" readonly="true" ng-model="c.telefono">
   </label>
 
   <label class="item item-input custom-item-input">
     <span class="custom-item-input-label">Conformidad:</span>
-    <input class="readonly_custom custom-item-input-padding" readonly="true" type="text" readonly="true" ng-model="data.conformity_data.nivel_conformidad">
+    <input class="readonly_custom custom-item-input-padding" readonly="true" type="text" readonly="true" ng-model="c.nivel_conformidad">
   </label>
 
   <label class="item item-input custom-item-input">
     <span class="custom-item-input-label">Fecha:</span>
-    <input class="readonly_custom custom-item-input-padding" readonly="true" type="text" readonly="true" ng-model="data.conformity_data.fecha">
+    <input class="readonly_custom custom-item-input-padding" readonly="true" type="text" readonly="true" ng-model="c.fecha">
   </label>
 
+  <div name="requerimientos-aceptados">
+
+    <div class="item item-divider">
+      Requerimientos aceptados
+    </div>
+
+    <ul class="list">
+      <li class="item" ng-repeat="req in data.requerimientos" ng-if="(req.conformidad == c.nivel_conformidad)">
+        {{req.item}} - {{req.problema}}
+      </li>
+    </ul>
+
+  </div>
+
+  <div name="observaciones">
+
+    Observaciones: <span ng-if="!c.observaciones">Ninguna.</span><span ng-if="c.observaciones">{{c.observaciones}}</span>
+
+  </div>
+
+
+
+
 </fieldset>
+-->

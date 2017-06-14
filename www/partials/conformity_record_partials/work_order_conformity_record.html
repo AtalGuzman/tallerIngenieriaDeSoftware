@@ -11,6 +11,7 @@
 
     <ion-slides options="options" slider="data.slider">
 
+    <!--
       <ion-slide-page>
 
         <div class="bar bar-stable">
@@ -56,16 +57,18 @@
         </ion-content>
       </ion-slide-page>
 
-
+    -->
       <ion-slide-page>
 
-        <ion-content class="margin-bottom" style="padding-top: 5px;">
+        <div class="bar bar-stable">
+           <h2 class="title">Conformidad</h2>
+        </div>
 
-            <fieldset xlass="padding">
+        <ion-content class="margin-bottom" style="padding-top: 44px;">
+            <ng-include src="'partials/conformity_record_partials/inputs/conformity_inputs.html'"></ng-include>
+        </ion-content>
 
-              <ng-include src="'partials/conformity_record_partials/inputs/conformity_inputs.html'"></ng-include>
-
-          </ion-content>
+      </ion-slide-page>
 
     </ion-slides>
 

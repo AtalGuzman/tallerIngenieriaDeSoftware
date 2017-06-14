@@ -3,6 +3,8 @@ function($scope, $state, workOrder_factory, $ionicHistory) {
 
   $scope.data = workOrder_factory.getDoc($state.params.id);
 
+  console.log($scope.data);
+
   $scope.volver = function(){
     $scope.changeState("docsView_WorkOrderListing");
   }

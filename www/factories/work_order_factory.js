@@ -21,7 +21,8 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
     dt_responsable: null,
     dt_fecha_ejecucion: null,
     dt_hora_ejecucion: null,
-    requerimientos: []
+    requerimientos: [],
+    data_conformidades: []
   };
 
   var _reqdata = {
@@ -29,19 +30,20 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
     lugar: null,
     item: null,
     problema: null,
-    instruccion: null
+    instruccion: null,
+    conformidad: null,
+    fecha_conformidad: null
   };
 
   var _confData = {
     recepcionado_por: null,
     telefono: null,
     nivel_conformidad: null,
-    fecha: null
+    fecha: null,
+    observaciones: null,
+    firma: null,
+    foto_comprobante: null
   };
-
-
-
-
 
   var getDoc = function(id, $rootScope){
       return $rootScope.ordenesDeTrabajo.filter(
@@ -54,13 +56,7 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
       );
   };
 
-  var checkEmptyString = function(str){
-    return (str.length === 0 || !str.trim());
-  };
 
-  var checkNotEmptyString = function(str){
-    return (str.length > 0 && str.trim());
-  };
 
   return {
     initData: function(){
@@ -110,14 +106,45 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
       return angular.copy(_confData);
     },
 
-    checkEmptyData: function(data){
-      for (var t in data){
-        if (checkNotEmptyString(data[t])){
-          return false;
+    checkNotEmptyData: function(data){
+
+      var return_value = false;
+      var keys = Object.keys(data)
+      var count = keys.length;
+      for (var index = 0; index < count; index++){
+        switch (keys[index]) {
+          case "tipo_documento":
+            break;
+
+          case "data_conformidades":
+            // Se ignora
+            break;
+
+          case "id":
+            break;
+
+          case "requerimientos":
+            if(data.requerimientos){
+              for (var i = 0; i < data.requerimientos.length; i++){
+                var obj = data.requerimientos[i];
+                if (obj.recinto || obj.lugar || obj.item || obj.problema ){
+                  return true;
+                }
+              }
+            }
+            break;
+
+          default:
+            console.log(keys[index]);
+            if(data[keys[index]] && data[keys[index]].length > 0){
+              return true;
+            }
+            break;
+
         }
       }
 
-      return true;
+      return return_value;
     },
 
     saveDoc: function(work_order_data){
@@ -173,14 +200,26 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
     },
 
       getEditableDocs: function(){
-        console.log("Editable Docs");
         if (window.localStorage['docs_workOrder']){
           var docsStorage = JSON.parse(window.localStorage['docs_workOrder']);
-          console.log(docsStorage);
           var data = docsStorage.filter( function (doc){
-            return (!doc.conformity_data) && (!doc.rejection_data) ;
+            var requerimientos = doc.requerimientos;
+
+            var conformidad_total = true;
+            for ( var r in requerimientos){
+              if (!requerimientos[r].conformidad){
+                conformidad_total = false;
+                break;
+              }
+            }
+            var editable = !conformidad_total ;
+            console.log("requerimientos");
+            console.log(doc.folio);
+
+            console.log(editable);
+              console.log("fin");
+            return editable ;
           });
-          console.log(data);
           return data;
         }
         else{

@@ -1,4 +1,8 @@
-<fieldset xlass="padding">
+<div name="datos-receptor">
+
+  <div class="item item-divider">
+    Datos del receptor
+  </div>
 
   <label class="item item-input custom-item-input">
     <span class="custom-item-input-label">Recepcion por:</span>
@@ -10,15 +14,44 @@
     <input class="custom-item-input-padding" type="text" ng-model="conformity_data.telefono">
   </label>
 
-  <br>
-   <span style="text-align: center">Nivel de conformidad del cliente</span>
-   <ion-checkbox ng-repeat="item in confList"
-                 ng-model="item.checked"
-                 ng-change="updateSelection($index, confList, item.text);">
+</div>
+
+<div name="requerimientos-aceptados">
+
+  <div class="item item-divider">
+    Aceptación de requerimientos
+  </div>
+
+  <ion-list>
+
+    <ion-checkbox ng-repeat="req in data.requerimientos" ng-if="::!req.conformidad" ng-model="lista_checkbox_requerimientos[$index]">
+      {{req.item}} - {{req.problema}}
+    </ion-checkbox>
+
+  </ion-list>
+
+</div>
+
+<div name="conformidad-cliente">
+
+  <div class="item item-divider">
+    Nivel de conformidad
+  </div>
+
+  <ion-checkbox ng-repeat="item in confList" ng-model="item.checked" ng-change="updateSelection($index, confList, item.text);">
      {{ item.text }}
    </ion-checkbox>
-   <br>
 
-   <button class="button button-full button-calm" style="margin: 0px;" ng-click="confirmarActa()">Confirmar Acta</button>
+</div>
 
-   </fieldset>
+<div name="observaciones-cliente">
+
+     <div class="item item-divider">
+       Observaciones
+     </div>
+
+    <textarea type="text" ng-model="conformity_data.observaciones" style="width: 100%; padding: 5px;" rows="8" placeholder="Detalles con respecto al nivel de conformidad seleccionado"></textarea>
+
+</div>
+
+<button class="button button-full button-calm" style="margin: 0px;" ng-click="confirmarActa()">Firmar Acta</button>

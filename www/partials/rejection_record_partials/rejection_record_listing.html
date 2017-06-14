@@ -13,7 +13,11 @@
 	<!-- Observación: No es la mejor manera de codificar cada ion-item, pero funciona de todas maneras... -->
 	<ion-content class="has-header" >
 
-    <h1 ng-if="!orderList || orderList.length == 0">No hay documentos por rechazar</h1>
+    <div class="card"ng-if="!orderList || orderList.length == 0">
+      <div class="item item-text-wrap">
+        Actualmente no hay documentos (actas de trabajo) que puedan ser rechazadas.
+      </div>
+    </div>
 
     <ion-list ng-if="orderList && orderList.length != 0">
 
