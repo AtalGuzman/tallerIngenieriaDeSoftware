@@ -193,7 +193,7 @@ function(
     closeLabel: 'Cerrar',
     mondayFirst: false,
     weeksList: ["L", "M", "W", "J", "V", "S", "D"],
-    monthsList: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+    monthsList: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciciembre"],
     showTodayButton: true,
   };
 
@@ -219,7 +219,7 @@ function(
     closeLabel: 'Cerrar',
     mondayFirst: false,
     weeksList: ["L", "M", "W", "J", "V", "S", "D"],
-    monthsList: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+    monthsList: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciciembre"],
     showTodayButton: true,
   };
 
@@ -245,7 +245,7 @@ function(
     closeLabel: 'Cerrar',
     mondayFirst: false,
     weeksList: ["L", "M", "W", "J", "V", "S", "D"],
-    monthsList: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+    monthsList: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciciembre"],
     showTodayButton: true,
   };
 
@@ -271,10 +271,9 @@ function(
     closeLabel: 'Cerrar',
     mondayFirst: false,
     weeksList: ["L", "M", "W", "J", "V", "S", "D"],
-    monthsList: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+    monthsList: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciciembre"],
     showTodayButton: true,
   };
-
 
   $scope.openFechaEjecucionPicker = function(){
     ionicDatePicker.openDatePicker(fechaEjecucion);

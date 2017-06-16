@@ -1,23 +1,30 @@
 <div class="list">
 
   <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Duración estimada:</span>
+    <span class="custom-item-input-label">Duración estimada</span>
     <input class="custom-item-input-padding" type="text" ng-model="data.dt_duracion_estimada" placeholder="Ej: 1 día">
   </label>
 
   <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Responsable:</span>
-    <input class="custom-item-input-padding" type="text" ng-model="data.dt_responsable" placeholder="Ej: PRE-ENTREGA RECHAZOS">
+    <span class="custom-item-input-label">Responsable</span>
+    <input class="custom-item-input-padding" type="text" ng-model="data.dt_responsable" placeholder="Ej: Adolfo Guzman">
   </label>
 
   <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Fecha ejecución:</span>
-    <input type="text" readonly="true" class="readonly_custom custom-item-input-padding" ng-click="openFechaEjecucionPicker()" ng-model="data.dt_fecha_ejecucion">
+    <span class="custom-item-input-label">Fecha ejecución</span>
+    <label class="custom-item-input-padding custom-item-input-padding-combobox">
+      <input type="text" readonly="true" class="readonly_custom" ng-click="openFechaEjecucionPicker()" ng-model="data.dt_fecha_ejecucion" placeholder="Ej: 20/03/2017" >
+      <span class="ion-calendar caret-icon"></span>
+    </label>
   </label>
 
   <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Hora ejecución:</span>
-    <input class="custom-item-input-padding" type="text" ng-model="data.dt_hora_ejecucion">
+    <span class="custom-item-input-label">Hora ejecución</span>
+    <label class="custom-item-input-padding custom-item-input-padding-combobox">
+      <input type="text" ng-model="data.dt_hora_ejecucion" placeholder="Ej:13:15" hour-only>
+      <span class="ion-clock caret-icon"></span>
+    </label>
   </label>
+
 
 </div>
