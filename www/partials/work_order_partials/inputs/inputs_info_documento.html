@@ -5,6 +5,11 @@
     <input class="readonly_custom custom-item-input-padding" type="text" readonly="true"  ng-model="data.tipo_documento">
   </label>
 
+  <div ng-if="error_folio" class="assertive error-item">
+      <span>{{error_folio}}</span>
+      <span class="ion-arrow-down-c"></span>
+  </div>
+
   <label class="item item-input custom-item-input">
     <span class="custom-item-input-label">Folio (Identificador)</span>
     <input class="custom-item-input-padding" type="text"  ng-model="data.folio" placeholder="Ingrese un folio">

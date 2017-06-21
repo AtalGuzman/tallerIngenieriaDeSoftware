@@ -319,6 +319,181 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
       }
     },
 
+    verificar_folio(data){
+      var folio = data.folio;
+      if (!folio || folio.replace(/ /g,'').length == 0){
+        return "Ingrese un folio identificador";
+      }
+      return null;
+    },
+
+    verificar_proyecto(data){
+      var proyecto = data.dg_proyecto;
+      if (!proyecto){
+        return "Seleccione un proyecto";
+      }
+      return null;
+    },
+
+    verificar_etapa(data){
+      var etapa = data.dg_etapa;
+      if (!etapa){
+        return "Seleccione una etapa";
+      }
+      return null;
+    },
+
+    verificar_propiedad(data){
+      var propiedad = data.dg_propiedad;
+      if (!propiedad){
+        return "Seleccione una propiedad";
+      }
+      return null;
+    },
+
+    verificar_tipo_propiedad(data){
+      var propiedad = data.dg_tipo_de_propiedad;
+      if (!propiedad){
+        return "Seleccione un tipo propiedad";
+      }
+      return null;
+    },
+
+    verificar_fecha_rm(data){
+      var fecha_rm = data.dg_fecha_rm;
+      if (!fecha_rm){
+        return "Seleccione una fecha";
+      }
+      return null;
+    },
+
+    verificar_fecha_entrega(data){
+      var fecha_entrega = data.dg_fecha_entrega;
+      if (!fecha_entrega){
+        return "Seleccione una fecha";
+      }
+      return null;
+    },
+
+    verificar_propietario(data){
+      var propietario = data.dg_propietario;
+      if (!propietario || propietario.replace(/ /g,'').length == 0){
+        return "Ingrese el nombre del propietario";
+      }
+      return null;
+    },
+
+    verificar_email(data){
+      var email = data.dg_email;
+      var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!email){
+        return "Ingrese un correo electronico";
+      }
+      else if (!regex.test(email)){
+        return "Ingrese un correo electronico valido";
+      }
+      return null;
+    },
+
+    verificar_telefono(data){
+      var data_telefono = data.dg_telefonos;
+      if( !data_telefono ){
+        return "Ingrese un número de telefono";
+      }
+      else if (data_telefono.length < 8){
+        return "El número de telefono, para ser válido, debe tener al menos 8 digitos";
+      }
+      return null;
+    },
+
+    verificar_fecha_entrega(data){
+      var fechaSolicitud = data.ds_fecha_solicitud;
+      if (!fechaSolicitud){
+        return "Seleccione una fecha";
+      }
+      return null;
+    },
+
+    verificar_medio_solicitud(data){
+      var medio_solicitud = data.ds_medio_solicitud;
+      if (!medio_solicitud || medio_solicitud.replace(/ /g,'').length == 0){
+        return "Ingrese un medio de solicitud";
+      }
+      return null;
+    },
+
+    verificar_visita_efectuada_por(data){
+      var visita_efectuada_por = data.ds_visita_efectuada_por;
+      if (!visita_efectuada_por || visita_efectuada_por.replace(/ /g,'').length == 0){
+        return "Ingrese el nombre de quien efectuo la visita";
+      }
+      return null;
+    },
+
+
+    verificar_nombre_quien_recibe(data){
+      var donombre_quien_recibe = data.ds_nombre_quien_recibe;
+      if (!ds_nombre_quien_recibe || ds_nombre_quien_recibe.replace(/ /g,'').length == 0){
+        return "Ingrese el nombre de quien recibio al visitante";
+      }
+      return null;
+    },
+
+    verificar_duracion_estimada(data){
+      var dt_duracion_estimada = data.dt_duracion_estimada;
+      if (!dt_duracion_estimada || dt_duracion_estimada.replace(/ /g,'').length == 0){
+        return "Ingrese una duración estimada";
+      }
+      return null;
+    },
+
+    verificar_responsable(data){
+      var dt_responsable = data.dt_responsable;
+      if (!dt_responsable || dt_responsable.replace(/ /g,'').length == 0){
+        return "Ingrese el nombre del responsable de hacer el trabajo";
+      }
+      return null;
+    },
+
+    verificar_fecha_ejecucion(data){
+      var dt_fecha_ejecucion = data.dt_fecha_ejecucion;
+      if (!dt_responsable){
+        return "Ingrese la fecha de ejecución del trabajo";
+      }
+      return null;
+    },
+
+    verificar_hora_ejecucion(data){
+      var dt_hora_ejecucion = data.dt_hora_ejecucion;
+      if (!dt_hora_ejecucion){
+        return "Ingrese una hora de ejecución";
+      }
+      else if(dt_hora_ejecucion.length < 4){
+        return "Ingrese una hora de ejecución valida";
+      }
+      else if(dt_hora_ejecucion.length == 5){
+        var n1 = dt_hora_ejecucion[0];
+        var n2 = dt_hora_ejecucion[1];
+        var n3 = dt_hora_ejecucion[3];
+        var n4 = dt_hora_ejecucion[4];
+        var horas = n1 * 10 + n2;
+        var minutos = n3 * 10 + n4;
+        if ( horas >= 24 || minutos >= 60){
+          return "Ingrese una hora de ejecución valida";
+        }
+      }
+      else if (dt_hora_ejecucion.length == 4) {
+        var n3 = dt_hora_ejecucion[3];
+        var n4 = dt_hora_ejecucion[4];
+        var minutos = n3 * 10 + n4;
+        if (minutos >= 60){
+          return "Ingrese una hora de ejecución valida";
+        }
+      }
+      return null;
+    },
+
+
     verificar_conformidad_repecionadoPor(data_conformidad){
       var data_recepcionado_por = data_conformidad.recepcionado_por;
       if (!data_recepcionado_por || data_recepcionado_por.replace(/ /g,'').length == 0){
