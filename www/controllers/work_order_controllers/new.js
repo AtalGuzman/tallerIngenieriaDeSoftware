@@ -39,6 +39,13 @@ function(
     $scope.popover.hide();
   }
 
+  $scope.btnCargarDatosPruebaConformidad = function(){
+    $scope.data = workOrder_factory.initDebugDataConConformidad();
+    $scope.popover.hide();
+  }
+
+
+
   $ionicPopover.fromTemplateUrl('navbarPopover.html', {
     scope: $scope,
   }).then(function(popover) {

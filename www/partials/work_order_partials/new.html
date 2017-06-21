@@ -101,14 +101,17 @@
 </ion-view>
 
 <script id="navbarPopover.html" type="text/ng-template">
-  <ion-popover-view style="height: 120px">
+  <ion-popover-view style="height: 180px; width: 80%">
     <ion-content>
       <div class="list">
         <a class="item" ng-click="btnSalir()">
           <span class="ion-log-out"></span> Salir
         </a>
         <a class="item" ng-click="btnCargarDatosPrueba()">
-          <span class="ion-ionic"></span> Cargar datos de prueba
+          <span class="ion-ionic"></span> Cargar prueba
+        </a>
+        <a class="item" ng-click="btnCargarDatosPruebaConformidad()">
+          <span class="ion-ionic"></span> Cargar prueba conformidad
         </a>
       </div>
     </ion-content>
