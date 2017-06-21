@@ -1,38 +1,68 @@
 <div name="datos-receptor">
 
-  <div class="item item-divider">
-    Datos del receptor
-  </div>
+  <!-- SEPARADO -->
+    <div class="item item-divider">
+      Datos del receptor
+    </div>
 
-  <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Recepcion por:</span>
-    <input class="custom-item-input-padding" type="text" ng-model="conformity_data.recepcionado_por">
-  </label>
+  <!-- INPUT -->
+    <div ng-if="error_recepcionado_por" class="assertive error-item">
+        <span>{{error_recepcionado_por}}</span>
+        <span class="ion-arrow-down-c"></span>
+    </div>
 
-  <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Telefono:</span>
-    <input class="custom-item-input-padding" type="text" ng-model="conformity_data.telefono">
-  </label>
+    <label class="item item-input custom-item-input">
+      <span class="custom-item-input-label">
+        Recepcion por:
+      </span>
+      <input text-only class="custom-item-input-padding" type="text" ng-model="conformity_data.recepcionado_por">
+    </label>
+
+  <!-- INPUT -->
+
+    <div ng-if="error_data_telefono" class="assertive error-item">
+      <span>{{error_data_telefono}}</span>
+      <span class="ion-arrow-down-c"></span>
+    </div>
+
+    <label class="item item-input custom-item-input">
+      <span class="custom-item-input-label">Telefono</span>
+      <div class="custom-item-input-padding custom-item-input-padding-combobox">
+        <input phone-only type="text" placeholder="Ej: 22857907" ng-model="conformity_data.telefono">
+        <span class="ion-ios-telephone caret-icon"></span>
+      </div>
+    </label>
+
 
 </div>
 
 <div name="requerimientos-aceptados">
 
-  <div class="item item-divider">
-    Aceptación de requerimientos
-  </div>
+  <!-- SEPARADOR -->
+    <div class="item item-divider">
+      Aceptación de requerimientos
+    </div>
 
-  <ion-list>
+  <!-- INPUT -->
+    <div ng-if="error_requerimientos" class="assertive error-item">
+      <span>{{error_requerimientos}}</span>
+      <span class="ion-arrow-down-c"></span>
+    </div>
 
-    <ion-checkbox ng-repeat="req in data.requerimientos" ng-if="::!req.conformidad" ng-model="lista_checkbox_requerimientos[$index]">
-      {{req.item}} - {{req.problema}}
-    </ion-checkbox>
-
-  </ion-list>
+    <ion-list>
+      <ion-checkbox ng-repeat="req in data.requerimientos" ng-if="::!req.conformidad" ng-model="lista_checkbox_requerimientos[$index]">
+        {{req.lugar}} - {{req.item}} <br> Problema: {{req.problema}} <br> Recinto: {{ req.recinto }}
+      </ion-checkbox>
+    </ion-list>
 
 </div>
 
 <div name="conformidad-cliente">
+
+  <div ng-if="error_nivel" class="assertive error-item">
+    <span>{{error_nivel}}</span>
+    <span class="ion-arrow-down-c"></span>
+  </div>
 
   <div class="item item-divider">
     Nivel de conformidad
@@ -53,5 +83,3 @@
     <textarea type="text" ng-model="conformity_data.observaciones" style="width: 100%; padding: 5px;" rows="8" placeholder="Detalles con respecto al nivel de conformidad seleccionado"></textarea>
 
 </div>
-
-<button class="button button-full button-calm" style="margin: 0px;" ng-click="confirmarActa()">Firmar Acta</button>

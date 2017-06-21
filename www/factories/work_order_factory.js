@@ -32,10 +32,11 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
     problema: null,
     instruccion: null,
     conformidad: null,
-    fecha_conformidad: null
+    id_conformidad: null
   };
 
   var _confData = {
+    id_conformidad: null,
     recepcionado_por: null,
     telefono: null,
     nivel_conformidad: null,
@@ -45,19 +46,6 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
     foto_comprobante: null
   };
 
-  var getDoc = function(id, $rootScope){
-      return $rootScope.ordenesDeTrabajo.filter(
-        function(doc){
-          if(doc.id == id){
-          //  console.log(doc);
-          }
-          return doc.id == id;
-        }
-      );
-  };
-
-
-
   return {
     initData: function(){
       var dataRef = angular.copy(_data);
@@ -66,7 +54,6 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
     },
 
     initDataFromFolio: function( folio ){
-
       var dataRef = angular.copy(_data);
       dataRef.tipo_documento = "ORDEN DE TRABAJO";
       dataRef.folio = folio;
@@ -75,6 +62,7 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
 
     initDebugData: function (){
       var dataRef = angular.copy(_data);
+      dataRef.id = new Date().getTime().toString();
       dataRef.tipo_documento = "ORDEN DE TRABAJO"
       dataRef.folio = "0T-URB-000777/634";
       dataRef.dg_proyecto =  'ECO URBE';
@@ -89,12 +77,29 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
       dataRef.dg_telefonos = '87489220';
       dataRef.ds_fecha_solicitud = '07/04/2019';
       dataRef.ds_medio_solicitud = 'PRE-ENTREGA RECHAZOS';
-      dataRef.ds_visita_efectuada_por = '';
-      dataRef.ds_nombre_quien_recibe = '';
+      dataRef.ds_visita_efectuada_por = 'Felipe Jara';
+      dataRef.ds_nombre_quien_recibe = 'Adolfo Guzmán';
       dataRef.dt_duracion_estimada =  '1 día';
       dataRef.dt_responsable =  'JORGE CABELLO';
       dataRef.dt_fecha_ejecucion =  '2017-05-02';
       dataRef.dt_hora_ejecucion =  '8:00 - 8-15';
+      dataRef.requerimientos = [
+        {
+          recinto: "LIVING",
+          lugar: "ENCHUFE",
+          item: "CAJA",
+          problema: "MAL INSTALADO(A)",
+          instruccion: "CORREGIR",
+        },
+        {
+          recinto: "PASILLO",
+          lugar: "ENCHUFE",
+          item: "CAJA",
+          problema: "MAL INSTALADO(A)",
+          instruccion: "CORREGIR"
+        }
+      ];
+
       return dataRef;
     },
 
@@ -103,11 +108,12 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
     },
 
     initConformityData:function(){
-      return angular.copy(_confData);
+      var retorno = angular.copy(_confData);
+      retorno.id_conformidad = new Date().getTime().toString();
+      return retorno;
     },
 
     checkNotEmptyData: function(data){
-
       var return_value = false;
       var keys = Object.keys(data)
       var count = keys.length;
@@ -253,6 +259,25 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
       else{
         return null;
       }
+    },
+
+    verificar_conformidad_repecionadoPor(data_conformidad){
+      var data_recepcionado_por = data_conformidad.recepcionado_por;
+      if (!data_recepcionado_por || data_recepcionado_por.replace(/ /g,'').length == 0){
+        return "Ingrese el nombre de la persona que recibe el acta de conformidad";
+      }
+      return null;
+    },
+
+    verificar_conformidad_telefono(data_conformidad){
+      var data_telefono = data_conformidad.telefono;
+      if( !data_telefono ){
+        return "Ingrese un número de telefono";
+      }
+      else if (data_telefono.length < 8){
+        return "El número de telefono, para ser válido, debe tener al menos 8 digitos";
+      }
+      return null;
     }
   };
 

@@ -1,5 +1,5 @@
 
-var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datepicker', 'pdf']);
+var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datepicker', 'pdf', 'ngCordova']);
 
   app.config(function($stateProvider,$urlRouterProvider){
     $stateProvider.state('home',{
@@ -297,6 +297,7 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
   });
 
   app.run(function($ionicPlatform,  $rootScope, $location, Model) {
+
 
     $rootScope.optionsProyecto = Model.getProyectos();
 

@@ -6,10 +6,12 @@ function(
   $ionicPopup,
   $ionicModal,
   $ionicHistory,
+  $ionicPopover,
   Model,
   workOrder_factory,
   workOrderPDFService,
   ionicDatePicker,
+  Auth,
   StringifyJsonService) {
 
   // Variables
@@ -31,6 +33,42 @@ function(
     workOrder_factory.saveDoc($scope.data);
     $scope.changeState('home');
   }
+
+  $scope.btnCargarDatosPrueba = function(){
+    $scope.data = workOrder_factory.initDebugData();
+    $scope.popover.hide();
+  }
+
+  $ionicPopover.fromTemplateUrl('navbarPopover.html', {
+    scope: $scope,
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
+
+  $scope.openPopover = function($event) {
+    $scope.popover.show($event);
+  };
+
+  $scope.btnSalir = function(){
+    showLogoutConfirmationPopUp();
+  };
+
+  function showLogoutConfirmationPopUp(){
+
+    var confirmPopup = $ionicPopup.confirm({
+       title: 'Confirmación',
+       template: '¿Estas seguro que quieres salir de la aplicación?'
+    });
+
+    confirmPopup.then(function(res) {
+       if(res) {
+         Auth.logout();
+         $state.changeState("log_in");
+         $scope.popover.remove();
+       }
+    });
+
+  };
 
   $scope.cancelNewDocument = function(){
     if (workOrder_factory.checkNotEmptyData($scope.data)){

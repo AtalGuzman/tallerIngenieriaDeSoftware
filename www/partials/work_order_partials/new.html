@@ -1,7 +1,7 @@
 <ion-view ng-controller="work_order_new_controller">
 
   <!-- NavBar -->
-  <div ng-controller="navbarCtrl" class="bar bar-header bar-dark">
+  <div  class="bar bar-header bar-dark">
     <button ng-click="cancelNewDocument()" class="button button-icon icon ion-ios-arrow-back"></button>
     <div class="h1 title">Orden de trabajo</div>
     <button ng-click="openPopover($event)"  class="button button-icon icon ion-navicon"></button>
@@ -54,7 +54,7 @@
           </ion-content>
 
         </ion-slide-page>
-      
+
         <!-- Cuarta Slide -->
         <ion-slide-page>
 
@@ -99,6 +99,22 @@
 
 
 </ion-view>
+
+<script id="navbarPopover.html" type="text/ng-template">
+  <ion-popover-view style="height: 120px">
+    <ion-content>
+      <div class="list">
+        <a class="item" ng-click="btnSalir()">
+          <span class="ion-log-out"></span> Salir
+        </a>
+        <a class="item" ng-click="btnCargarDatosPrueba()">
+          <span class="ion-ionic"></span> Cargar datos de prueba
+        </a>
+      </div>
+    </ion-content>
+  </ion-popover-view>
+
+</script>
 
 <script id="pdf-viewer.html" type="text/ng-template">
     <ion-modal-view>
