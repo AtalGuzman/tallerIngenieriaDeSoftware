@@ -27,7 +27,7 @@
         <li class="item">
           <b>Requerimientos aceptados</b><br>
           <ul>
-            <li ng-repeat="req in data.requerimientos" ng-if="(req.id_conformidad == c.id_conformidad)"><br> <b>Requerimiento {{$index}} </b> <br> {{req.lugar}} - {{req.item}} <br> Problema: {{req.problema}} <br> Recinto: {{ req.recinto }} <br> </li>
+            <li ng-repeat="req in data.requerimientos" ng-if="(req.id_conformidad == c.id_conformidad)"><br> <b>Requerimiento {{$index + 1}} </b> <br> {{req.lugar}} - {{req.item}} <br> Problema: {{req.problema}} <br> Recinto: {{ req.recinto }} <br> </li>
           </ul>
 
         </li>

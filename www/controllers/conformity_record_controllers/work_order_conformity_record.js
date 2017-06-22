@@ -47,7 +47,7 @@ function($scope, $state, workOrder_factory, $ionicHistory, $ionicModal, $ionicPo
     $scope.error_data_telefono = workOrder_factory.verificar_conformidad_telefono($scope.conformity_data);
     $scope.error_requerimientos = verificarCheckboxRequerimientos();
     $scope.error_nivel = verificarNivelConformidad();
-    return $scope.error_recepcionado_por || $scope.error_data_telefono || $scope.error_requerimientos;;
+    return $scope.error_recepcionado_por || $scope.error_data_telefono || $scope.error_requerimientos || $scope.error_nivel;
   }
 
   function verificarCheckboxRequerimientos(){

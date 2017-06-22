@@ -80,12 +80,9 @@ angular.module('starter').factory('inspectionOrder_factory', function(StringifyJ
   // Revisa si en un documento hay algún requerimiento que este disponible para firmar su conformidad o rechazo
   function chequearRequerimientosDisponibles(data) {
     var alMenosUnoDisponible = false;
-    console.log(data.folio);
     for (var i = 0; i < data.requerimientos.length ; i++){
       var requerimiento = data.requerimientos[i];
-      console.log(requerimiento);
       if (!requerimiento.id_conformidad && !requerimiento.id_rechazo){
-        console.log(data.folio);
          alMenosUnoDisponible = true; break;
        }
     }
@@ -270,7 +267,16 @@ angular.module('starter').factory('inspectionOrder_factory', function(StringifyJ
 
     // Inicializa una acta de conformidad
     initConformityData:function(){
-      return angular.copy(_confData);
+        var cd = angular.copy(_confData);
+        cd.id_conformidad = new Date().getTime().toString();
+        return rd;
+    },
+
+    // Inicializa una acta de rechazo
+    initRejectionData: function(){
+      var rd = angular.copy(_rejectionData);
+      rd.id_rechazo = new Date().getTime().toString();
+      return rd
     },
 
     // Guardar Documento
@@ -305,8 +311,7 @@ angular.module('starter').factory('inspectionOrder_factory', function(StringifyJ
       if (window.localStorage['docs_inspectionOrder']){
         var docsStorage = JSON.parse(window.localStorage['docs_inspectionOrder']);
         var data = docsStorage.filter( function (doc){
-          console.log(doc);
-          if (doc.data_conformidades.length == 0 && doc.data_rechazos.length == 0){ console.log("Editable");  return true; }
+          if (doc.data_conformidades.length == 0 && doc.data_rechazos.length == 0){  return true; }
           return false;
         });
         return data;
@@ -405,8 +410,45 @@ angular.module('starter').factory('inspectionOrder_factory', function(StringifyJ
         if (chequearStringVacio (requerimiento.problema)){ return "Falta información en uno de los requerimientos ";}
         if (chequearStringVacio (requerimiento.instruccion)){ return "Falta información en uno de los requerimientos ";}
       }
-    }
+    },
 
+    verificar_conformidad_repecionadoPor(data_conformidad){
+      var data_recepcionado_por = data_conformidad.recepcionado_por;
+      if (!data_recepcionado_por || data_recepcionado_por.replace(/ /g,'').length == 0){
+        return "Ingrese el nombre de la persona que recibe el acta de conformidad";
+      }
+      return null;
+    },
+
+    verificar_conformidad_telefono(data_conformidad){
+      var data_telefono = data_conformidad.telefono;
+      if( !data_telefono ){
+        return "Ingrese un número de telefono";
+      }
+      else if (data_telefono.length < 8){
+        return "El número de telefono, para ser válido, debe tener al menos 8 digitos";
+      }
+      return null;
+    },
+
+    verificar_rechazo_repecionadoPor(data_rechazo){
+      var data_recepcionado_por = data_rechazo.recepcionado_por;
+      if (!data_recepcionado_por || data_recepcionado_por.replace(/ /g,'').length == 0){
+        return "Ingrese el nombre de la persona que recibe el acta de conformidad";
+      }
+      return null;
+    },
+
+    verificar_rechazo_telefono(data_rechazo){
+      var data_telefono = data_rechazo.telefono;
+      if( !data_telefono ){
+        return "Ingrese un número de telefono";
+      }
+      else if (data_telefono.length < 8){
+        return "El número de telefono, para ser válido, debe tener al menos 8 digitos";
+      }
+      return null;
+    },
 
   };
 

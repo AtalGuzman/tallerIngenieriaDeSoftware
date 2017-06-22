@@ -86,14 +86,73 @@
 </ion-view>
 
 
-<script id="pdf-viewer.html" type="text/ng-template">
-    <ion-modal-view>
+<script id="signature-modal.html" type="text/ng-template">
+  <ion-modal-view>
     <ion-header-bar>
-        <h1 class="title">Documento</h1>
-        <button ng-click="closeVmModal()" class="button button-icon icon ion-android-close"></button>
+      <h1 class="title">Ingrese su firma, porfavor</h1>
     </ion-header-bar>
     <ion-content>
-        <ng-pdf ng-if="pdfUrl" template-url="partials/orderDocs/docsPartials/viewer.html" canvasid="pdf" scale="page-fit"></ng-pdf>
+      <div class="m-signature-pad">
+
+        <div class="m-signature-pad--body">
+          <canvas id='signatureCanvas'></canvas>
+        </div>
+
+        <div class="m-signature-pad--footer">
+
+          <div class="row">
+            <div class="col text-left">
+              <button type="button" class="button" ng-click="clearSignature()"><span class="ion-ios-trash-outline" style="margin-right: 5px;"></span></button>
+            </div>
+             <div class="col text-center">
+               <button type="button" class="button" ng-click="openSignatureConfirmation()"><span class="icon-fa-floppy-o" style="margin-right: 5px;"></span>Guardar</button>
+             </div>
+             <div class="col text-right">
+               <button type="button" class="button" ng-click="closeSignatureModal()"><span class="ion-close" style="margin-right: 5px;"></span></button>
+              </div>
+          </div>
+        </div>
+      </div>
+
     </ion-content>
-    </ion-modal-view>
+  </ion-modal-view>
+</script>
+
+<script id="picture-modal.html" type="text/ng-template">
+
+  <ion-modal-view>
+
+    <ion-header-bar>
+      <h1 class="title">Tome una fotografía del carnet, porfavor</h1>
+    </ion-header-bar>
+
+    <ion-content>
+      <div class="m-signature-pad">
+
+        <div ng-if="noCamera" class="m-signature-pad--body" style="background-color: #e3e3e3"></div>
+
+        <div ng-if="!noCamera" class="m-signature-pad--body">
+          <img data-ng-src="{{pictureImageSource}}"io style="width: 100%; max-height: 100%" />
+        </div>
+
+        <div class="m-signature-pad--footer">
+
+          <div class="row">
+            <div class="col text-left">
+              <button ng-disabled="noCamera" type="button" class="button" ng-click="takePicture()"><span class="ion-camera" style="margin-right: 5px;"></span></button>
+            </div>
+             <div class="col text-center">
+               <button ng-disabled="noCamera" type="button" class="button" ng-click="savePicture()"><span class="icon-fa-floppy-o" style="margin-right: 5px;"></span>Guardar</button>
+             </div>
+             <div class="col text-right">
+               <button type="button" class="button" ng-click="closePictureModal()"><span class="ion-close" style="margin-right: 5px;"></span></button>
+              </div>
+          </div>
+        </div>
+
+      </div>
+
+    </ion-content>
+  </ion-modal-view>
+
 </script>
