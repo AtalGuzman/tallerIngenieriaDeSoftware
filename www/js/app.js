@@ -217,8 +217,6 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
       }
     });
 
-
-
     //lISTA LAS ORDENES DE INSPECCIÓN PARA SU EDICIÓN
     $stateProvider.state('editInspectionOrderListing',{
       url: '/docs_edit/orden_de_inspeccion',

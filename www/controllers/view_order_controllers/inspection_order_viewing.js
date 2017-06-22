@@ -12,5 +12,4 @@ function($scope, $state, inspectionOrder_factory, $ionicHistory) {
   }
 
 
-
 })

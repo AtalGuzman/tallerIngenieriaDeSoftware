@@ -69,7 +69,11 @@ function(
     $scope.popover.hide();
   }
 
-
+  $scope.btnCargarDatosPruebaRechazo = function(){
+    $scope.data = inspectionOrder_factory.initDebugDataConRechazo();
+    $scope.popover.hide();
+  }
+  
   // Funciones Scope:
   $scope.addNuevoRequerimiento = addNuevoRequerimiento;
 

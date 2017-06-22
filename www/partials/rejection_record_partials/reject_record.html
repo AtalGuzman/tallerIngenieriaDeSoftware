@@ -73,25 +73,10 @@
 
         <ion-content class="margin-bottom" style="padding-top: 5px;">
 
-            <fieldset xlass="padding">
-              <label style="text-align: center">¿Estas seguro de que quieres rechazar el trabajo?</label>
-              <br><br>
-              <ion-checkbox ng-model="rejection_data.rechazo">Si, confirmo el acta de rechazo</ion-checkbox>
-              <br>
-              <div ng-if="rejection_data.rechazo">
-                <label class="item item-input item-stacked-label">
-                   <span class="input-label">Razón del acta de rechazo:</span>
-                   <textarea type="text" ng-model="rejection_data.descripcion" rows="8" placeholder="Ej: Los clientes rompieron la lámpara mientras estaban tratando de arreglarla"></textarea>
-                 </label>
-                 <br>
-                 <button class="button button-full button-assertive" style="margin: 0px;" ng-click="confirmarRechazo($index)">Confirmar Rechazo</button>
-               </fieldset>
-               <br>
-               <button class="button button-full button-calm" style="margin: 0px;" ng-click="volver()">Volver</button>
-            </div>
-          </fieldset>
+          <ng-include src="'partials/rejection_record_partials/inputs/rejection_inputs.html'"></ng-include>
+          <button class="button button-full button-calm" style="margin: 0px;" ng-click="solicitarFirma()">Firmar Acta</button>
 
-          </ion-content>
+        </ion-content>
 
     </ion-slides>
 

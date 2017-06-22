@@ -81,8 +81,19 @@
 
       </ion-slide-page>
 
-      </ion-slides>
+      <ion-slide-page ng-if="data.data_rechazos.length > 0">
 
+        <div class="bar bar-stable">
+           <h2 class="title">Acta de rechazos</h2>
+        </div>
+
+        <ion-content class="margin-bottom" style="padding-top:44px;">
+          <ng-include src="'partials/rejection_record_partials/inputs/rejection_inputs_readonly.html'"></ng-include>
+        </ion-content>
+
+      </ion-slide-page>
+
+      </ion-slides>
 
 	</ion-pane>
 

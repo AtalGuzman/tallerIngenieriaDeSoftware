@@ -287,17 +287,10 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
         if (window.localStorage['docs_workOrder']){
           var docsStorage = JSON.parse(window.localStorage['docs_workOrder']);
           var data = docsStorage.filter( function (doc){
-            var requerimientos = doc.requerimientos;
-
-            var conformidad_total = true;
-            for ( var r in requerimientos){
-              if (!requerimientos[r].conformidad){
-                conformidad_total = false;
-                break;
-              }
+            if (doc.data_conformidades.length > 0){
+              return false;
             }
-            var editable = !conformidad_total ;
-            return editable ;
+            return true;
           });
           return data;
         }
