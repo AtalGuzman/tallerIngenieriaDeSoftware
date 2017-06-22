@@ -1,96 +1,167 @@
 <div class="list">
 
   <!-- Primer input -->
+  <div ng-if="error_proyecto" class="assertive error-item">
+      <span>{{error_proyecto}}</span>
+      <span class="ion-arrow-down-c"></span>
+  </div>
+
+
   <label class="item item-input custom-item-input">
 
-    <span class="custom-item-input-label">Lugar:</span>
+    <span class="custom-item-input-label">Lugar (Proyecto)</span>
 
-    <label class="custom-item-input-padding" modal-select="" on-select="changeProyectoSeleccionado()"; ng-model="data.dg_proyecto" options="optionsProyecto" modal-title="Selecciona un proyecto" has-search="true">
+    <label class="custom-item-input-padding custom-item-input-padding-combobox" modal-select="" on-select="changeProyectoSeleccionado()"; ng-model="data.dg_proyecto" options="optionsProyecto" modal-title="Selecciona un proyecto" has-search="true">
 
-        <div ng-if="!data.dg_proyecto">Seleccione un proyecto</div>
+        <div ng-if="!data.dg_proyecto">Seleccione proyecto</div>
         <div ng-if="data.dg_proyecto">{{data.dg_proyecto}}</div>
         <div class="option"> {{option}} </div>
+        <span class="ion-ios-arrow-down caret-icon"></span>
 
     </label>
 
   </label>
 
+
   <!-- Segundo input -->
+  <div ng-if="error_etapa" class="assertive error-item">
+      <span>{{error_etapa}}</span>
+      <span class="ion-arrow-down-c"></span>
+  </div>
+
   <label class="item item-input custom-item-input">
 
-    <span class="custom-item-input-label">Etapa:</span>
+    <span class="custom-item-input-label">Etapa</span>
 
-    <label class="custom-item-input-padding" ng-show="data.dg_proyecto" modal-select=""  ng-model="data.dg_etapa" options="optionsEtapa" modal-title="Selecciona una etapa" has-search="true">
+    <label ng-if="!data.dg_proyecto" class="custom-item-input-padding" style="color:gray;">
+      Seleccione proyecto
+    </label>
 
-      <div ng-if="!data.dg_etapa">Seleccione una etapa</div>
+    <label ng-if="data.dg_proyecto" class="custom-item-input-padding custom-item-input-padding-combobox" ng-show="data.dg_proyecto" modal-select=""  ng-model="data.dg_etapa" options="optionsEtapa" modal-title="Selecciona una etapa" has-search="true">
+
+      <div ng-if="!data.dg_etapa">Seleccione etapa</div>
       <div ng-if="data.dg_etapa">{{data.dg_etapa}}</div>
       <div class="option"> {{option}} </div>
-
+      <span class="ion-ios-arrow-down caret-icon"></span>
     </label>
 
   </label>
 
   <!-- Tercer Input -->
+  <div ng-if="error_propiedad" class="assertive error-item">
+      <span>{{error_propiedad}}</span>
+      <span class="ion-arrow-down-c"></span>
+  </div>
+
+
   <label class="item item-input custom-item-input">
 
-    <span class="custom-item-input-label">Propiedad:</span>
+    <span class="custom-item-input-label">Propiedad</span>
 
-    <label class="custom-item-input-padding" modal-select=""  ng-model="data.dg_propiedad" options="optionsPropiedad" modal-title="Seleccione una propiedad" has-search="true">
+    <label class="custom-item-input-padding custom-item-input-padding-combobox" modal-select=""  ng-model="data.dg_propiedad" options="optionsPropiedad" modal-title="Seleccione una propiedad" has-search="true">
 
-      <div ng-if="!data.dg_propiedad">Seleccione una propiedad</div>
+      <div ng-if="!data.dg_propiedad">Seleccione propiedad</div>
       <div ng-if="data.dg_propiedad">{{data.dg_propiedad}}</div>
       <div class="option"> {{option}} </div>
+      <span class="ion-ios-arrow-down caret-icon"></span>
+
 
     </label>
 
   </label>
 
+
   <!-- Cuarto Input -->
   <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Manzana:</span>
+    <span class="custom-item-input-label">Manzana</span>
     <input  class="custom-item-input-padding" type="text" ng-model="data.dg_manzana_lote" placeholder="Ej: SERRANO 627, SANTIAGO">
   </label>
 
   <!-- Quinto Input -->
+  <div ng-if="error_fecha_rm" class="assertive error-item">
+      <span>{{error_fecha_rm}}</span>
+      <span class="ion-arrow-down-c"></span>
+  </div>
+
   <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Fecha R.M:</span>
-    <input type="text" readonly="true" class="readonly_custom custom-item-input-padding" ng-click="openFechaRMPicker()" ng-model="data.dg_fecha_rm" placeholder="Ej: 20/03/2017">
+    <span class="custom-item-input-label">Fecha R.M</span>
+
+    <label class="custom-item-input-padding custom-item-input-padding-combobox">
+      <input type="text" readonly="true" class="readonly_custom" ng-click="openFechaRMPicker()" ng-model="data.dg_fecha_rm" placeholder="Ej: 20/03/2017">
+      <span class="ion-calendar caret-icon"></span>
+    </label>
+
   </label>
 
   <!-- Sexto Input -->
+  <div ng-if="error_fecha_entrega" class="assertive error-item">
+      <span>{{error_fecha_entrega}}</span>
+      <span class="ion-arrow-down-c"></span>
+  </div>
+
+
   <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Fecha Entrega:</span>
-    <input type="text" readonly="true" class="readonly_custom custom-item-input-padding" ng-click="openFechaEntregaPicker()" ng-model="data.dg_fecha_entrega" placeholder="Ej: 20/03/2017">
+    <span class="custom-item-input-label">Fecha Entrega</span>
+    <label class="custom-item-input-padding custom-item-input-padding-combobox">
+      <input type="text" readonly="true" class="readonly_custom" ng-click="openFechaEntregaPicker()" ng-model="data.dg_fecha_entrega" placeholder="Ej: 20/03/2017">
+      <span class="ion-calendar caret-icon"></span>
+    </label>
   </label>
 
   <!-- Septimo Input -->
+  <div ng-if="error_propietario" class="assertive error-item">
+      <span>{{error_propietario}}</span>
+      <span class="ion-arrow-down-c"></span>
+  </div>
+
   <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Propietario:</span>
+    <span class="custom-item-input-label">Propietario</span>
     <input class="custom-item-input-padding" type="text" ng-model="data.dg_propietario" placeholder="Ej: Sebastian Morales">
   </label>
 
+
   <!-- Octavo Input -->
+  <div ng-if="error_email" class="assertive error-item">
+      <span>{{error_email}}</span>
+      <span class="ion-arrow-down-c"></span>
+  </div>
+
   <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">E-mail:</span>
-    <input class="custom-item-input-padding" type="text" ng-model="data.dg_email" placeholder="Ej: sebastian.morales@gmail.com">
+    <span class="custom-item-input-label">E-mail</span>
+    <div class="custom-item-input-padding custom-item-input-padding-combobox">
+      <input type="text" ng-model="data.dg_email" placeholder="Ej: sebastian@gmail.com">
+      <span class="icon-at caret-icon"></span>
+    </div>
   </label>
 
   <!-- Noveno Input -->
+  <div ng-if="error_telefono" class="assertive error-item">
+      <span>{{error_telefono}}</span>
+      <span class="ion-arrow-down-c"></span>
+  </div>
+
   <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Telefonos:</span>
-    <input class="custom-item-input-padding" type="text" ng-model="data.dg_telefonos" placeholder="Ej: 12345678">
+    <span class="custom-item-input-label">Telefono</span>
+    <div class="custom-item-input-padding custom-item-input-padding-combobox">
+      <input phone-only type="text" ng-model="data.dg_telefonos" placeholder="Ej: 12345678">
+      <span class="ion-ios-telephone caret-icon"></span>
+    </div>
   </label>
 
   <!-- Decimo Input -->
+
   <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Contacto:</span>
-    <input class="custom-item-input-padding" type="text" ng-model="data.dg_contacto" placeholder="Ej: 12345678">
+    <span class="custom-item-input-label">Contacto</span>
+    <input class="custom-item-input-padding" type="text" ng-model="data.dg_contacto" placeholder="Ej: Sebastian Morales">
   </label>
 
   <!-- Onceavo Input -->
   <label class="item item-input custom-item-input">
-    <span class="custom-item-input-label">Fono contacto:</span>
-    <input class="custom-item-input-padding" type="text" ng-model="data.dg_fono_de_contacto" placeholder="Ej: 12345678">
+    <span class="custom-item-input-label">Fono contacto</span>
+    <div class="custom-item-input-padding custom-item-input-padding-combobox">
+      <input phone-only type="text" ng-model="data.dg_fono_de_contacto" placeholder="Ej: 12345678">
+      <span class="ion-ios-telephone caret-icon"></span>
+    </div>
   </label>
 
-  </div>
+</div>

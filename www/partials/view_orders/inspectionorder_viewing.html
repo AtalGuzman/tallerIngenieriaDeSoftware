@@ -3,7 +3,7 @@
   <!-- NavBar -->
   <div ng-controller="navbarCtrl" class="bar bar-header bar-dark">
     <button ng-click="volver()" class="button button-icon icon ion-ios-arrow-back"></button>
-    <div class="h1 title">Ver Orden de Trabajo</div>
+    <div class="h1 title">Ver Orden de Inspección</div>
     <button ng-click="openPopover($event)"  class="button button-icon icon ion-navicon"></button>
   </div>
 
@@ -19,7 +19,7 @@
         </div>
 
         <ion-content class="margin-bottom" style="padding-top:44px;">
-          <ng-include src="'partials/work_order_partials/readonly_inputs/inputs_info_documento.html'"></ng-include>
+          <ng-include src="'partials/inspection_order_partials/readonly_inputs/inputs_info_documento.html'"></ng-include>
         </ion-content>
 
       </ion-slide-page>
@@ -31,7 +31,7 @@
         </div>
 
         <ion-content class="margin-bottom" style="padding-top:44px;">
-          <ng-include src="'partials/work_order_partials/readonly_inputs/inputs_info_general.html'"></ng-include>
+          <ng-include src="'partials/inspection_order_partials/readonly_inputs/inputs_info_general.html'"></ng-include>
         </ion-content>
       </ion-slide-page>
 
@@ -42,11 +42,9 @@
         </div>
 
         <ion-content class="margin-bottom" style="padding-top:44px;">
-          <ng-include src="'partials/work_order_partials/readonly_inputs/inputs_info_solicitud.html'"></ng-include>
+          <ng-include src="'partials/inspection_order_partials/readonly_inputs/inputs_info_solicitud.html'"></ng-include>
         </ion-content>
       </ion-slide-page>
-
-      <ion-slide-page>
 
       <ion-slide-page>
 
@@ -67,11 +65,11 @@
         </div>
 
         <ion-content class="margin-bottom" style="padding-top:44px;">
-          <ng-include src="'partials/work_order_partials/readonly_inputs/inputs_info_requerimientos.html'"></ng-include>
+          <ng-include src="'partials/inspection_order_partials/readonly_inputs/inputs_info_requerimientos.html'"></ng-include>
         </ion-content>
       </ion-slide-page>
 
-      <ion-slide-page ng-if="data.conformity_data">
+      <ion-slide-page ng-if="data.data_conformidades.length > 0">
 
         <div class="bar bar-stable">
            <h2 class="title">Acta de conformidad</h2>

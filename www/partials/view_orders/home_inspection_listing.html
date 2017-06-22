@@ -25,6 +25,7 @@
       <ion-item ng-repeat="order in orderList" ng-click="goToView(order.id)">
         <div style="position: relative">
           <span style="margin-right: 8px; overflow: hidden;">
+            <span class="ion-checkmark-round"  ng-if="tieneConformidad($index)"></span>
             <b>{{order.folio}}</b><br>{{order.dg_propietario}}
           </span>
           <span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>

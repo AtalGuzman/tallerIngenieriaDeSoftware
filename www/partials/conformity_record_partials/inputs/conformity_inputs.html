@@ -50,7 +50,7 @@
     </div>
 
     <ion-list>
-      <ion-checkbox ng-repeat="req in data.requerimientos" ng-if="::!req.conformidad" ng-model="lista_checkbox_requerimientos[$index]">
+      <ion-checkbox ng-repeat="req in data.requerimientos" ng-if="::!req.id_conformidad" ng-model="lista_checkbox_requerimientos[$index]">
         {{req.lugar}} - {{req.item}} <br> Problema: {{req.problema}} <br> Recinto: {{ req.recinto }}
       </ion-checkbox>
     </ion-list>

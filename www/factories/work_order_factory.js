@@ -22,7 +22,7 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
     dt_fecha_ejecucion: null,
     dt_hora_ejecucion: null,
     requerimientos: [],
-    data_conformidades: []
+    data_conformidades: [],
   };
 
   var _reqdata = {
@@ -32,7 +32,8 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
     problema: null,
     instruccion: null,
     conformidad: null,
-    id_conformidad: null
+    id_conformidad: null,
+    id_rechazo: null,
   };
 
   var _confData = {
@@ -45,6 +46,28 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
     firma: null,
     foto_comprobante: null
   };
+
+  var _rejectionData = {
+    id_rechazo: null,
+    recepcionado_por: null,
+    telefono: null,
+    fecha: null,
+    observaciones: null,
+    firma: null,
+    foto_comprobante: null
+  }
+
+  function chequearRequerimientosDisponibles(data) {
+    var alMenosUnoDisponible = false;
+    for (var i = 0; i < data.requerimientos; i < data.requerimientos.length){
+      var requerimiento = data.requerimientos[i];
+      if (!requerimiento.id_conformidad && !requerimiento.id_rechazo){
+        alMenosUnoDisponible = true;
+        break;
+      }
+    }
+    return alMenosUnoDisponible;
+  }
 
   return {
     initData: function(){
@@ -82,7 +105,7 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
       dataRef.dt_duracion_estimada =  '1 día';
       dataRef.dt_responsable =  'JORGE CABELLO';
       dataRef.dt_fecha_ejecucion =  '2017-05-02';
-      dataRef.dt_hora_ejecucion =  '8:00 - 8-15';
+      dataRef.dt_hora_ejecucion =  '8:00';
       dataRef.requerimientos = [
         {
           recinto: "LIVING",
@@ -157,7 +180,6 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
 
       dataRef.requerimientos[0].nivel_conformidad = "Muy Conforme";
       dataRef.requerimientos[0].id_conformidad = id_conformidad;
-      console.log(dataRef);
       return dataRef;
     },
 
@@ -289,6 +311,19 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
             var docsStorage = JSON.parse(window.localStorage['docs_workOrder']);
             var data = docsStorage.filter( function (doc){
               return doc.conformity_data && !doc.rejection_data;
+            });
+            return data;
+          }
+          else{
+            return null;
+          }
+        },
+
+        getDocsRechazables: function(){
+          if (window.localStorage['docs_inspectionOrder']){
+            var docsStorage = JSON.parse(window.localStorage['docs_inspectionOrder']);
+            var data = docsStorage.filter( function (doc){
+              return chequearRequerimientosDisponibles(data);
             });
             return data;
           }
@@ -511,6 +546,13 @@ angular.module('starter').factory('workOrder_factory', function(StringifyJsonSer
         return "El número de telefono, para ser válido, debe tener al menos 8 digitos";
       }
       return null;
+    },
+
+    verificarConformidad(data){
+      if (data.data_conformidades.length > 0){
+        return true;
+      }
+      return false;
     }
   };
 
