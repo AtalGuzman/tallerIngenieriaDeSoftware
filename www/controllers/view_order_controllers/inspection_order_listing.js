@@ -11,4 +11,12 @@ function($scope, $state, inspectionOrder_factory) {
     $state.go("docsView_InspectionOrderViewing",{'id':index});
   }
 
+  $scope.tieneConformidad = function(index){
+    return inspectionOrder_factory.verificarConformidad($scope.orderList[index]);
+  }
+
+  $scope.tieneRechazo = function(index){
+    return inspectionOrder_factory.verificarRechazo($scope.orderList[index]);
+  }
+
 })

@@ -15,7 +15,7 @@
       <span class="custom-item-input-label">
         Recepcion por:
       </span>
-      <input text-only class="custom-item-input-padding" type="text" ng-model="conformity_data.recepcionado_por" placeholder="Felipe Jara">
+      <input text-only class="custom-item-input-padding" type="text" ng-model="rejection_data.recepcionado_por" placeholder="Felipe Jara">
     </label>
 
   <!-- INPUT -->
@@ -28,7 +28,7 @@
     <label class="item item-input custom-item-input">
       <span class="custom-item-input-label">Telefono</span>
       <div class="custom-item-input-padding custom-item-input-padding-combobox">
-        <input phone-only type="text" placeholder="Ej: 22857907" ng-model="conformity_data.telefono">
+        <input phone-only type="text" placeholder="Ej: 22857907" ng-model="rejection_data.telefono">
         <span class="ion-ios-telephone caret-icon"></span>
       </div>
     </label>
@@ -40,7 +40,7 @@
 
   <!-- SEPARADOR -->
     <div class="item item-divider">
-      Aceptación de requerimientos
+      Rechazo de requerimientos
     </div>
 
   <!-- INPUT -->
@@ -50,27 +50,10 @@
     </div>
 
     <ion-list>
-      <ion-checkbox ng-repeat="req in data.requerimientos" ng-if="::!req.id_conformidad" ng-model="lista_checkbox_requerimientos[$index]">
+      <ion-checkbox ng-repeat="req in data.requerimientos" ng-if="::(!req.id_rechazo && !req.id_conformidad)" ng-model="lista_checkbox_requerimientos[$index]">
         {{req.lugar}} - {{req.item}} <br> Problema: {{req.problema}} <br> Recinto: {{ req.recinto }}
       </ion-checkbox>
     </ion-list>
-
-</div>
-
-<div name="conformidad-cliente">
-
-  <div ng-if="error_nivel" class="assertive error-item">
-    <span>{{error_nivel}}</span>
-    <span class="ion-arrow-down-c"></span>
-  </div>
-
-  <div class="item item-divider">
-    Nivel de conformidad
-  </div>
-
-  <ion-checkbox ng-repeat="item in confList" ng-model="item.checked" ng-change="updateSelection($index, confList, item.text);">
-     {{ item.text }}
-   </ion-checkbox>
 
 </div>
 
@@ -80,6 +63,6 @@
        Observaciones
      </div>
 
-    <textarea type="text" ng-model="conformity_data.observaciones" style="width: 100%; padding: 5px;" rows="8" placeholder="Detalles con respecto al nivel de conformidad seleccionado"></textarea>
+    <textarea type="text" ng-model="rejection_data.observaciones" style="width: 100%; padding: 5px;" rows="8" placeholder="Detalles con respecto al nivel de conformidad seleccionado"></textarea>
 
 </div>

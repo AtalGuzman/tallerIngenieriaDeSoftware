@@ -7,12 +7,56 @@ function(
   $ionicModal,
   $ionicHistory,
   $ionicPopover,
-  Model,
+  $ionicModal,
   inspectionOrder_factory,
   inspectionOrderPDFService,
   ionicDatePicker,
-  Auth,
+  Model,
   StringifyJsonService) {
+
+    // ####################### MODAL DE PREVISUALIZACIÓN #########################
+
+    var vm = this;
+
+    // Initialize the modal view.
+    $ionicModal.fromTemplateUrl('pdf-viewer.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        vm.modal = modal;
+
+    });
+
+    $scope.closeVmModal = function(){
+      vm.modal.hide();
+    }
+
+    vm.createInvoice = function () {
+        var invoice = $scope.data
+
+        inspectionOrderPDFService.createPdf(invoice)
+          .then(function(pdf) {
+              var blob = new Blob([pdf], {type: 'application/pdf'});
+              $scope.pdfUrl = URL.createObjectURL(blob);
+
+              // Display the modal view
+              vm.modal.show();
+          });
+    };
+
+    // Clean up the modal view.
+    $scope.$on('$destroy', function () {
+        vm.modal.remove();
+    });
+
+
+    $scope.createDocument = function(){
+      for( var v in $scope.data){
+        console.log($scope.data[v]);
+      }
+      vm.createInvoice();
+    };
+
 
   // Variables
   var showExitConfirmationPopUp = function(){
@@ -37,9 +81,7 @@ function(
 
     $scope.data = inspectionOrder_factory.initData();
 
-    $scope.data.id = new Date().getTime().toString();
-
-    $scope.proyectoSeleccionado = "";
+    $scope.proyectoSeleccionado = ""
 
     $scope.lugarSeleccionado = "";
 
@@ -48,6 +90,35 @@ function(
 
   initComponents();
 
+  // POPOVER:
+  $ionicPopover.fromTemplateUrl('navbarPopover.html', {
+    scope: $scope,
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
+
+  $scope.openPopover = function($event) {
+    $scope.popover.show($event);
+  };
+
+  $scope.btnSalir = function(){
+    showLogoutConfirmationPopUp();
+  };
+
+  $scope.btnCargarDatosPrueba = function(){
+    $scope.data = inspectionOrder_factory.initDebugData();
+    $scope.popover.hide();
+  }
+
+  $scope.btnCargarDatosPruebaConformidad = function(){
+    $scope.data = inspectionOrder_factory.initDebugDataConConformidad();
+    $scope.popover.hide();
+  }
+
+  $scope.btnCargarDatosPruebaRechazo = function(){
+    $scope.data = inspectionOrder_factory.initDebugDataConRechazo();
+    $scope.popover.hide();
+  }
 
   // Funciones Scope:
   $scope.addNuevoRequerimiento = addNuevoRequerimiento;
@@ -69,13 +140,17 @@ function(
   }
 
   $scope.cancelNewDocument = function(){
-      if (!inspectionOrder_factory.checkEmptyData($scope.data)){
+      if (inspectionOrder_factory.checkNotEmptyData($scope.data)){
         showExitConfirmationPopUp();
       }
       else{
-        $state.go("docs");
+        $scope.changeState("docs");
       }
   };
+
+  $scope.changeState = function(newstate){
+      $ionicHistory.clearCache().then(function(){ $state.go(newstate); });
+  }
 
   $scope.changeLugarSeleccionado = function( index ){
     var value = $scope.data.requerimientos[index].lugar;
@@ -87,9 +162,23 @@ function(
   }
 
   $scope.save = function(){
-    console.log($scope.data);
-    inspectionOrder_factory.saveDoc($scope.data);
-    $state.go('home');
+    if (verificarErrores()){
+      $ionicPopup.alert({
+        title: 'Un momento...',
+        template: '<p style="text-align: center;">Para poder guardar el documento, debes ingresar un folio y un propietario. El resto lo puedes agregar más adelante.</p>',
+      });
+    }
+    else{
+      inspectionOrder_factory.saveDoc($scope.data);
+      $scope.changeState('home');
+    }
+  }
+
+  function verificarErrores(){
+    $scope.error_folio = inspectionOrder_factory.verificar_folio($scope.data);
+    $scope.error_propietario = inspectionOrder_factory.verificar_propietario($scope.data);
+    return $scope.error_folio || $scope.error_propietario;
+
   }
 
 // OTROS:
@@ -268,50 +357,4 @@ function(
   $scope.openFechaAcordadaPicker = function(){
     ionicDatePicker.openDatePicker(fechaAcordada);
   }
-
-  // ####################### MODAL DE PREVISUALIZACIÓN #########################
-
-  var vm = this;
-
-  // Initialize the modal view.
-  $ionicModal.fromTemplateUrl('pdf-viewer.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-  }).then(function (modal) {
-      vm.modal = modal;
-
-  });
-
-  $scope.closeVmModal = function(){
-    console.log("Heya");
-    vm.modal.hide();
-  }
-
-  vm.createInvoice = function () {
-      var invoice = $scope.data
-
-      inspectionOrderPDFService.createPdf(invoice)
-        .then(function(pdf) {
-            var blob = new Blob([pdf], {type: 'application/pdf'});
-            $scope.pdfUrl = URL.createObjectURL(blob);
-
-            // Display the modal view
-            vm.modal.show();
-        });
-  };
-
-  // Clean up the modal view.
-  $scope.$on('$destroy', function () {
-      vm.modal.remove();
-  });
-
-
-  $scope.createDocument = function(){
-    for( var v in $scope.data){
-      console.log($scope.data[v]);
-    }
-    vm.createInvoice();
-  };
-
-
 })

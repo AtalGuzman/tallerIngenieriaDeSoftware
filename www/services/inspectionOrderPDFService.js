@@ -92,7 +92,7 @@ angular.module('starter').factory('inspectionOrderPDFService', ['$q', inspection
            }
          },
          { text: '\nRequerimientos\n\n', style: 'header' },
-        table(data.requerimientos, ['recinto', 'lugar','item','problema','instruccion','detalle_especifico'])
+        table(data.requerimientos, ['recinto', 'lugar','item','problema','instruccion','detalle_especifico']),
        ],
        styles: {
          header: {

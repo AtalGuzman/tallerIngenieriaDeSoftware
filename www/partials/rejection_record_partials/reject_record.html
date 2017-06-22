@@ -73,25 +73,10 @@
 
         <ion-content class="margin-bottom" style="padding-top: 5px;">
 
-            <fieldset xlass="padding">
-              <label style="text-align: center">¿Estas seguro de que quieres rechazar el trabajo?</label>
-              <br><br>
-              <ion-checkbox ng-model="rejection_data.rechazo">Si, confirmo el acta de rechazo</ion-checkbox>
-              <br>
-              <div ng-if="rejection_data.rechazo">
-                <label class="item item-input item-stacked-label">
-                   <span class="input-label">Razón del acta de rechazo:</span>
-                   <textarea type="text" ng-model="rejection_data.descripcion" rows="8" placeholder="Ej: Los clientes rompieron la lámpara mientras estaban tratando de arreglarla"></textarea>
-                 </label>
-                 <br>
-                 <button class="button button-full button-assertive" style="margin: 0px;" ng-click="confirmarRechazo($index)">Confirmar Rechazo</button>
-               </fieldset>
-               <br>
-               <button class="button button-full button-calm" style="margin: 0px;" ng-click="volver()">Volver</button>
-            </div>
-          </fieldset>
+          <ng-include src="'partials/rejection_record_partials/inputs/rejection_inputs.html'"></ng-include>
+          <button class="button button-full button-calm" style="margin: 0px;" ng-click="solicitarFirma()">Firmar Acta</button>
 
-          </ion-content>
+        </ion-content>
 
     </ion-slides>
 
@@ -101,14 +86,73 @@
 </ion-view>
 
 
-<script id="pdf-viewer.html" type="text/ng-template">
-    <ion-modal-view>
+<script id="signature-modal.html" type="text/ng-template">
+  <ion-modal-view>
     <ion-header-bar>
-        <h1 class="title">Documento</h1>
-        <button ng-click="closeVmModal()" class="button button-icon icon ion-android-close"></button>
+      <h1 class="title">Ingrese su firma, porfavor</h1>
     </ion-header-bar>
     <ion-content>
-        <ng-pdf ng-if="pdfUrl" template-url="partials/orderDocs/docsPartials/viewer.html" canvasid="pdf" scale="page-fit"></ng-pdf>
+      <div class="m-signature-pad">
+
+        <div class="m-signature-pad--body">
+          <canvas id='signatureCanvas'></canvas>
+        </div>
+
+        <div class="m-signature-pad--footer">
+
+          <div class="row">
+            <div class="col text-left">
+              <button type="button" class="button" ng-click="clearSignature()"><span class="ion-ios-trash-outline" style="margin-right: 5px;"></span></button>
+            </div>
+             <div class="col text-center">
+               <button type="button" class="button" ng-click="openSignatureConfirmation()"><span class="icon-fa-floppy-o" style="margin-right: 5px;"></span>Guardar</button>
+             </div>
+             <div class="col text-right">
+               <button type="button" class="button" ng-click="closeSignatureModal()"><span class="ion-close" style="margin-right: 5px;"></span></button>
+              </div>
+          </div>
+        </div>
+      </div>
+
     </ion-content>
-    </ion-modal-view>
+  </ion-modal-view>
+</script>
+
+<script id="picture-modal.html" type="text/ng-template">
+
+  <ion-modal-view>
+
+    <ion-header-bar>
+      <h1 class="title">Tome una fotografía del carnet, porfavor</h1>
+    </ion-header-bar>
+
+    <ion-content>
+      <div class="m-signature-pad">
+
+        <div ng-if="noCamera" class="m-signature-pad--body" style="background-color: #e3e3e3"></div>
+
+        <div ng-if="!noCamera" class="m-signature-pad--body">
+          <img data-ng-src="{{pictureImageSource}}"io style="width: 100%; max-height: 100%" />
+        </div>
+
+        <div class="m-signature-pad--footer">
+
+          <div class="row">
+            <div class="col text-left">
+              <button ng-disabled="noCamera" type="button" class="button" ng-click="takePicture()"><span class="ion-camera" style="margin-right: 5px;"></span></button>
+            </div>
+             <div class="col text-center">
+               <button ng-disabled="noCamera" type="button" class="button" ng-click="savePicture()"><span class="icon-fa-floppy-o" style="margin-right: 5px;"></span>Guardar</button>
+             </div>
+             <div class="col text-right">
+               <button type="button" class="button" ng-click="closePictureModal()"><span class="ion-close" style="margin-right: 5px;"></span></button>
+              </div>
+          </div>
+        </div>
+
+      </div>
+
+    </ion-content>
+  </ion-modal-view>
+
 </script>

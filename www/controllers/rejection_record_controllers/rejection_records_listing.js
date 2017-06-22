@@ -4,7 +4,7 @@ function($scope, $state, inspectionOrder_factory) {
 
 
   $scope.initFunction = function(){
-    $scope.orderList = inspectionOrder_factory.getEditableDocs();
+    $scope.orderList = inspectionOrder_factory.getRejectionDocs();
   }
 
   $scope.initFunction();

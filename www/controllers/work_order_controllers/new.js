@@ -33,7 +33,7 @@ function(
     if (verificarErrores()){
       $ionicPopup.alert({
         title: 'Un momento...',
-        template: '<p style="text-align: center;">Para poder guardar el documento, debes rellenar o arreglar todos los campos que presenten errores.</p>',
+        template: '<p style="text-align: center;">Para poder guardar el documento, debes ingresar un folio y un propietario. El resto lo puedes agregar más adelante.</p>',
       });
     }
     else{
@@ -56,17 +56,7 @@ function(
   function verificarErrores(){
     $scope.error_folio = workOrder_factory.verificar_folio($scope.data);
     $scope.error_propietario = workOrder_factory.verificar_propietario($scope.data);
-    $scope.error_proyecto = workOrder_factory.verificar_proyecto($scope.data);
-    $scope.error_etapa = workOrder_factory.verificar_etapa($scope.data);
-    $scope.error_propiedad = workOrder_factory.verificar_propiedad($scope.data);
-    $scope.error_tipo_de_propiedad = workOrder_factory.verificar_tipo_propiedad($scope.data);
-    $scope.error_fecha_rm = workOrder_factory.verificar_fecha_rm($scope.data);
-    $scope.error_fecha_entrega = workOrder_factory.verificar_fecha_entrega($scope.data);
-    $scope.error_email = workOrder_factory.verificar_email($scope.data);
-    $scope.error_telefono = workOrder_factory.verificar_telefono($scope.data);
-
     return $scope.error_folio || $scope.error_propietario;
-
   }
 
 
@@ -186,7 +176,6 @@ function(
   });
 
   $scope.closeVmModal = function(){
-    console.log("Heya");
     vm.modal.hide();
   }
 

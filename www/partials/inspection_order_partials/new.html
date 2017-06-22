@@ -1,7 +1,7 @@
-<ion-view ng-controller="inspection_order_new_controller">
+<ion-view ng-controller = 'inspection_order_new_controller'>
 
   <!-- NavBar -->
-  <div ng-controller="navbarCtrl" class="bar bar-header bar-dark">
+  <div class="bar bar-header bar-dark">
     <button ng-click="cancelNewDocument()" class="button button-icon icon ion-ios-arrow-back"></button>
     <div class="h1 title">Orden de inspección</div>
     <button ng-click="openPopover($event)"  class="button button-icon icon ion-navicon"></button>
@@ -85,6 +85,27 @@
 
 </ion-view>
 
+<script id="navbarPopover.html" type="text/ng-template">
+  <ion-popover-view style="height: 240px; width: 80%">
+    <ion-content>
+      <div class="list">
+        <a class="item" ng-click="btnSalir()">
+          <span class="ion-log-out"></span> Salir
+        </a>
+        <a class="item" ng-click="btnCargarDatosPrueba()">
+          <span class="ion-ionic"></span> Cargar prueba
+        </a>
+        <a class="item" ng-click="btnCargarDatosPruebaConformidad()">
+          <span class="ion-ionic"></span> Cargar prueba conformidad
+        </a>
+        <a class="item" ng-click="btnCargarDatosPruebaRechazo()">
+          <span class="ion-ionic"></span> Cargar prueba rechazo
+        </a>
+      </div>
+    </ion-content>
+  </ion-popover-view>
+
+</script>
 
 <script id="pdf-viewer.html" type="text/ng-template">
     <ion-modal-view>
@@ -93,7 +114,7 @@
         <button ng-click="closeVmModal()" class="button button-icon icon ion-android-close"></button>
     </ion-header-bar>
     <ion-content>
-        <ng-pdf ng-if="pdfUrl" template-url="partials/viewer.html" canvasid="pdf" scale="page-fit"></ng-pdf>
+      <ng-pdf ng-if="pdfUrl" template-url="partials/viewer.html" canvasid="pdf" scale="page-fit"></ng-pdf>
     </ion-content>
     </ion-modal-view>
 </script>

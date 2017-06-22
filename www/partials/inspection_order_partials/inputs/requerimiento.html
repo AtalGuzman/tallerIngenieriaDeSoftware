@@ -7,84 +7,95 @@
   <!-- Primer Input -->
   <label class="item item-input custom-item-input">
 
-    <span class="custom-item-input-label">Recinto:</span>
+    <span class="custom-item-input-label">Recinto</span>
 
-    <label class="custom-item-input-padding" modal-select="" ng-model="data.requerimientos[$index].recinto" options="optionsRecinto" modal-title="Selecciona un recinto" has-search="true">
+    <label class="custom-item-input-padding custom-item-input-padding-combobox" modal-select="" ng-model="data.requerimientos[$index].recinto" options="optionsRecinto" modal-title="Selecciona un recinto" has-search="true">
 
       <div ng-if="!data.requerimientos[$index].recinto">Seleccione un recinto</div>
       <div ng-if="data.requerimientos[$index].recinto">{{data.requerimientos[$index].recinto}}</div>
       <div class="option"> {{option}} </div>
 
+        <span class="ion-ios-arrow-down caret-icon"></span>
+
     </label>
 
   </label>
 
+
   <!-- Segundo Input -->
   <label class="item item-input custom-item-input">
 
-    <span class="custom-item-input-label">Lugar:</span>
+    <span class="custom-item-input-label">Lugar</span>
 
-    <label class="custom-item-input-padding" modal-select="" on-select="changeLugarSeleccionado($index)"; ng-model="data.requerimientos[$index].lugar" options="optionsLugar" modal-title="Selecciona un lugar" has-search="true">
+    <label class="custom-item-input-padding custom-item-input-padding-combobox" modal-select="" on-select="changeLugarSeleccionado($index)"; ng-model="data.requerimientos[$index].lugar" options="optionsLugar" modal-title="Selecciona un lugar" has-search="true">
 
       <div ng-if="!data.requerimientos[$index].lugar">Seleccione un lugar</div>
       <div ng-if="data.requerimientos[$index].lugar">{{data.requerimientos[$index].lugar}}</div>
       <div class="option"> {{option}} </div>
+
+      <span class="ion-ios-arrow-down caret-icon"></span>
 
     </label>
 
   </label>
 
   <!-- Tercer Input -->
-  <label class="item item-input custom-item-input"  ng-show="data.requerimientos[$index].lugar">
+  <label class="item item-input custom-item-input">
 
-    <span class="custom-item-input-label">Item:</span>
+    <span class="custom-item-input-label">Item</span>
 
-    <label class="custom-item-input-padding" modal-select="" ng-model="data.requerimientos[$index].item" options="optionsItem" modal-title="Selecciona un item" has-search="true">
+    <label class="custom-item-input-padding custom-item-input-padding-combobox" modal-select="" ng-model="data.requerimientos[$index].item" options="optionsItem" modal-title="Selecciona un item" has-search="true">
 
       <div ng-if="!data.requerimientos[$index].item">Seleccione un item</div>
       <div ng-if="data.requerimientos[$index].item">{{data.requerimientos[$index].item}}</div>
       <div class="option"> {{option}} </div>
+      <span class="ion-ios-arrow-down caret-icon"></span>
 
     </label>
 
   </label>
 
+
   <!-- Cuarto Input -->
-  <label class="item item-input custom-item-input" ng-show="data.requerimientos[$index].lugar">
+  <label class="item item-input custom-item-input">
 
-    <span class="custom-item-input-label">Problema:</span>
+    <span class="custom-item-input-label">Problema</span>
 
-    <label class="custom-item-input-padding" modal-select="" ng-model="data.requerimientos[$index].problema" options="optionsProblema" modal-title="Selecciona un problema" has-search="true">
+    <label class="custom-item-input-padding custom-item-input-padding-combobox" modal-select="" ng-model="data.requerimientos[$index].problema" options="optionsProblema" modal-title="Selecciona un problema" has-search="true">
+
 
       <div ng-if="!data.requerimientos[$index].problema">Seleccione un problema</div>
       <div ng-if="data.requerimientos[$index].problema">{{data.requerimientos[$index].problema}}</div>
       <div class="option"> {{option}} </div>
+      <span class="ion-ios-arrow-down caret-icon"></span>
 
     </label>
 
   </label>
 
   <!-- Quinto Input -->
-  <label class="item item-input custom-item-input" ng-show="data.requerimientos[$index].lugar">
+  <label class="item item-input custom-item-input">
 
-    <span class="custom-item-input-label">Instrucción:</span>
+    <span class="custom-item-input-label">Instrucción</span>
 
-    <label class="custom-item-input-padding" modal-select="" ng-model="data.requerimientos[$index].instruccion" options="optionsInstruccion" modal-title="Selecciona un problema" has-search="true">
+    <label class="custom-item-input-padding custom-item-input-padding-combobox" modal-select="" ng-model="data.requerimientos[$index].instruccion" options="optionsInstruccion" modal-title="Selecciona un problema" has-search="true">
 
       <div ng-if="!data.requerimientos[$index].instruccion">Seleccione una instrucción</div>
       <div ng-if="data.requerimientos[$index].instruccion">{{data.requerimientos[$index].instruccion}}</div>
       <div class="option"> {{option}} </div>
+      <span class="ion-ios-arrow-down caret-icon"></span>
 
     </label>
 
   </label>
+
 
   <!-- Sexto Output -->
   <label class="item item-input item-stacked-label">
     <div class="input-label">Detalle Específico</div>
     <textarea ng-model="data.requerimientos[$index].detalle_especifico" rows="8" cols="80" placeholder="Ej: El cliente no estaba en su casa"></textarea>
   </label>
-  
+
   <button class="button button-full button-assertive" style="margin: 0px;" ng-click="removeRequerimiento($index)">Eliminar requerimiento</button>
 
 

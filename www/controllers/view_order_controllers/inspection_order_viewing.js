@@ -10,4 +10,6 @@ function($scope, $state, inspectionOrder_factory, $ionicHistory) {
   $scope.changeState = function(newstate){
     $ionicHistory.clearCache().then(function(){ $state.go(newstate); });
   }
+
+
 })

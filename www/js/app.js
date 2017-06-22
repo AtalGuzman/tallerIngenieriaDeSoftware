@@ -61,6 +61,7 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
       url: '/docs_view/orden_de_trabajo',
       controler: 'docsView_work_order_listing',
       templateUrl:'partials/view_orders/home_workorder_listing.html',
+      cache: false,
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
            $state.go('log_in');
@@ -84,6 +85,7 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
       url: '/docs_view/orden_de_inspeccion',
       controler: 'docsView_inspection_order_listing',
       templateUrl:'partials/view_orders/home_inspection_listing.html',
+      cache: false,
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
            $state.go('log_in');
@@ -215,8 +217,6 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
       }
     });
 
-
-
     //lISTA LAS ORDENES DE INSPECCIÓN PARA SU EDICIÓN
     $stateProvider.state('editInspectionOrderListing',{
       url: '/docs_edit/orden_de_inspeccion',
@@ -228,8 +228,6 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
         }
       }
     });
-
-
 
     $stateProvider.state('newWorkOrder',{
       url: '/docs/orden_de_trabajo/new',
@@ -246,6 +244,7 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
     $stateProvider.state('newInspectionOrder',{
       url: '/docs/orden_de_inspeccion/new',
       controller: 'inspection_order_new_controller',
+      cache: false,
       templateUrl: 'partials/inspection_order_partials/new.html',
       onEnter: function($state, Auth){
         if(!Auth.isLoggedIn()){
@@ -254,16 +253,6 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
       }
     });
 
-    $stateProvider.state('newConformityAct',{
-      url: '/works_conformity/:id',
-      controller: 'newConformityCtrl',
-      templateUrl: 'partials/newConformity.html',
-      onEnter: function($state, Auth){
-        if(!Auth.isLoggedIn()){
-           $state.go('log_in');
-        }
-      }
-    });
 
     $stateProvider.state('editInspection',{
       url: '/docs_edit/orden_de_inspeccion/:id',
@@ -275,22 +264,6 @@ var app = angular.module('starter', ['ionic', 'ionic-modal-select', 'ionic-datep
            $state.go('log_in');
         }
       }
-    });
-
-    $stateProvider.state('editConformity',{
-      url: '/conformities/:id',
-      controller: 'editConformityCtrl',
-      templateUrl: 'partials/newConformity.html',
-      onEnter: function($state, Auth){
-        if(!Auth.isLoggedIn()){
-           $state.go('log_in');
-        }
-      }
-    });
-
-    $stateProvider.state('acts',{
-      url: '/acts',
-      templateUrl:'partials/acts.html'
     });
 
     $urlRouterProvider.otherwise('/home');
