@@ -269,7 +269,7 @@ angular.module('starter').factory('inspectionOrder_factory', function(StringifyJ
     initConformityData:function(){
         var cd = angular.copy(_confData);
         cd.id_conformidad = new Date().getTime().toString();
-        return rd;
+        return cd;
     },
 
     // Inicializa una acta de rechazo
