@@ -10,7 +10,6 @@ angular.module('starter').controller('sessionCtrl', function($scope, $state, Aut
 
     function showConfirmationPopUp(){
 
-      console.log("show");
       var confirmPopup = $ionicPopup.confirm({
          title: 'Confirmación',
          template: '¿Estas seguro que quieres salir de la aplicación?'

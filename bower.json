@@ -8,6 +8,7 @@
     "pdfmake": "^0.1.27",
     "angular-pdf": "^1.6.0",
     "chance": "^1.0.6",
-    "ionic-datepicker": "^1.2.1"
+    "ionic-datepicker": "^1.2.1",
+    "signature_pad": "^2.2.0"
   }
 }

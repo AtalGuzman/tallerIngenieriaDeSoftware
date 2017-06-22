@@ -5,9 +5,7 @@ angular.module('starter').controller('navbarCtrl', function($scope, $rootScope, 
     }
 
     $scope.btnSalir = function(){
-
       showLogoutConfirmationPopUp();
-
     };
 
     $ionicPopover.fromTemplateUrl('partials/navbar_popover.html', {

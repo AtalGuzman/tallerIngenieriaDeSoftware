@@ -1,0 +1,165 @@
+<ion-view ng-controller="work_order_conformity_record_controller">
+
+  <!-- NavBar -->
+  <div ng-controller="navbarCtrl" class="bar bar-header bar-dark">
+    <button ng-click="volver()" class="button button-icon icon ion-ios-arrow-back"></button>
+    <div class="h1 title">Acta de Conformidad (OT)</div>
+    <button ng-click="openPopover($event)"  class="button button-icon icon ion-navicon"></button>
+  </div>
+
+
+
+  <ion-pane class="has-header" has-subheader="true" style="padding-top: 44px">
+
+    <ion-slides options="options" slider="data.slider">
+
+    <!--
+      <ion-slide-page>
+
+        <div class="bar bar-stable">
+           <h2 class="title">Información del documento</h2>
+        </div>
+
+        <ion-content class="margin-bottom" style="padding-top:44px;">
+          <ng-include src="'partials/work_order_partials/readonly_inputs/inputs_info_documento.html'"></ng-include>
+        </ion-content>
+
+      </ion-slide-page>
+
+      <ion-slide-page>
+
+        <div class="bar bar-stable">
+           <h2 class="title">Información general</h2>
+        </div>
+
+        <ion-content class="margin-bottom" style="padding-top:44px;">
+          <ng-include src="'partials/work_order_partials/readonly_inputs/inputs_info_general.html'"></ng-include>
+        </ion-content>
+      </ion-slide-page>
+
+      <ion-slide-page>
+
+        <div class="bar bar-stable">
+           <h2 class="title">Información de la solicitud</h2>
+        </div>
+
+        <ion-content class="margin-bottom" style="padding-top:44px;">
+          <ng-include src="'partials/work_order_partials/readonly_inputs/inputs_info_solicitud.html'"></ng-include>
+        </ion-content>
+      </ion-slide-page>
+
+      <ion-slide-page>
+
+        <div class="bar bar-stable">
+           <h2 class="title">Requerimientos</h2>
+        </div>
+
+        <ion-content class="margin-bottom" style="padding-top:44px;">
+          <ng-include src="'partials/work_order_partials/readonly_inputs/inputs_info_requerimientos.html'"></ng-include>
+        </ion-content>
+      </ion-slide-page>
+
+    -->
+      <ion-slide-page>
+
+        <div class="bar bar-stable">
+           <h2 class="title">Conformidad</h2>
+        </div>
+
+        <ion-content class="margin-bottom" style="padding-top: 44px;">
+
+            <!--<button ng-click="openPictureModal()" style="width: 100%">MODAL</button>-->
+
+            <!--
+            <button ng-click="takePicture()" style="width: 100%">Boton</button>
+
+            <label>Picture is: {{pictureImage}} - {{message}}</label>
+
+            <br>
+          -->
+
+            <ng-include src="'partials/conformity_record_partials/inputs/conformity_inputs.html'"></ng-include>
+            <button class="button button-full button-calm" style="margin: 0px;" ng-click="solicitarFirma()">Firmar Acta</button>
+
+        </ion-content>
+
+      </ion-slide-page>
+
+    </ion-slides>
+
+
+	</ion-pane>
+
+</ion-view>
+
+
+<script id="signature-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Ingrese su firma, porfavor</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="m-signature-pad">
+
+        <div class="m-signature-pad--body">
+          <canvas id='signatureCanvas'></canvas>
+        </div>
+
+        <div class="m-signature-pad--footer">
+
+          <div class="row">
+            <div class="col text-left">
+              <button type="button" class="button" ng-click="clearSignature()"><span class="ion-ios-trash-outline" style="margin-right: 5px;"></span></button>
+            </div>
+             <div class="col text-center">
+               <button type="button" class="button" ng-click="openSignatureConfirmation()"><span class="icon-fa-floppy-o" style="margin-right: 5px;"></span>Guardar</button>
+             </div>
+             <div class="col text-right">
+               <button type="button" class="button" ng-click="closeSignatureModal()"><span class="ion-close" style="margin-right: 5px;"></span></button>
+              </div>
+          </div>
+        </div>
+      </div>
+
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+<script id="picture-modal.html" type="text/ng-template">
+
+  <ion-modal-view>
+
+    <ion-header-bar>
+      <h1 class="title">Tome una fotografía del carnet, porfavor</h1>
+    </ion-header-bar>
+
+    <ion-content>
+      <div class="m-signature-pad">
+
+        <div ng-if="noCamera" class="m-signature-pad--body" style="background-color: #e3e3e3"></div>
+
+        <div ng-if="!noCamera" class="m-signature-pad--body">
+          <img data-ng-src="{{pictureImageSource}}"io style="width: 100%; max-height: 100%" />
+        </div>
+
+        <div class="m-signature-pad--footer">
+
+          <div class="row">
+            <div class="col text-left">
+              <button ng-disabled="noCamera" type="button" class="button" ng-click="takePicture()"><span class="ion-camera" style="margin-right: 5px;"></span></button>
+            </div>
+             <div class="col text-center">
+               <button ng-disabled="noCamera" type="button" class="button" ng-click="savePicture()"><span class="icon-fa-floppy-o" style="margin-right: 5px;"></span>Guardar</button>
+             </div>
+             <div class="col text-right">
+               <button type="button" class="button" ng-click="closePictureModal()"><span class="ion-close" style="margin-right: 5px;"></span></button>
+              </div>
+          </div>
+        </div>
+
+      </div>
+
+    </ion-content>
+  </ion-modal-view>
+
+</script>

@@ -12,23 +12,19 @@
     <ion-list>
 
       <ion-item ng-click="changeState('newWorkOrder')" >
-				<div style="position: relative">
-					<span>Orden de Trabajo</span>
-					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+				<div class="item-listing-no-icon">
+					<span class="item-index">1)</span>
+					<span class="item-text">Orden de Trabajo</span>
+					<span class="ion-chevron-right item-caret"></span>
 				</div>
+
       </ion-item>
 
-			<ion-item ng-click="changeState('listOrdenDeTrabajo2')">
-				<div style="position: relative">
-					<span>Orden de Inspección</span>
-					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
-				</div>
-			</ion-item>
-
-			<ion-item ng-click="changeState('listActaDeConformidad')">
-				<div style="position: relative">
-					<span>Acta de Conformidad</span>
-					<span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+			<ion-item ng-click="changeState('newInspectionOrder')">
+				<div class="item-listing-no-icon">
+					<span class="item-index">2)</span>
+					<span class="item-text">Orden de Inspección</span>
+					<span class="ion-chevron-right item-caret"></span>
 				</div>
 			</ion-item>
 

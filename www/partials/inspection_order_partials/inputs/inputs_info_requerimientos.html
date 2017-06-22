@@ -1,0 +1,10 @@
+<div class="list">
+
+
+
+  <fieldset data-ng-repeat="choice in data.requerimientos" xlass="padding" style="margin: 10px 0px;">
+    <ng-include src="'partials/inspection_order_partials/inputs/requerimiento.html'"></ng-include>
+  </fieldset>
+
+  <button class="button button-block button-balanced" ng-click="addNuevoRequerimiento()">Agregar requerimiento</button>
+</div>

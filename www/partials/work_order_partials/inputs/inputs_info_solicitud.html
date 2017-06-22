@@ -1,0 +1,27 @@
+<div class="list">
+
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Fecha Entrega</span>
+    <label class="custom-item-input-padding custom-item-input-padding-combobox">
+      <input type="text" readonly="true" class="readonly_custom" placeholder="Ej: 20/03/2017" ng-click="openFechaSolicitudPicker()" ng-model="data.ds_fecha_solicitud">
+      <span class="ion-calendar caret-icon"></span>
+    </label>
+  </label>
+
+
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Medio Solicitud</span>
+    <input class="custom-item-input-padding" type="text" ng-model="data.ds_medio_solicitud" placeholder="Ej: Pre-entrega rechazos">
+  </label>
+
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Visitante</span>
+    <input class="custom-item-input-padding" type="text" ng-model="data.ds_visita_efectuada_por" placeholder="Ej: Felipe Jara">
+  </label>
+
+  <label class="item item-input custom-item-input">
+    <span class="custom-item-input-label">Recepción</span>
+    <input class="custom-item-input-padding" type="text" ng-model="data.ds_nombre_quien_recibe" placeholder="Ej: Sebastian Morales">
+  </label>
+
+</div>

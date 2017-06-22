@@ -1,0 +1,38 @@
+<ion-view>
+
+	<!-- Navbar -->
+  <div ng-controller="navbarCtrl" class="bar bar-header bar-dark">
+    <button ng-click="changeState('docsEdit')" class="button button-icon icon ion-ios-arrow-back"></button>
+	  <div class="h1 title">Editar Orden de Trabajo</div>
+	  <button ng-click="openPopover($event)" class="button button-icon icon ion-navicon"></button>
+	</div>
+
+
+
+	<!-- Contenido -->
+	<!-- Observación: No es la mejor manera de codificar cada ion-item, pero funciona de todas maneras... -->
+	<ion-content class="has-header" >
+
+    <div class="card"ng-if="!workOrderList || workOrderList.length == 0">
+      <div class="item item-text-wrap">
+        Actualmente no hay documentos que puedan ser editados.
+      </div>
+    </div>
+
+    <ion-list ng-if="workOrderList && workOrderList.length != 0">
+
+      <ion-item ng-repeat="order in workOrderList" ng-click="goToEdit(order.id)">
+        <div style="position: relative">
+          <span style="margin-right: 8px; overflow: hidden;">
+            <b>{{order.folio}}</b><br>
+            {{order.dg_propietario}}
+          </span>
+          <span class="ion-chevron-right" style="position: absolute; right: 6px;"></span>
+        </div>
+      </ion-item>
+
+    </ion-list>
+
+  </ion-content>
+
+</ion-view>

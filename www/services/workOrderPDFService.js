@@ -12,7 +12,6 @@ angular.module('starter').factory('workOrderPDFService', ['$q', workOrderPDFServ
               });
           });
       }
-
       return {
           createPdf: createPdf
       };
@@ -28,7 +27,6 @@ angular.module('starter').factory('workOrderPDFService', ['$q', workOrderPDFServ
   }
 
   function createDocumentDefinition(data) {
-
     var dd = {
        content: [
          {text:[data.tipo_documento,"\n\n",data.folio],style:'header'},
@@ -42,16 +40,16 @@ angular.module('starter').factory('workOrderPDFService', ['$q', workOrderPDFServ
                  {
                    alignment: 'justify',
                    text: [
-                   "PROYECTO         :\t",data.datos_generales.proyecto,"\n",
-                   "PROPIEDAD        :\t",data.datos_generales.propiedad,"\n",
-                   "TIPO DE PROPIEDAD:\t",data.datos_generales.tipo_de_propiedad,"\n",
-                   "FECHA R.M.       :\t",data.datos_generales.fecha_rm,"\n",
-                   "PROPIETARIO      :\t", data.datos_generales.propietario,"\n",
-                   "E-MAIL           :\t",data.datos_generales.email,"\n",
-                   "TELEFONOS        :\t",data.datos_generales.telefonos,"\n",
-                   "ETAPA            :\t",data.datos_generales.etapa,"\n",
-                   "MANZANA          :\t",data.datos_generales.manzana_lote,"\n",
-                   "FECHA ENTREGA    :\t",data.datos_generales.fecha_entrega,"\n"
+                   "PROYECTO         :\t",data.dg_proyecto,"\n",
+                   "PROPIEDAD        :\t",data.dg_propiedad,"\n",
+                   "TIPO DE PROPIEDAD:\t",data.dg_tipo_de_propiedad,"\n",
+                   "FECHA R.M.       :\t",data.dg_fecha_rm,"\n",
+                   "PROPIETARIO      :\t", data.dg_propietario,"\n",
+                   "E-MAIL           :\t",data.dg_email,"\n",
+                   "TELEFONOS        :\t",data.dg_telefonos,"\n",
+                   "ETAPA           :\t",data.dg_etapa,"\n",
+                   "MANZANA          :\t",data.dg_manzana_lote,"\n",
+                   "FECHA ENTREGA    :\t",data.dg_fecha_entrega,"\n"
                    ]
                  }
                ]
@@ -69,10 +67,10 @@ angular.module('starter').factory('workOrderPDFService', ['$q', workOrderPDFServ
                  {
                    alignment: 'justify',
                    text: [
-                       "FECHA                :\t",data.datos_solicitud.fecha_solicitud,"\n",
-                       "VISITA EFECTUADA POR :\t",data.datos_solicitud.medio_solicitud,"\n",
-                       "MEDIO SOLICITUD      :\t",data.datos_solicitud.visita_efectuada_por,"\n",
-                       "NOMBRE QUIEN RECIBE  :\t",data.datos_solicitud.nombre_quien_recibe,"\n"
+                       "FECHA                :\t",data.ds_fecha_solicitud,"\n",
+                       "VISITA EFECTUADA POR :\t",data.ds_visita_efectuada_por,"\n",
+                       "MEDIO SOLICITUD      :\t",data.ds_medio_solicitud,"\n",
+                       "NOMBRE QUIEN RECIBE  :\t",data.ds_nombre_quien_recibe,"\n"
                      ]
                  }
                ]
@@ -90,16 +88,18 @@ angular.module('starter').factory('workOrderPDFService', ['$q', workOrderPDFServ
                  {
                    alignment: 'justify',
                    text: [
-                       "DURACION ESTIMADA      :\t",data.datos_trabajo.duracion_estimada,"\n",
-                       "RESPONSABLE            :\t",data.datos_trabajo.responsable,"\n",
-                       "FECHA EJECUCION TRABAJO:\t",data.datos_trabajo.fecha_ejecucion,"\n",
-                       "HORA APROXIMADA        :\t",data.datos_trabajo.hora_ejecucion,"\n"
+                       "DURACION ESTIMADA      :\t",data.dt_duracion_estimada,"\n",
+                       "RESPONSABLE            :\t",data.dt_responsable,"\n",
+                       "FECHA EJECUCION TRABAJO:\t",data.dt_fecha_ejecucion,"\n",
+                       "HORA APROXIMADA        :\t",data.dt_hora_ejecucion,"\n"
                      ]
                  }
                ]
              ]
            }
          },
+         { text: '\nRequerimientos\n\n', style: 'header' },
+        table(data.requerimientos, ['recinto', 'lugar','item','problema','instruccion'])
        ],
        styles: {
          header: {
@@ -119,4 +119,38 @@ angular.module('starter').factory('workOrderPDFService', ['$q', workOrderPDFServ
      };
 
     return dd;
+}
+
+function buildTableBody(data, columns) {
+    var body = [];
+
+    body.push(columns);
+
+    data.forEach(function(row) {
+        var dataRow = [];
+
+        columns.forEach(function(column) {
+            dataRow.push(row[column].toString());
+        })
+
+        body.push(dataRow);
+    });
+
+    return body;
+}
+
+function table(data, columns) {
+  styles: {
+    tableExample: {
+      width:
+      margin: [0, 5, 0, 15]
+    }
+  }
+    return {
+        table: {
+            style: 'tableExample',
+            headerRows: 1,
+            body: buildTableBody(data, columns)
+        }
+    };
 }
